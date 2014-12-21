@@ -21,7 +21,9 @@ public class RockPaperScissors {
 			player1 = new ComputerPlayer(strategy);
 		}
 		player2 = new ComputerPlayer(strategy);
-
-		System.out.println(gameType.name());
+		Gesture player1Gesture = player1.throwGesture();
+		Gesture player2Gesture = player2.throwGesture();
+		Result result = player1Gesture.against(player2Gesture);
+		ui.showResult(result);
 	}
 }

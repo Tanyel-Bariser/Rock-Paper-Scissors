@@ -19,19 +19,27 @@ public class ConsoleUI implements UserInterface {
 			System.out.println("Invalid input!\nPlease try again:");
 			return askGameType();
 		}
-		scanner.close();
 		return gameType;
 	}
 
 	@Override
 	public Gesture chooseGesture() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Let's play Rock, Paper Scissors:");
+		System.out.println("To choose Rock: Enter \"R\"");
+		System.out.println("To choose Paper: Enter \"P\"");
+		System.out.println("To choose Scissors: Enter \"S\"");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		Gesture gesture = Gesture.getGesture(input);
+		if (gesture == null) {
+			System.out.println("Invalid input!\nPlease try again!");
+			return chooseGesture();
+		}
+		return gesture;
 	}
 
 	@Override
 	public void showResult(Result result) {
-		// TODO Auto-generated method stub
-		
+		System.out.println(result.name());
 	}
 }

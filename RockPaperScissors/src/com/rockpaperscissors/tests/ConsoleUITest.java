@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.rockpaperscissors.GameType;
+import com.rockpaperscissors.Gesture;
 import com.rockpaperscissors.ui.ConsoleUI;
 import com.rockpaperscissors.ui.UserInterface;
 
@@ -16,6 +17,16 @@ public class ConsoleUITest {
 		GameType gameType = ui.askGameType();
 		assertTrue(gameType.equals(GameType.PLAYER_VS_COMPUTER) ||
 				gameType.equals(GameType.COMPUTER_VS_COMPUTER));
-		System.out.println("Test finished, check JUnit for result.");
+		System.out.println("\nYou chose: " + gameType);
+		System.out.println("\nCheck JUnit for result.\n");
+	}
+	@Test
+	public void chooseGestureReturnsValidType() {
+		UserInterface ui = new ConsoleUI();
+		Gesture gesture = ui.chooseGesture();
+		assertTrue(gesture.equals(Gesture.ROCK) || gesture.equals(Gesture.PAPER)
+				|| gesture.equals(Gesture.SCISSORS));
+		System.out.println("\nYou chose: " + gesture);
+		System.out.println("\nCheck JUnit for result.\n");
 	}
 }
