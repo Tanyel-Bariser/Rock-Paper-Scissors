@@ -5,14 +5,14 @@ import com.rockpaperscissors.player.HumanPlayer;
 import com.rockpaperscissors.player.Player;
 import com.rockpaperscissors.strategies.RandomStrategy;
 import com.rockpaperscissors.strategies.Strategy;
-import com.rockpaperscissors.ui.CommandLineUI;
+import com.rockpaperscissors.ui.ConsoleUI;
 import com.rockpaperscissors.ui.UserInterface;
 
 public class RockPaperScissors {
 
 	public static void main(String[] args) {
 		Player player1, player2;
-		UserInterface ui = new CommandLineUI();
+		UserInterface ui = new ConsoleUI();
 		GameType gameType = ui.askGameType();
 		Strategy strategy = new RandomStrategy();
 		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
@@ -21,5 +21,7 @@ public class RockPaperScissors {
 			player1 = new ComputerPlayer(strategy);
 		}
 		player2 = new ComputerPlayer(strategy);
+
+		System.out.println(gameType.name());
 	}
 }

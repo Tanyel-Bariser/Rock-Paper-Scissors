@@ -5,8 +5,8 @@ import java.util.Random;
 import com.rockpaperscissors.Gesture;
 
 public class RandomStrategy implements Strategy {
-	// Set to 5 (no other changes required) so chooseGesture()
-	// can also potentially return either LIZARD or SPOCK
+	// Set to 5 (no other changes required) for chooseGesture()
+	// to also potentially return either LIZARD or SPOCK
 	private final int NUMBER_OF_GESTURES = 3;
 	
 	@Override
