@@ -1,6 +1,6 @@
 package com.rockpaperscissors.tests;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -11,10 +11,11 @@ import com.rockpaperscissors.ui.UserInterface;
 public class ConsoleUITest {
 
 	@Test
-	public void test() {
+	public void askGameTypeReturnsValidType() {
 		UserInterface ui = new ConsoleUI();
 		GameType gameType = ui.askGameType();
-		assertNotEquals(gameType, null);
-		System.out.println("JUnit Test passed. You can close console.");
+		assertTrue(gameType.equals(GameType.PLAYER_VS_COMPUTER) ||
+				gameType.equals(GameType.COMPUTER_VS_COMPUTER));
+		System.out.println("Test finished, check JUnit for result.");
 	}
 }
