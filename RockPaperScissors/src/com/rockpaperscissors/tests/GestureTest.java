@@ -186,17 +186,17 @@ public class GestureTest {
 	@Test
 	public void getRock() {
 		assertEquals("Should return ROCK",
-				Gesture.ROCK, Gesture.getGesture("r"));
+				Gesture.ROCK, Gesture.getGesture(" r"));
 	}
 	@Test
 	public void getScissors() {
 		assertEquals("Should return SCISSORS",
-				Gesture.SCISSORS, Gesture.getGesture("s"));
+				Gesture.SCISSORS, Gesture.getGesture("s  "));
 	}
 	@Test
 	public void getPaper() {
 		assertEquals("Should return PAPER",
-				Gesture.PAPER, Gesture.getGesture("p"));
+				Gesture.PAPER, Gesture.getGesture("   p"));
 	}
 	@Test
 	public void getLizard() {
@@ -206,7 +206,7 @@ public class GestureTest {
 	@Test
 	public void getSpock() {
 		assertEquals("Should return SPOCK",
-				Gesture.SPOCK, Gesture.getGesture("sp"));
+				Gesture.SPOCK, Gesture.getGesture("sp  "));
 	}
 	@Test
 	public void wrongArgReturnsNull() {

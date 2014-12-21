@@ -14,7 +14,7 @@ public enum Gesture {
 	}
 
 	public static Gesture getGesture(String gesture) {
-		switch (gesture.toUpperCase()) {
+		switch (gesture.toUpperCase().trim()) {
 			case "R" : return Gesture.valueOf("ROCK");
 			case "P" : return Gesture.valueOf("PAPER");
 			case "S" : return Gesture.valueOf("SCISSORS");
@@ -28,9 +28,9 @@ public enum Gesture {
 		if (this.equals(opponent)) {
 			return Result.TIE;
 		}
-		boolean win = opponent.name().equals(beats1) || 
-					opponent.name().equals(beats2);
-		if (win) {
+		boolean beatsOpponent = opponent.name().equals(beats1) || 
+								opponent.name().equals(beats2);
+		if (beatsOpponent) {
 			return Result.WIN;
 		} else {
 			return Result.LOSE;
