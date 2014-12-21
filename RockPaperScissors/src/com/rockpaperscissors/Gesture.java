@@ -17,6 +17,8 @@ public enum Gesture {
 		if (this.equals(opponent)) {
 			return Result.TIE;
 		}
+		// opponent.name() will rightly throw NullPointerException if
+		// wrongly trying to match this gesture against a null gesture
 		boolean win = opponent.name().equals(beats1) || 
 					opponent.name().equals(beats2);
 		if (win) {
