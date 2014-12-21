@@ -13,12 +13,21 @@ public enum Gesture {
 		this.beats2 = beats2;
 	}
 
+	public static Gesture getGesture(String gesture) {
+		switch (gesture.toUpperCase()) {
+			case "R" : return Gesture.valueOf("ROCK");
+			case "P" : return Gesture.valueOf("PAPER");
+			case "S" : return Gesture.valueOf("SCISSORS");
+			case "L" : return Gesture.valueOf("LIZARD");
+			case "SP" : return Gesture.valueOf("SPOCK");
+			default : return null;
+		}
+	}
+	
 	public Result against(Gesture opponent) {
 		if (this.equals(opponent)) {
 			return Result.TIE;
 		}
-		// opponent.name() will rightly throw NullPointerException if
-		// wrongly trying to match this gesture against a null gesture
 		boolean win = opponent.name().equals(beats1) || 
 					opponent.name().equals(beats2);
 		if (win) {

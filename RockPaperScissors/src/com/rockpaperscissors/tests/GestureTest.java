@@ -178,4 +178,43 @@ public class GestureTest {
 		assertEquals("Spock should get poisoned by Lizard",
 				Result.LOSE, Gesture.SPOCK.against(Gesture.LIZARD));
 	}
+	
+	 /*********************************
+	 * Tests for Gesture.getGesture() *
+	 *********************************/
+
+	@Test
+	public void getRock() {
+		assertEquals("Should return ROCK",
+				Gesture.ROCK, Gesture.getGesture("r"));
+	}
+	@Test
+	public void getScissors() {
+		assertEquals("Should return SCISSORS",
+				Gesture.SCISSORS, Gesture.getGesture("s"));
+	}
+	@Test
+	public void getPaper() {
+		assertEquals("Should return PAPER",
+				Gesture.PAPER, Gesture.getGesture("p"));
+	}
+	@Test
+	public void getLizard() {
+		assertEquals("Should return LIZARD",
+				Gesture.LIZARD, Gesture.getGesture("l"));
+	}
+	@Test
+	public void getSpock() {
+		assertEquals("Should return SPOCK",
+				Gesture.SPOCK, Gesture.getGesture("sp"));
+	}
+	@Test
+	public void wrongArgReturnsNull() {
+		assertEquals("Wrong argument should return null",
+				null, Gesture.getGesture("q"));
+	}
+	@Test (expected = NullPointerException.class)
+	public void nullThrowsException() {
+		Gesture.getGesture(null);
+	}
 }
