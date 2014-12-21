@@ -4,7 +4,7 @@ import com.rockpaperscissors.Gesture;
 import com.rockpaperscissors.strategies.Strategy;
 
 public class ComputerPlayer implements Player {
-	Strategy strategy;
+	private Strategy strategy;
 	
 	public ComputerPlayer(Strategy strategy) {
 		this.strategy = strategy;
