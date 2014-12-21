@@ -18,13 +18,13 @@ public class GestureTest {
 		Gesture.ROCK.against(null);
 	}
 	@Test
-	public void rockBeatsScissors() {
-		assertEquals("Rock should beat Scissors",
+	public void rockCrushesScissors() {
+		assertEquals("Rock should crush Scissors",
 				Result.WIN, Gesture.ROCK.against(Gesture.SCISSORS));
 	}
 	@Test
-	public void rockBeatsLizard() {
-		assertEquals("Rock should beat Lizard",
+	public void rockCrushesLizard() {
+		assertEquals("Rock should crush Lizard",
 				Result.WIN, Gesture.ROCK.against(Gesture.LIZARD));
 	}
 	@Test
@@ -33,32 +33,32 @@ public class GestureTest {
 				Result.TIE, Gesture.ROCK.against(Gesture.ROCK));
 	}
 	@Test
-	public void rockLosesToPaper() {
-		assertEquals("Rock should lose to Paper",
+	public void rockIsCoveredByPaper() {
+		assertEquals("Rock should get covered by Paper",
 				Result.LOSE, Gesture.ROCK.against(Gesture.PAPER));
 	}
 	@Test
-	public void rockLosesToSpock() {
-		assertEquals("Rock should lose to Spock",
+	public void rockIsVaporisedBySpock() {
+		assertEquals("Rock should get vaporised by Spock",
 				Result.LOSE, Gesture.ROCK.against(Gesture.SPOCK));
 	}
 	
-	/************************************
+	/*************************************
 	 * Tests for Gesture.PAPER.against() *
-	 ***********************************/
+	 ************************************/
 	
 	@Test (expected = NullPointerException.class)
 	public void paperAgainstNullThrowsException() {
 		Gesture.PAPER.against(null);
 	}
 	@Test
-	public void paperBeatsScissors() {
-		assertEquals("Paper should beat Rock",
+	public void paperCoversRock() {
+		assertEquals("Paper should cover Rock",
 				Result.WIN, Gesture.PAPER.against(Gesture.ROCK));
 	}
 	@Test
-	public void paperBeatsSpock() {
-		assertEquals("Paper should beat Spock",
+	public void paperDisprovesSpock() {
+		assertEquals("Paper should disprove Spock",
 				Result.WIN, Gesture.PAPER.against(Gesture.SPOCK));
 	}
 	@Test
@@ -67,13 +67,47 @@ public class GestureTest {
 				Result.TIE, Gesture.PAPER.against(Gesture.PAPER));
 	}
 	@Test
-	public void paperLosesToScissors() {
-		assertEquals("Paper should lose to Scissors",
+	public void paperIsCutByScissors() {
+		assertEquals("Paper should get cut by Scissors",
 				Result.LOSE, Gesture.PAPER.against(Gesture.SCISSORS));
 	}
 	@Test
-	public void paperLosesToLizard() {
-		assertEquals("Paper should lose to Lizard",
+	public void paperIsEatenByLizard() {
+		assertEquals("Paper should get eaten by Lizard",
 				Result.LOSE, Gesture.PAPER.against(Gesture.LIZARD));
+	}
+	
+	/****************************************
+	 * Tests for Gesture.SCISSORS.against() *
+	 ***************************************/
+	
+	@Test (expected = NullPointerException.class)
+	public void scissorsAgainstNullThrowsException() {
+		Gesture.SCISSORS.against(null);
+	}
+	@Test
+	public void scissorsCutsPaper() {
+		assertEquals("Scissors should cut Paper",
+				Result.WIN, Gesture.SCISSORS.against(Gesture.PAPER));
+	}
+	@Test
+	public void scissorsDecapitatesLizard() {
+		assertEquals("Scissors should decapitate Lizard",
+				Result.WIN, Gesture.SCISSORS.against(Gesture.LIZARD));
+	}
+	@Test
+	public void scissorsTiesWithScissors() {
+		assertEquals("Scissors should tie with Scissors",
+				Result.TIE, Gesture.SCISSORS.against(Gesture.SCISSORS));
+	}
+	@Test
+	public void scissorsIsCrushedByRock() {
+		assertEquals("Scissors should get crushed by Rock",
+				Result.LOSE, Gesture.SCISSORS.against(Gesture.ROCK));
+	}
+	@Test
+	public void scissorsGetsSmashedBySpock() {
+		assertEquals("Scissors should get smashed by Spock",
+				Result.LOSE, Gesture.SCISSORS.against(Gesture.SPOCK));
 	}
 }
