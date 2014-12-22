@@ -12,5 +12,7 @@ public interface UserInterface {
 	
 	void showResult(Result result, Gesture player1Gesture, Gesture player2Gesture, GameType gameType);
 
+	void showScore();
+	
 	boolean askUserPlayAgain();
 }

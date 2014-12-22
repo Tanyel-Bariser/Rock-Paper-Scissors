@@ -47,6 +47,8 @@ public class RockPaperScissors {
 
 	private void showUserResult() {
 		ui.showResult(player1Result, player1Gesture, player2Gesture, gameType);
+		Score.increment(player1Result);
+		ui.showScore();
 	}
 	
 	private boolean playAgain() {

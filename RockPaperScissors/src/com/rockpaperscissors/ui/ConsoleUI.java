@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.rockpaperscissors.GameType;
 import com.rockpaperscissors.Gesture;
 import com.rockpaperscissors.Result;
+import com.rockpaperscissors.Score;
 
 public class ConsoleUI implements UserInterface {
 	private final Scanner scanner = new Scanner(System.in);
@@ -41,14 +42,18 @@ public class ConsoleUI implements UserInterface {
 	@Override
 	public void showResult(Result player1Result, Gesture player1Gesture, Gesture player2Gesture, GameType gameType) {
 		if (gameType.equals(GameType.PLAY)) {
-			System.out.println("You played: " + player1Gesture);
-			System.out.println("The computer played: " + player2Gesture);
-			System.out.println("You " + player1Result);
+			System.out.println("You played " + player1Gesture);
+			System.out.println("The computer played " + player2Gesture);
 		} else {
-			System.out.println("The first computer player played: " + player1Gesture);
-			System.out.println("The second computer player played: " + player2Gesture);
-			System.out.println("The first computer player " + player1Result);
+			System.out.println("The computer player played " + player1Gesture + " for you");
+			System.out.println("The other computer player played " + player2Gesture);
 		}
+		System.out.println("You " + player1Result);
+	}
+	
+	@Override
+	public void showScore() {
+		System.out.println(Score.getScore());
 	}
 	
 	@Override
