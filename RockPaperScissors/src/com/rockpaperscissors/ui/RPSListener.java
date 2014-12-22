@@ -6,75 +6,82 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import com.rockpaperscissors.Gesture;
+import com.rockpaperscissors.Result;
+import com.rockpaperscissors.RockPaperScissors;
+import com.rockpaperscissors.Score;
+
 public class RPSListener implements ActionListener {
-	private JLabel playerGesture;
-	private JLabel computerGesture;
-	private JLabel result;
-	private JButton rock;
-	private JButton paper;
-	private JButton scissors;
-	private JLabel wins;
-	private JLabel losses;
-	private JLabel ties;
+	private RockPaperScissors rps;
+	private JLabel playerLabel;
+	private JLabel computerLabel;
+	private JLabel resultLabel;
+	private JButton rockButton;
+	private JButton paperButton;
+	private JButton scissorsButton;
+	private JLabel winsLabel;
+	private JLabel lossesLabel;
+	private JLabel tiesLabel;
 	
 
 	private RPSListener(Builder builder) {
-		playerGesture = builder.playerGesture;
-		computerGesture = builder.computerGesture;
-		result = builder.result;
-		rock = builder.rock;
-		paper = builder.paper;
-		scissors = builder.scissors;
-		wins = builder.wins;
-		losses = builder.losses;
-		ties = builder.ties;
+		rps = new RockPaperScissors();
+		playerLabel = builder.playerLabel;
+		computerLabel = builder.computerLabel;
+		resultLabel = builder.resultLabel;
+		rockButton = builder.rockButton;
+		paperButton = builder.paperButton;
+		scissorsButton = builder.scissorsButton;
+		winsLabel = builder.winsLabel;
+		lossesLabel = builder.lossesLabel;
+		tiesLabel = builder.tiesLabel;
 	}
 	
 	public static class Builder {
-		private JLabel playerGesture;
-		private JLabel computerGesture;
-		private JLabel result;
-		private JButton rock;
-		private JButton paper;
-		private JButton scissors;
-		private JLabel wins;
-		private JLabel losses;
-		private JLabel ties;
+		private JLabel playerLabel;
+		private JLabel computerLabel;
+		private JLabel resultLabel;
+		private JButton rockButton;
+		private JButton paperButton;
+		private JButton scissorsButton;
+		private JLabel winsLabel;
+		private JLabel lossesLabel;
+		private JLabel tiesLabel;
 		
-		public Builder playerGesture(JLabel playerGesture) {
-			this.playerGesture = playerGesture;
+		public Builder playerLabel(JLabel playerLabel) {
+			this.playerLabel = playerLabel;
 			return this;
 		}
-		public Builder computerGesture(JLabel computerGesture) {
-			this.computerGesture = computerGesture;
+		public Builder computerLabel(JLabel computerLabel) {
+			this.computerLabel = computerLabel;
 			return this;
 		}
-		public Builder result(JLabel result) {
-			this.result = result;
+		public Builder resultLabel(JLabel resultLabel) {
+			this.resultLabel = resultLabel;
 			return this;
 		}
-		public Builder rock(JButton rock) {
-			this.rock = rock;
+		public Builder rockButton(JButton rockButton) {
+			this.rockButton = rockButton;
 			return this;
 		}
-		public Builder paper(JButton paper) {
-			this.paper = paper;
+		public Builder paperButton(JButton paperButton) {
+			this.paperButton = paperButton;
 			return this;
 		}
-		public Builder scissors(JButton scissors) {
-			this.scissors = scissors;
+		public Builder scissorsButton(JButton scissorsButton) {
+			this.scissorsButton = scissorsButton;
 			return this;
 		}
-		public Builder wins(JLabel wins) {
-			this.wins = wins;
+		public Builder winsLabel(JLabel winsLabel) {
+			this.winsLabel = winsLabel;
 			return this;
 		}
-		public Builder losses(JLabel losses) {
-			this.losses = losses;
+		public Builder lossesLabel(JLabel lossesLabel) {
+			this.lossesLabel = lossesLabel;
 			return this;
 		}
-		public Builder ties(JLabel ties) {
-			this.ties = ties;
+		public Builder tiesLabel(JLabel tiesLabel) {
+			this.tiesLabel = tiesLabel;
 			return this;
 		}
 		
@@ -84,8 +91,33 @@ public class RPSListener implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent event) {
+		Gesture player1Gesture;
+        if(event.getSource().equals(rockButton)){
+            player1Gesture = Gesture.ROCK;
+        } else if(event.getSource().equals(paperButton)){
+            player1Gesture = Gesture.PAPER;
+        } else if(event.getSource().equals(scissorsButton)){
+            player1Gesture = Gesture.SCISSORS;
+        }
 
+        String player2Gesture = rps.getPlayer2Gesture();
+
+        playerLabel.setText("You chose " + player1Gesture + ".");
+        computerLabel.setText("CPU chose " + player2Gesture + ".");
+
+        Result result = rps.getResult();
+
+        if (result.equals(Result.WON)){
+            resultLabel.setText("You won the game!");
+        } else if (result.equals(Result.LOST)){
+            resultLabel.setText("The computer won the game!");
+        } else {
+            resultLabel.setText("The game was a tie!");
+        }
+
+        winsLabel.setText("Wins: " + Score.WINS.getTimes());
+        lossesLabel.setText("Losses: " + Score.LOSSES.getTimes());
+        tiesLabel.setText("Ties: " + Score.TIES.getTimes());
 	}
 }
