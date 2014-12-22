@@ -186,30 +186,30 @@ public class GestureTest {
 	@Test
 	public void getRock() {
 		assertEquals("Should return ROCK",
-				Gesture.ROCK, Gesture.getGesture(" r"));
-	}
-	@Test
-	public void getScissors() {
-		assertEquals("Should return SCISSORS",
-				Gesture.SCISSORS, Gesture.getGesture("s  "));
+				Gesture.ROCK, Gesture.getGesture(" rock"));
 	}
 	@Test
 	public void getPaper() {
 		assertEquals("Should return PAPER",
-				Gesture.PAPER, Gesture.getGesture("   p"));
+				Gesture.PAPER, Gesture.getGesture("   Paper"));
+	}
+	@Test
+	public void getScissors() {
+		assertEquals("Should return SCISSORS",
+				Gesture.SCISSORS, Gesture.getGesture("scisSors  "));
 	}
 	@Test
 	public void getLizard() {
 		assertEquals("Should return LIZARD",
-				Gesture.LIZARD, Gesture.getGesture("l"));
+				Gesture.LIZARD, Gesture.getGesture("LIzARd"));
 	}
 	@Test
 	public void getSpock() {
 		assertEquals("Should return SPOCK",
-				Gesture.SPOCK, Gesture.getGesture("sp  "));
+				Gesture.SPOCK, Gesture.getGesture("SPOCK  "));
 	}
-	@Test
-	public void wrongArgReturnsNull() {
+	@Test (expected = IllegalArgumentException.class)
+	public void illegalArgThrowsException() {
 		assertEquals("Wrong argument should return null",
 				null, Gesture.getGesture("q"));
 	}

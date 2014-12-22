@@ -10,8 +10,8 @@ public class ConsoleUI implements UserInterface {
 
 	@Override
 	public GameType askGameType() {
-		System.out.println("If you want to play Player vs Computer: Enter \"P\"");
-		System.out.println("If you want to play Computer vs Computer: Enter \"C\"");
+		System.out.println("If you want to play Player vs Computer: Enter \"Play\"");
+		System.out.println("If you want to play Computer vs Computer: Enter \"Computer\"");
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 		GameType gameType = GameType.getGameType(input);
@@ -25,9 +25,9 @@ public class ConsoleUI implements UserInterface {
 	@Override
 	public Gesture chooseGesture() {
 		System.out.println("Let's play Rock, Paper Scissors:");
-		System.out.println("To choose Rock: Enter \"R\"");
-		System.out.println("To choose Paper: Enter \"P\"");
-		System.out.println("To choose Scissors: Enter \"S\"");
+		System.out.println("To choose Rock: Enter \"Rock\"");
+		System.out.println("To choose Paper: Enter \"Paper\"");
+		System.out.println("To choose Scissors: Enter \"Scissors\"");
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 		Gesture gesture = Gesture.getGesture(input);
@@ -39,7 +39,8 @@ public class ConsoleUI implements UserInterface {
 	}
 
 	@Override
-	public void showResult(Result result) {
+	public void showResult(Result result, Gesture player1, Gesture player2, GameType gameType) {
+		
 		System.out.println(result.name());
 	}
 }

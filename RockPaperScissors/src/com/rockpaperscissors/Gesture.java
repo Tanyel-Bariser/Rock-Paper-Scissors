@@ -14,14 +14,7 @@ public enum Gesture {
 	}
 
 	public static Gesture getGesture(String gesture) {
-		switch (gesture.toUpperCase().trim()) {
-			case "R" : return Gesture.valueOf("ROCK");
-			case "P" : return Gesture.valueOf("PAPER");
-			case "S" : return Gesture.valueOf("SCISSORS");
-			case "L" : return Gesture.valueOf("LIZARD");
-			case "SP" : return Gesture.valueOf("SPOCK");
-			default : return null;
-		}
+		return Gesture.valueOf(gesture.toUpperCase().trim());
 	}
 	
 	public Result against(Gesture opponent) {

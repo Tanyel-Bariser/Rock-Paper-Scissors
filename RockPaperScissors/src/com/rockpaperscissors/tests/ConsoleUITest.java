@@ -15,8 +15,8 @@ public class ConsoleUITest {
 	public void askGameTypeReturnsValidType() {
 		UserInterface ui = new ConsoleUI();
 		GameType gameType = ui.askGameType();
-		assertTrue(gameType.equals(GameType.PLAYER_VS_COMPUTER) ||
-				gameType.equals(GameType.COMPUTER_VS_COMPUTER));
+		assertTrue(gameType.equals(GameType.PLAY) ||
+				gameType.equals(GameType.COMPUTER));
 		System.out.println("\nYou chose: " + gameType);
 		System.out.println("\nCheck JUnit for result.\n");
 	}

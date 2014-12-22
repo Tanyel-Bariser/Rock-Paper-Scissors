@@ -15,7 +15,7 @@ public class RockPaperScissors {
 		UserInterface ui = new ConsoleUI();
 		GameType gameType = ui.askGameType();
 		Strategy strategy = new RandomStrategy();
-		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
+		if (gameType.equals(GameType.PLAY)) {
 			player1 = new HumanPlayer(ui);
 		} else {
 			player1 = new ComputerPlayer(strategy);
@@ -23,7 +23,7 @@ public class RockPaperScissors {
 		player2 = new ComputerPlayer(strategy);
 		Gesture player1Gesture = player1.throwGesture();
 		Gesture player2Gesture = player2.throwGesture();
-		Result result = player1Gesture.against(player2Gesture);
-		ui.showResult(result);
+		Result player1Result = player1Gesture.against(player2Gesture);
+		ui.showResult(player1Result, player1Gesture, player2Gesture, gameType);
 	}
 }
