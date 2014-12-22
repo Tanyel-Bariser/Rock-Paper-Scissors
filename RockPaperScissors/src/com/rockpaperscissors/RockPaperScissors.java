@@ -5,7 +5,6 @@ import com.rockpaperscissors.player.HumanPlayer;
 import com.rockpaperscissors.player.Player;
 import com.rockpaperscissors.strategies.RandomStrategy;
 import com.rockpaperscissors.strategies.Strategy;
-import com.rockpaperscissors.ui.ConsoleUI;
 import com.rockpaperscissors.ui.UserInterface;
 import com.rockpaperscissors.ui.UserInterfaceFactory;
 
