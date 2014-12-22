@@ -11,4 +11,6 @@ public interface UserInterface {
 	Gesture chooseGesture();
 	
 	void showResult(Result result, Gesture player1Gesture, Gesture player2Gesture, GameType gameType);
+
+	boolean askUserPlayAgain();
 }

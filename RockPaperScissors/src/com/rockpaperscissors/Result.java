@@ -1,5 +1,5 @@
 package com.rockpaperscissors;
 
 public enum Result {
-	WIN, TIE, LOSE;
+	WON, TIED, LOST;
 }

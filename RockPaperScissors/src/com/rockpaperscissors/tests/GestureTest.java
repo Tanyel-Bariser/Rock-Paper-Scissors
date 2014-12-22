@@ -20,27 +20,27 @@ public class GestureTest {
 	@Test
 	public void rockCrushesScissors() {
 		assertEquals("Rock should crush Scissors",
-				Result.WIN, Gesture.ROCK.against(Gesture.SCISSORS));
+				Result.WON, Gesture.ROCK.against(Gesture.SCISSORS));
 	}
 	@Test
 	public void rockCrushesLizard() {
 		assertEquals("Rock should crush Lizard",
-				Result.WIN, Gesture.ROCK.against(Gesture.LIZARD));
+				Result.WON, Gesture.ROCK.against(Gesture.LIZARD));
 	}
 	@Test
 	public void rockTiesWithRock() {
 		assertEquals("Rock should tie with Rock",
-				Result.TIE, Gesture.ROCK.against(Gesture.ROCK));
+				Result.TIED, Gesture.ROCK.against(Gesture.ROCK));
 	}
 	@Test
 	public void rockIsCoveredByPaper() {
 		assertEquals("Rock should get covered by Paper",
-				Result.LOSE, Gesture.ROCK.against(Gesture.PAPER));
+				Result.LOST, Gesture.ROCK.against(Gesture.PAPER));
 	}
 	@Test
 	public void rockIsVaporisedBySpock() {
 		assertEquals("Rock should get vaporised by Spock",
-				Result.LOSE, Gesture.ROCK.against(Gesture.SPOCK));
+				Result.LOST, Gesture.ROCK.against(Gesture.SPOCK));
 	}
 	
 	 /************************************
@@ -54,27 +54,27 @@ public class GestureTest {
 	@Test
 	public void paperCoversRock() {
 		assertEquals("Paper should cover Rock",
-				Result.WIN, Gesture.PAPER.against(Gesture.ROCK));
+				Result.WON, Gesture.PAPER.against(Gesture.ROCK));
 	}
 	@Test
 	public void paperDisprovesSpock() {
 		assertEquals("Paper should disprove Spock",
-				Result.WIN, Gesture.PAPER.against(Gesture.SPOCK));
+				Result.WON, Gesture.PAPER.against(Gesture.SPOCK));
 	}
 	@Test
 	public void paperTiesWithPaper() {
 		assertEquals("Paper should tie with Paper",
-				Result.TIE, Gesture.PAPER.against(Gesture.PAPER));
+				Result.TIED, Gesture.PAPER.against(Gesture.PAPER));
 	}
 	@Test
 	public void paperIsCutByScissors() {
 		assertEquals("Paper should get cut by Scissors",
-				Result.LOSE, Gesture.PAPER.against(Gesture.SCISSORS));
+				Result.LOST, Gesture.PAPER.against(Gesture.SCISSORS));
 	}
 	@Test
 	public void paperIsEatenByLizard() {
 		assertEquals("Paper should get eaten by Lizard",
-				Result.LOSE, Gesture.PAPER.against(Gesture.LIZARD));
+				Result.LOST, Gesture.PAPER.against(Gesture.LIZARD));
 	}
 	
 	 /***************************************
@@ -88,27 +88,27 @@ public class GestureTest {
 	@Test
 	public void scissorsCutsPaper() {
 		assertEquals("Scissors should cut Paper",
-				Result.WIN, Gesture.SCISSORS.against(Gesture.PAPER));
+				Result.WON, Gesture.SCISSORS.against(Gesture.PAPER));
 	}
 	@Test
 	public void scissorsDecapitatesLizard() {
 		assertEquals("Scissors should decapitate Lizard",
-				Result.WIN, Gesture.SCISSORS.against(Gesture.LIZARD));
+				Result.WON, Gesture.SCISSORS.against(Gesture.LIZARD));
 	}
 	@Test
 	public void scissorsTiesWithScissors() {
 		assertEquals("Scissors should tie with Scissors",
-				Result.TIE, Gesture.SCISSORS.against(Gesture.SCISSORS));
+				Result.TIED, Gesture.SCISSORS.against(Gesture.SCISSORS));
 	}
 	@Test
 	public void scissorsIsCrushedByRock() {
 		assertEquals("Scissors should get crushed by Rock",
-				Result.LOSE, Gesture.SCISSORS.against(Gesture.ROCK));
+				Result.LOST, Gesture.SCISSORS.against(Gesture.ROCK));
 	}
 	@Test
 	public void scissorsGetsSmashedBySpock() {
 		assertEquals("Scissors should get smashed by Spock",
-				Result.LOSE, Gesture.SCISSORS.against(Gesture.SPOCK));
+				Result.LOST, Gesture.SCISSORS.against(Gesture.SPOCK));
 	}
 	
 	 /*************************************
@@ -122,27 +122,27 @@ public class GestureTest {
 	@Test
 	public void lizardEatsPaper() {
 		assertEquals("Lizard should eat Paper",
-				Result.WIN, Gesture.LIZARD.against(Gesture.PAPER));
+				Result.WON, Gesture.LIZARD.against(Gesture.PAPER));
 	}
 	@Test
 	public void lizardPoisonsSpock() {
 		assertEquals("Lizard should poison Spock",
-				Result.WIN, Gesture.LIZARD.against(Gesture.SPOCK));
+				Result.WON, Gesture.LIZARD.against(Gesture.SPOCK));
 	}
 	@Test
 	public void lizardTiesWithLizard() {
 		assertEquals("Lizard should tie with Lizard",
-				Result.TIE, Gesture.LIZARD.against(Gesture.LIZARD));
+				Result.TIED, Gesture.LIZARD.against(Gesture.LIZARD));
 	}
 	@Test
 	public void lizardIsCrushedByRock() {
 		assertEquals("Lizard should get crushed by Rock",
-				Result.LOSE, Gesture.LIZARD.against(Gesture.ROCK));
+				Result.LOST, Gesture.LIZARD.against(Gesture.ROCK));
 	}
 	@Test
 	public void lizardIsDecapitatedByScissors() {
 		assertEquals("Lizard should get decapitated by Scissors",
-				Result.LOSE, Gesture.LIZARD.against(Gesture.SCISSORS));
+				Result.LOST, Gesture.LIZARD.against(Gesture.SCISSORS));
 	}
 	
 	 /************************************
@@ -156,27 +156,27 @@ public class GestureTest {
 	@Test
 	public void spockSmashesScissors() {
 		assertEquals("Spock should smash Scissors",
-				Result.WIN, Gesture.SPOCK.against(Gesture.SCISSORS));
+				Result.WON, Gesture.SPOCK.against(Gesture.SCISSORS));
 	}
 	@Test
 	public void spockVaporisesRock() {
 		assertEquals("Spock should vaporise Rock",
-				Result.WIN, Gesture.SPOCK.against(Gesture.ROCK));
+				Result.WON, Gesture.SPOCK.against(Gesture.ROCK));
 	}
 	@Test
 	public void spockTiesWithSpock() {
 		assertEquals("Spock should tie with Spock",
-				Result.TIE, Gesture.SPOCK.against(Gesture.SPOCK));
+				Result.TIED, Gesture.SPOCK.against(Gesture.SPOCK));
 	}
 	@Test
 	public void spockIsDisprovedByPaper() {
 		assertEquals("Spock should get disproved by Paper",
-				Result.LOSE, Gesture.SPOCK.against(Gesture.PAPER));
+				Result.LOST, Gesture.SPOCK.against(Gesture.PAPER));
 	}
 	@Test
 	public void spockIsPoisonedByLizard() {
 		assertEquals("Spock should get poisoned by Lizard",
-				Result.LOSE, Gesture.SPOCK.against(Gesture.LIZARD));
+				Result.LOST, Gesture.SPOCK.against(Gesture.LIZARD));
 	}
 	
 	 /*********************************

@@ -19,14 +19,14 @@ public enum Gesture {
 	
 	public Result against(Gesture opponent) {
 		if (this.equals(opponent)) {
-			return Result.TIE;
+			return Result.TIED;
 		}
 		boolean beatsOpponent = opponent.name().equals(beats1) || 
 								opponent.name().equals(beats2);
 		if (beatsOpponent) {
-			return Result.WIN;
+			return Result.WON;
 		} else {
-			return Result.LOSE;
+			return Result.LOST;
 		}
 	}
 }
