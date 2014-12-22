@@ -7,6 +7,7 @@ import com.rockpaperscissors.strategies.RandomStrategy;
 import com.rockpaperscissors.strategies.Strategy;
 import com.rockpaperscissors.ui.ConsoleUI;
 import com.rockpaperscissors.ui.UserInterface;
+import com.rockpaperscissors.ui.UserInterfaceFactory;
 
 public class RockPaperScissors {
 	private Player player1, player2;
@@ -28,7 +29,7 @@ public class RockPaperScissors {
 	}
 
 	private void setUpGame() {
-		ui = new ConsoleUI();
+		ui = UserInterfaceFactory.getUserInterface("CONSOLE");
 		gameType = ui.askGameType();
 		Strategy strategy = new RandomStrategy();
 		if (gameType.equals(GameType.PLAY)) {
@@ -52,6 +53,6 @@ public class RockPaperScissors {
 	}
 	
 	private boolean playAgain() {
-		return ui.askUserPlayAgain();
+		return ui.askPlayAgain();
 	}
 }

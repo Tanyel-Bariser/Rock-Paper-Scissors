@@ -14,5 +14,5 @@ public interface UserInterface {
 
 	void showScore();
 	
-	boolean askUserPlayAgain();
+	boolean askPlayAgain();
 }

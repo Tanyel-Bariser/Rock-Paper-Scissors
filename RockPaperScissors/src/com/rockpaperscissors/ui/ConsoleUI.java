@@ -57,7 +57,7 @@ public class ConsoleUI implements UserInterface {
 	}
 	
 	@Override
-	public boolean askUserPlayAgain() {
+	public boolean askPlayAgain() {
 		System.out.println("\nWould you like to play again?");
 		System.out.println("Enter: \"Yes\" or \"No\"");
 		input = scanner.nextLine();
@@ -67,7 +67,7 @@ public class ConsoleUI implements UserInterface {
 			return false;
 		} else {
 			System.out.println("Invalid input!\nPlease try again:");
-			return askUserPlayAgain();
+			return askPlayAgain();
 		}
 	}
 }
