@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.rockpaperscissors.Gesture;
-import com.rockpaperscissors.strategies.RandomStrategy;
+import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 public class RandomStrategyTest {
 

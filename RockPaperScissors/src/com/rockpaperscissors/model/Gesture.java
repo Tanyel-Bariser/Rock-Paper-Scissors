@@ -1,4 +1,4 @@
-package com.rockpaperscissors;
+package com.rockpaperscissors.model;
 
 public enum Gesture {
 	ROCK("SCISSORS", "LIZARD"), PAPER("ROCK", "SPOCK"),
@@ -11,10 +11,6 @@ public enum Gesture {
 	Gesture(String beats1, String beats2) {
 		this.beats1 = beats1;
 		this.beats2 = beats2;
-	}
-
-	public static Gesture getGesture(String gesture) {
-		return Gesture.valueOf(gesture.toUpperCase().trim());
 	}
 	
 	public Result against(Gesture opponent) {

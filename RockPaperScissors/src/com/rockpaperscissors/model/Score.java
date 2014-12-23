@@ -1,4 +1,4 @@
-package com.rockpaperscissors;
+package com.rockpaperscissors.model;
 
 public enum Score {
 	WINS(0), LOSSES(0), TIES(0);
@@ -25,10 +25,5 @@ public enum Score {
 			TIES.times++;
 			break;
 		}
-	}
-
-	public static String getScore() {
-		return "Total Wins: " + WINS.getTimes() + "\nTotal Ties: "
-				+ TIES.getTimes() + "\nTotal Loses: " + LOSSES.getTimes();
 	}
 }

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.rockpaperscissors.Gesture;
-import com.rockpaperscissors.Result;
+import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.Result;
 
 public class GestureTest {
 	
@@ -177,44 +177,5 @@ public class GestureTest {
 	public void spockIsPoisonedByLizard() {
 		assertEquals("Spock should get poisoned by Lizard",
 				Result.LOST, Gesture.SPOCK.against(Gesture.LIZARD));
-	}
-	
-	 /*********************************
-	 * Tests for Gesture.getGesture() *
-	 *********************************/
-
-	@Test
-	public void getRock() {
-		assertEquals("Should return ROCK",
-				Gesture.ROCK, Gesture.getGesture(" rock"));
-	}
-	@Test
-	public void getPaper() {
-		assertEquals("Should return PAPER",
-				Gesture.PAPER, Gesture.getGesture("   Paper"));
-	}
-	@Test
-	public void getScissors() {
-		assertEquals("Should return SCISSORS",
-				Gesture.SCISSORS, Gesture.getGesture("scisSors  "));
-	}
-	@Test
-	public void getLizard() {
-		assertEquals("Should return LIZARD",
-				Gesture.LIZARD, Gesture.getGesture("LIzARd"));
-	}
-	@Test
-	public void getSpock() {
-		assertEquals("Should return SPOCK",
-				Gesture.SPOCK, Gesture.getGesture("SPOCK  "));
-	}
-	@Test (expected = IllegalArgumentException.class)
-	public void illegalArgThrowsException() {
-		assertEquals("Wrong argument should return null",
-				null, Gesture.getGesture("q"));
-	}
-	@Test (expected = NullPointerException.class)
-	public void nullThrowsException() {
-		Gesture.getGesture(null);
 	}
 }

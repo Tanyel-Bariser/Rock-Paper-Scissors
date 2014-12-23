@@ -1,10 +1,10 @@
-package com.rockpaperscissors.strategies;
+package com.rockpaperscissors.model.strategies;
 
 import java.util.Random;
 
-import com.rockpaperscissors.Gesture;
+import com.rockpaperscissors.model.Gesture;
 
-public class RandomStrategy implements Strategy {
+public class RandomStrategy implements ComputerStrategy {
 	// Set to 5 (no other changes required) for chooseGesture()
 	// to also potentially return either LIZARD or SPOCK
 	private final int NUMBER_OF_GESTURES = 3;
