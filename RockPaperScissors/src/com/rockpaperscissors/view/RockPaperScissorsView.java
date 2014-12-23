@@ -1,6 +1,7 @@
 package com.rockpaperscissors.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -10,12 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.rockpaperscissors.controller.RockPaperScissorsController;
+import com.rockpaperscissors.controller.actionlisteners.ChooseGestureListener;
+import com.rockpaperscissors.controller.actionlisteners.GameTypeListener;
 import com.rockpaperscissors.model.GameType;
 import com.rockpaperscissors.model.Gesture;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
-import com.rockpaperscissors.view.actionlisteners.ChooseGestureListener;
-import com.rockpaperscissors.view.actionlisteners.GameTypeListener;
 
 public class RockPaperScissorsView implements View {
 	private RockPaperScissorsController controller;
@@ -31,7 +32,7 @@ public class RockPaperScissorsView implements View {
 	public void askUserGameType() {
 		JButton playerVsButton = new JButton("Player vs Computer");
 		JButton computerVsButton = new JButton("Computer vs Computer");
-		GameTypeListener listener = new GameTypeListener(controller,
+		ActionListener listener = new GameTypeListener(controller,
 				playerVsButton, computerVsButton);
 
 		playerVsButton.addActionListener(listener);
@@ -47,9 +48,7 @@ public class RockPaperScissorsView implements View {
 		panel.add(Box.createGlue());
 
 		frame.setLayout(new BorderLayout());
-
 		frame.add(panel, BorderLayout.NORTH);
-
 		frame.setSize(500, 300);
 		frame.setVisible(true);
 	}
@@ -59,7 +58,8 @@ public class RockPaperScissorsView implements View {
 		JButton rockButton = new JButton("ROCK");
 		JButton paperButton = new JButton("PAPER");
 		JButton scissorsButton = new JButton("SCISSORS");
-		ChooseGestureListener listener = new ChooseGestureListener(controller, rockButton, paperButton, scissorsButton);
+		ActionListener listener = new ChooseGestureListener(controller,
+				rockButton, paperButton, scissorsButton);
 
 		rockButton.addActionListener(listener);
 		paperButton.addActionListener(listener);
@@ -77,9 +77,7 @@ public class RockPaperScissorsView implements View {
 		panel.add(Box.createGlue());
 
 		frame.setLayout(new BorderLayout());
-
 		frame.add(panel, BorderLayout.CENTER);
-
 		frame.setSize(500, 300);
 		frame.setVisible(true);
 	}
@@ -88,10 +86,10 @@ public class RockPaperScissorsView implements View {
 	public void showResults(Result result, Gesture playerGesture,
 			Gesture computerGesture, GameType gameType) {
 		String resultText, playerText, computerText;
-		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)){
+		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
 			resultText = "You " + result.name();
 			playerText = "You chose " + playerGesture.name();
-			computerText = "The computer chose "  + computerGesture.name();
+			computerText = "The computer chose " + computerGesture.name();
 		} else {
 			resultText = "Computer 1 " + result.name();
 			playerText = "Computer 1 chose " + playerGesture.name();
@@ -100,25 +98,26 @@ public class RockPaperScissorsView implements View {
 		JLabel resultLabel = new JLabel(resultText, JLabel.CENTER);
 		JLabel playerLabel = new JLabel(playerText, JLabel.CENTER);
 		JLabel computerLabel = new JLabel(computerText, JLabel.CENTER);
-		
-		JLabel winsLabel = new JLabel("Wins: " + Score.WINS.getTimes());
-		JLabel lossesLabel = new JLabel("Losses: " + Score.LOSSES.getTimes());
-		JLabel tiesLabel = new JLabel("Ties: " + Score.TIES.getTimes());
-		
+
+		JLabel winsLabel = new JLabel("You won " + Score.WINS.getTimes()
+				+ " times.");
+		JLabel lossesLabel = new JLabel("You lost: " + Score.LOSSES.getTimes()
+				+ " times.");
+		JLabel tiesLabel = new JLabel("You tied: " + Score.TIES.getTimes()
+				+ " times.");
+
 		JPanel panel = new JPanel(true);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
+
 		panel.add(playerLabel);
 		panel.add(computerLabel);
 		panel.add(resultLabel);
 		panel.add(winsLabel);
 		panel.add(lossesLabel);
 		panel.add(tiesLabel);
-		
+
 		frame.setLayout(new BorderLayout());
-
 		frame.add(panel, BorderLayout.SOUTH);
-
 		frame.setSize(500, 300);
 		frame.setVisible(true);
 	}

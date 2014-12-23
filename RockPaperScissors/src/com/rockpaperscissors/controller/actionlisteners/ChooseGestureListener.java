@@ -1,4 +1,4 @@
-package com.rockpaperscissors.view.actionlisteners;
+package com.rockpaperscissors.controller.actionlisteners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +14,8 @@ public class ChooseGestureListener implements ActionListener {
 	private JButton paperButton;
 	private JButton scissorsButton;
 
-	public ChooseGestureListener(RockPaperScissorsController controller, JButton rockButton, JButton paperButton, JButton scissorsButton) {
+	public ChooseGestureListener(RockPaperScissorsController controller,
+			JButton rockButton, JButton paperButton, JButton scissorsButton) {
 		this.controller = controller;
 		this.rockButton = rockButton;
 		this.paperButton = paperButton;

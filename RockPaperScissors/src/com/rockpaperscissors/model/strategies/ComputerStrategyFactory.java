@@ -8,9 +8,10 @@ public final class ComputerStrategyFactory {
 	}
 
 	public static ComputerStrategy getStrategy(String strategyType) {
-		switch(strategyType){
-			case "RANDOM" : return new RandomStrategy();
-			default : return null;
+		switch (strategyType) {
+		case "RANDOM": return new RandomStrategy();
+		default: throw new IllegalArgumentException(
+					"Invalid argument for ComputerStrategyFactory");
 		}
 	}
 }

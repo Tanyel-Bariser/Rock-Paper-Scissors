@@ -1,11 +1,10 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.model.strategies;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import com.rockpaperscissors.model.Gesture;
-import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 public class RandomStrategyTest {
 

@@ -1,11 +1,8 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.model;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import com.rockpaperscissors.model.Gesture;
-import com.rockpaperscissors.model.Result;
 
 public class GestureTest {
 	

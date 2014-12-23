@@ -1,5 +1,9 @@
 package com.rockpaperscissors.controller;
 
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+
 import com.rockpaperscissors.model.GameType;
 import com.rockpaperscissors.model.Gesture;
 import com.rockpaperscissors.model.Result;
@@ -21,12 +25,17 @@ public class RockPaperScissorsController {
 	}
 
 	public RockPaperScissorsController() {
+		view = new RockPaperScissorsView(this);
 		strategy = ComputerStrategyFactory.getStrategy("RANDOM");
 		askUserGameType();
 	}
+	
+	// Package-private accessibility for unit testing
+	void setView(View view) {
+		this.view = view;
+	}
 
 	private void askUserGameType() {
-		view = new RockPaperScissorsView(this);
 		view.askUserGameType();
 	}
 
@@ -38,7 +47,7 @@ public class RockPaperScissorsController {
 			play();
 		}
 	}
-	
+
 	public void setPlayerGesture(Gesture playerGesture) {
 		this.playerGesture = playerGesture;
 	}
@@ -53,9 +62,12 @@ public class RockPaperScissorsController {
 	}
 
 	private void showUserResult() {
-		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)){
+		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
 			Score.increment(result);
 		}
 		view.showResults(result, playerGesture, computerGesture, gameType);
+		// Redraws Player vs Computer button and Computer vs Computer button at
+		// end.
+		askUserGameType();
 	}
 }

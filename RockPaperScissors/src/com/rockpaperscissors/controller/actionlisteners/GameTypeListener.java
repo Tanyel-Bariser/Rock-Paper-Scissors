@@ -1,4 +1,4 @@
-package com.rockpaperscissors.view.actionlisteners;
+package com.rockpaperscissors.controller.actionlisteners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
