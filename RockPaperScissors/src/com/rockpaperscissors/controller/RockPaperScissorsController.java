@@ -1,21 +1,16 @@
 package com.rockpaperscissors.controller;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.JButton;
-
 import com.rockpaperscissors.model.GameType;
 import com.rockpaperscissors.model.Gesture;
 import com.rockpaperscissors.model.Result;
-import com.rockpaperscissors.model.Score;
-import com.rockpaperscissors.model.strategies.ComputerStrategy;
-import com.rockpaperscissors.model.strategies.ComputerStrategyFactory;
+import com.rockpaperscissors.model.strategies.FixedStrategy;
+import com.rockpaperscissors.model.strategies.Strategy;
 import com.rockpaperscissors.view.RockPaperScissorsView;
 import com.rockpaperscissors.view.View;
 
 public class RockPaperScissorsController {
 	private View view;
-	private ComputerStrategy strategy;
+	private Strategy strategy;
 	private Gesture playerGesture, computerGesture;
 	private GameType gameType;
 	private Result result;
@@ -26,7 +21,7 @@ public class RockPaperScissorsController {
 
 	public RockPaperScissorsController() {
 		view = new RockPaperScissorsView(this);
-		strategy = ComputerStrategyFactory.getStrategy("RANDOM");
+		strategy = FixedStrategy.FIXED_GESTURE;
 		askUserGameType();
 	}
 	
@@ -63,7 +58,7 @@ public class RockPaperScissorsController {
 
 	private void showUserResult() {
 		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
-			Score.increment(result);
+			result.increment();
 		}
 		view.showResults(result, playerGesture, computerGesture, gameType);
 		// Redraws Player vs Computer button and Computer vs Computer button at

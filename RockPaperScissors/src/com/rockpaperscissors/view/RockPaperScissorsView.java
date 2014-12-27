@@ -16,7 +16,6 @@ import com.rockpaperscissors.controller.actionlisteners.GameTypeListener;
 import com.rockpaperscissors.model.GameType;
 import com.rockpaperscissors.model.Gesture;
 import com.rockpaperscissors.model.Result;
-import com.rockpaperscissors.model.Score;
 
 public class RockPaperScissorsView implements View {
 	private RockPaperScissorsController controller;
@@ -99,12 +98,9 @@ public class RockPaperScissorsView implements View {
 		JLabel playerLabel = new JLabel(playerText, JLabel.CENTER);
 		JLabel computerLabel = new JLabel(computerText, JLabel.CENTER);
 
-		JLabel winsLabel = new JLabel("You won " + Score.WINS.getTimes()
-				+ " times.");
-		JLabel lossesLabel = new JLabel("You lost: " + Score.LOSSES.getTimes()
-				+ " times.");
-		JLabel tiesLabel = new JLabel("You tied: " + Score.TIES.getTimes()
-				+ " times.");
+		JLabel winsLabel = new JLabel(Result.WON.toString());
+		JLabel lossesLabel = new JLabel(Result.LOST.toString());
+		JLabel tiesLabel = new JLabel(Result.TIED.toString());
 
 		JPanel panel = new JPanel(true);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
