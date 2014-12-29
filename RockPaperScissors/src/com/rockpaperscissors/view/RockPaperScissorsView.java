@@ -1,120 +1,95 @@
 package com.rockpaperscissors.view;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import com.rockpaperscissors.view.builder.RockPaperScissorsViewBuilder;
 
-import com.rockpaperscissors.controller.RockPaperScissorsController;
-import com.rockpaperscissors.controller.actionlisteners.ChooseGestureListener;
-import com.rockpaperscissors.controller.actionlisteners.GameTypeListener;
-import com.rockpaperscissors.model.GameType;
-import com.rockpaperscissors.model.Gesture;
-import com.rockpaperscissors.model.Result;
+public class RockPaperScissorsView extends Application {
+	private final int FONT_SIZE = 32;
+	private final int WIDTH = 640, HEIGHT = 480;
+	private RadioButton playerVsPlayer, computerVsPlayer;
+	private Button rockButton, paperButton, scissorsButton;
+	private Group gameTypeGroup, weaponGroup;
+	private Text chooseWeapon, chooseStrategy;
 
-public class RockPaperScissorsView implements View {
-	private RockPaperScissorsController controller;
-	private final JFrame frame;
+	// JavaFX Application requires a no argument constructor for initialisation
+	public RockPaperScissorsView() {
+		playerVsPlayer = new RadioButton("Player vs Player");
+		computerVsPlayer = new RadioButton("Computer vs Player");
+		chooseWeapon = new Text("Choose your Weapon");
+		rockButton = new Button("Rock");
+		paperButton = new Button("Paper");
+		scissorsButton = new Button("Scissors");
 
-	public RockPaperScissorsView(RockPaperScissorsController controller) {
-		this.controller = controller;
-		frame = new JFrame("Rock Paper Scissors");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new RockPaperScissorsViewBuilder().setUpPlayerVsButton(playerVsPlayer)
+				.setUpComputerVsPlayer(computerVsPlayer)
+				.setUpChooseWeaponText(chooseWeapon)
+				.setUpRockButton(rockButton).setUpPaperButton(paperButton)
+				.setUpScissorsButton(scissorsButton).setUpWeaponGroup().buildView(this);
 	}
 
 	@Override
-	public void askUserGameType() {
-		JButton playerVsButton = new JButton("Player vs Computer");
-		JButton computerVsButton = new JButton("Computer vs Computer");
-		ActionListener listener = new GameTypeListener(controller,
-				playerVsButton, computerVsButton);
+	public void start(Stage stage) throws Exception {
 
-		playerVsButton.addActionListener(listener);
-		computerVsButton.addActionListener(listener);
+		// Pane set up
+		Pane pane = new Pane(chooseWeapon, gameTypeGroup, weaponGroup);
 
-		JPanel panel = new JPanel(true);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-
-		panel.add(Box.createGlue());
-		panel.add(playerVsButton);
-		panel.add(Box.createGlue());
-		panel.add(computerVsButton);
-		panel.add(Box.createGlue());
-
-		frame.setLayout(new BorderLayout());
-		frame.add(panel, BorderLayout.NORTH);
-		frame.setSize(500, 300);
-		frame.setVisible(true);
+		// Stage set up
+		stage.setScene(new Scene(pane, WIDTH, HEIGHT));
+		stage.setTitle("Rock Paper Scissors");
+		stage.setResizable(false);
+		stage.show();
 	}
 
-	@Override
-	public void choosePlayerGesture() {
-		JButton rockButton = new JButton("ROCK");
-		JButton paperButton = new JButton("PAPER");
-		JButton scissorsButton = new JButton("SCISSORS");
-		ActionListener listener = new ChooseGestureListener(controller,
-				rockButton, paperButton, scissorsButton);
-
-		rockButton.addActionListener(listener);
-		paperButton.addActionListener(listener);
-		scissorsButton.addActionListener(listener);
-
-		JPanel panel = new JPanel(true);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-
-		panel.add(Box.createGlue());
-		panel.add(rockButton);
-		panel.add(Box.createGlue());
-		panel.add(paperButton);
-		panel.add(Box.createGlue());
-		panel.add(scissorsButton);
-		panel.add(Box.createGlue());
-
-		frame.setLayout(new BorderLayout());
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setSize(500, 300);
-		frame.setVisible(true);
+	public RockPaperScissorsView setPlayerVsPlayer(RadioButton playerVsPlayer) {
+		this.playerVsPlayer = playerVsPlayer;
+		return this;
 	}
 
-	@Override
-	public void showResults(Result result, Gesture playerGesture,
-			Gesture computerGesture, GameType gameType) {
-		String resultText, playerText, computerText;
-		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
-			resultText = "You " + result.name();
-			playerText = "You chose " + playerGesture.name();
-			computerText = "The computer chose " + computerGesture.name();
-		} else {
-			resultText = "Computer 1 " + result.name();
-			playerText = "Computer 1 chose " + playerGesture.name();
-			computerText = "Computer 2 chose " + computerGesture.name();
-		}
-		JLabel resultLabel = new JLabel(resultText, JLabel.CENTER);
-		JLabel playerLabel = new JLabel(playerText, JLabel.CENTER);
-		JLabel computerLabel = new JLabel(computerText, JLabel.CENTER);
+	public RockPaperScissorsView setComputerVsPlayer(
+			RadioButton computerVsComputer) {
+		this.computerVsPlayer = computerVsComputer;
+		return this;
+	}
 
-		JLabel winsLabel = new JLabel(Result.WON.toString());
-		JLabel lossesLabel = new JLabel(Result.LOST.toString());
-		JLabel tiesLabel = new JLabel(Result.TIED.toString());
+	public RockPaperScissorsView setGameTypeGroup(Group gameTypeGroup) {
+		this.gameTypeGroup = gameTypeGroup;
+		return this;
+	}
 
-		JPanel panel = new JPanel(true);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+	public RockPaperScissorsView setChooseWeaponText(Text chooseWeapon) {
+		this.chooseWeapon = chooseWeapon;
+		return this;
+	}
 
-		panel.add(playerLabel);
-		panel.add(computerLabel);
-		panel.add(resultLabel);
-		panel.add(winsLabel);
-		panel.add(lossesLabel);
-		panel.add(tiesLabel);
+	public RockPaperScissorsView setRockButton(Button rockButton) {
+		this.rockButton = rockButton;
+		return this;
+	}
 
-		frame.setLayout(new BorderLayout());
-		frame.add(panel, BorderLayout.SOUTH);
-		frame.setSize(500, 300);
-		frame.setVisible(true);
+	public RockPaperScissorsView setPaperButton(Button paperButton) {
+		this.paperButton = paperButton;
+		return this;
+	}
+
+	public RockPaperScissorsView setScissorsButton(Button scissorsButton) {
+		this.scissorsButton = scissorsButton;
+		return this;
+	}
+
+	public RockPaperScissorsView setWeaponGroup(Group weaponGroup) {
+		this.weaponGroup = weaponGroup;
+		return this;
+	}
+
+	public static void main(String[] args) {
+		launch(args);
 	}
 }

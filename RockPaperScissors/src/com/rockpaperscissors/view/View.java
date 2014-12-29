@@ -1,7 +1,7 @@
 package com.rockpaperscissors.view;
 
 import com.rockpaperscissors.model.GameType;
-import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.Result;
 
 public interface View {
@@ -10,5 +10,5 @@ public interface View {
 	
 	void choosePlayerGesture();
 	
-	void showResults(Result result, Gesture player1Gesture, Gesture player2Gesture, GameType gameType);
+	void showResults(Result result, Weapon player1Gesture, Weapon player2Gesture, GameType gameType);
 }

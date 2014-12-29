@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import com.rockpaperscissors.controller.RockPaperScissorsController;
-import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.Weapon;
 
 public class ChooseGestureListener implements ActionListener {
 	private RockPaperScissorsController controller;
@@ -25,11 +25,11 @@ public class ChooseGestureListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource().equals(rockButton)) {
-			controller.setPlayerGesture(Gesture.ROCK);
+			controller.setPlayerGesture(Weapon.ROCK);
 		} else if (event.getSource().equals(paperButton)) {
-			controller.setPlayerGesture(Gesture.PAPER);
+			controller.setPlayerGesture(Weapon.PAPER);
 		} else if (event.getSource().equals(scissorsButton)) {
-			controller.setPlayerGesture(Gesture.SCISSORS);
+			controller.setPlayerGesture(Weapon.SCISSORS);
 		}
 		controller.play();
 	}

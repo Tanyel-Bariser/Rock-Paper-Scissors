@@ -1,35 +1,31 @@
 package com.rockpaperscissors.controller;
 
 import com.rockpaperscissors.model.GameType;
-import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.Result;
-import com.rockpaperscissors.model.strategies.FixedStrategy;
-import com.rockpaperscissors.model.strategies.Strategy;
-import com.rockpaperscissors.view.RockPaperScissorsView;
+import com.rockpaperscissors.model.Score;
+import com.rockpaperscissors.model.strategies.ComputerStrategy;
+import com.rockpaperscissors.model.strategies.RotationStrategy;
+import com.rockpaperscissors.view.RockPaperScissorsViewOld;
 import com.rockpaperscissors.view.View;
 
 public class RockPaperScissorsController {
-	private View view;
-	private Strategy strategy;
-	private Gesture playerGesture, computerGesture;
+	private final View view;
+	private ComputerStrategy strategy;
+	private Weapon playerGesture, computerGesture;
 	private GameType gameType;
 	private Result result;
-
+	
 	public static void main(String[] args) {
 		new RockPaperScissorsController();
 	}
 
 	public RockPaperScissorsController() {
-		view = new RockPaperScissorsView(this);
-		strategy = FixedStrategy.FIXED_GESTURE;
+		view = new RockPaperScissorsViewOld(this);
+		strategy = RotationStrategy.ROTATION_STRATEGY;
 		askUserGameType();
 	}
 	
-	// Package-private accessibility for unit testing
-	void setView(View view) {
-		this.view = view;
-	}
-
 	private void askUserGameType() {
 		view.askUserGameType();
 	}
@@ -43,7 +39,7 @@ public class RockPaperScissorsController {
 		}
 	}
 
-	public void setPlayerGesture(Gesture playerGesture) {
+	public void setPlayerGesture(Weapon playerGesture) {
 		this.playerGesture = playerGesture;
 	}
 
@@ -58,7 +54,7 @@ public class RockPaperScissorsController {
 
 	private void showUserResult() {
 		if (gameType.equals(GameType.PLAYER_VS_COMPUTER)) {
-			result.increment();
+			Score.updateScore(result);
 		}
 		view.showResults(result, playerGesture, computerGesture, gameType);
 		// Redraws Player vs Computer button and Computer vs Computer button at

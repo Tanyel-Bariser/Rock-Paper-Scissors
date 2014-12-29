@@ -1,6 +1,6 @@
 package com.rockpaperscissors.model;
 
-public enum Gesture {
+public enum Weapon {
 	ROCK("SCISSORS", "LIZARD"), PAPER("ROCK", "SPOCK"),
 	SCISSORS("PAPER", "LIZARD"), LIZARD("PAPER", "SPOCK"),
 	SPOCK("ROCK", "SCISSORS");
@@ -8,12 +8,12 @@ public enum Gesture {
 	private final String beats1;
 	private final String beats2;
 
-	Gesture(String beats1, String beats2) {
+	private Weapon(String beats1, String beats2) {
 		this.beats1 = beats1;
 		this.beats2 = beats2;
 	}
 	
-	public Result against(Gesture opponent) {
+	public Result against(Weapon opponent) {
 		if (this.equals(opponent)) {
 			return Result.TIED;
 		}

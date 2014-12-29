@@ -2,12 +2,15 @@ package com.rockpaperscissors.model.strategies;
 
 import java.util.Random;
 
-import com.rockpaperscissors.model.Gesture;
+import com.rockpaperscissors.model.Weapon;
 
 public class FixedStrategy {
-	// Initialise fixed gesture once per game
-	private static final Gesture GESTURE = Gesture.values()[new Random()
-			.nextInt(Strategy.NUMBER_OF_GESTURES)];
+	private FixedStrategy() {
+	}
 
-	public static final Strategy FIXED_GESTURE = () -> GESTURE;
+	// Initialise fixed gesture once per new game
+	private static final Weapon GESTURE = Weapon.values()[new Random()
+			.nextInt(ComputerStrategy.NUMBER_OF_GESTURES)];
+
+	public static final ComputerStrategy FIXED_GESTURE = () -> GESTURE;
 }
