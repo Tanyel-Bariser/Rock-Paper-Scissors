@@ -15,7 +15,7 @@ public class RockPaperScissorsViewBuilder {
 	private RadioButton playerVsPlayer, computerVsPlayer;
 	private Text chooseWeapon;
 	private Button rockButton, paperButton, scissorsButton;
-	private Group weaponGroup;
+	private Group gameTypeGroup, weaponGroup;
 	private final int FONT_SIZE = 32;
 	private final int WIDTH = 640, HEIGHT = 480;
 
@@ -48,6 +48,11 @@ public class RockPaperScissorsViewBuilder {
 		computerVsPlayer.setFont(Font.font(FONT_SIZE));
 		computerVsPlayer.setOnAction(computerVsPlayerEvent);
 		computerVsPlayer.setLayoutY(HEIGHT / 10);
+		return this;
+	}
+
+	public RockPaperScissorsViewBuilder setUpGameTypeGroup() {
+		gameTypeGroup = new Group(playerVsPlayer, computerVsPlayer);
 		return this;
 	}
 
@@ -102,7 +107,7 @@ public class RockPaperScissorsViewBuilder {
 	public void buildView(RockPaperScissorsView view) {
 		view.setPlayerVsPlayer(playerVsPlayer)
 				.setComputerVsPlayer(computerVsPlayer)
-				.setGameTypeGroup(new Group(playerVsPlayer, computerVsPlayer))
+				.setGameTypeGroup(gameTypeGroup)
 				.setChooseWeaponText(chooseWeapon).setRockButton(rockButton)
 				.setPaperButton(paperButton).setScissorsButton(scissorsButton)
 				.setWeaponGroup(weaponGroup);

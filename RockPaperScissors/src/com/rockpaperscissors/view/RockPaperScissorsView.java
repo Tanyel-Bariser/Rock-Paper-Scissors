@@ -29,7 +29,7 @@ public class RockPaperScissorsView extends Application {
 		scissorsButton = new Button("Scissors");
 
 		new RockPaperScissorsViewBuilder().setUpPlayerVsButton(playerVsPlayer)
-				.setUpComputerVsPlayer(computerVsPlayer)
+				.setUpComputerVsPlayer(computerVsPlayer).setUpGameTypeGroup()
 				.setUpChooseWeaponText(chooseWeapon)
 				.setUpRockButton(rockButton).setUpPaperButton(paperButton)
 				.setUpScissorsButton(scissorsButton).setUpWeaponGroup().buildView(this);
