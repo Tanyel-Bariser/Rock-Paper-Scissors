@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.ViewBuilder;
 
@@ -18,8 +19,10 @@ public class RockPaperScissors extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		ViewBuilder.createViewBuilder()
-				.controller(new RPSController(RandomStrategy.RANDOM_GESTURE))
+		ViewBuilder
+				.createViewBuilder()
+				.controller(new RPSController(
+						new ComputerOpponent(RandomStrategy.RANDOM_GESTURE)))
 				.playerVsComputer(new CheckBox("Player vs Computer"))
 				.computerVsComputer(new CheckBox("Computer vs Computer"))
 				.chooseWeaponText(new Text("Choose Your Weapon"))
@@ -29,8 +32,7 @@ public class RockPaperScissors extends Application {
 				.chooseStrategyText(new Text("Choose Your Computer's Strategy"))
 				.randomButton(new Button("Random"))
 				.fixedButton(new Button("Fixed"))
-				.rotationButton(new Button("Rotation"))
-				.stage(primaryStage)
+				.rotationButton(new Button("Rotation")).stage(primaryStage)
 				.build();
 	}
 }

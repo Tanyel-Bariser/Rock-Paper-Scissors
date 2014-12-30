@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
+import com.rockpaperscissors.model.Score;
+import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.model.strategies.FixedStrategy;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
@@ -29,8 +31,7 @@ public class RPSView {
 	private final int TEXT_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
 
-	public RPSView(ViewBuilder builder) {
-		checkForNullArgs(builder);
+	RPSView(ViewBuilder builder) {
 		controller = builder.controller;
 		playerVsComputer = builder.playerVsComputer;
 		computerVsComputer = builder.computerVsComputer;
@@ -61,35 +62,6 @@ public class RPSView {
 		buildStage(stage);
 	}
 
-	private void checkForNullArgs(ViewBuilder builder) {
-		if (builder.controller == null) {
-			throw new NullPointerException("Controller is null");
-		} else if (builder.playerVsComputer == null) {
-			throw new NullPointerException(
-					"Player vs Computer Check Box is null");
-		} else if (builder.computerVsComputer == null) {
-			throw new NullPointerException(
-					"Computer vs Computer Check Box is null");
-		} else if (builder.chooseWeapon == null) {
-			throw new NullPointerException("Choose Weapon Text is null");
-		} else if (builder.rockButton == null) {
-			throw new NullPointerException("Rock Button is null");
-		} else if (builder.paperButton == null) {
-			throw new NullPointerException("Paper Button is null");
-		} else if (builder.scissorsButton == null) {
-			throw new NullPointerException("Scissors Button is null");
-		} else if (builder.chooseStrategy == null) {
-			throw new NullPointerException("Choose Strategy Text is null");
-		} else if (builder.randomButton == null) {
-			throw new NullPointerException("Random Button is null");
-		} else if (builder.fixedButton == null) {
-			throw new NullPointerException("Fixed Button is null");
-		} else if (builder.rotationButton == null) {
-			throw new NullPointerException("Rotation Button is null");
-		} else if (builder.stage == null) {
-			throw new NullPointerException("Stage is null");
-		}
-	}
 	private void buildPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
 		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this, controller);
@@ -192,48 +164,50 @@ public class RPSView {
 		stage.setResizable(false);
 		stage.show();
 	}
-	
 
-	public CheckBox getPlayerVsComputer() {
-		return playerVsComputer;
+	public void setPlayerVsComputerSelected(boolean selected) {
+		playerVsComputer.setSelected(selected);
+		;
 	}
 
-	public CheckBox getComputerVsComputer() {
-		return computerVsComputer;
+	public void setComputerVsComputerSelected(boolean selected) {
+		computerVsComputer.setSelected(selected);
+		;
 	}
 
-	public Text getChooseWeapon() {
-		return chooseWeapon;
+	public void setChooseWeaponVisible(boolean visible) {
+		chooseWeapon.setVisible(visible);
+		;
 	}
 
-	public Button getRockButton() {
-		return rockButton;
+	public void setRockButtonVisible(boolean visible) {
+		rockButton.setVisible(visible);
 	}
 
-	public Button getPaperButton() {
-		return paperButton;
+	public void setPaperButtonVisible(boolean visible) {
+		paperButton.setVisible(visible);
 	}
 
-	public Button getScissorsButton() {
-		return scissorsButton;
+	public void setScissorsButtonVisible(boolean visible) {
+		scissorsButton.setVisible(visible);
 	}
 
-	public Text getChooseStrategy() {
-		return chooseStrategy;
+	public void setChooseStrategyVisible(boolean visible) {
+		chooseStrategy.setVisible(visible);
+		;
 	}
 
-	public Button getRandomButton() {
-		return randomButton;
+	public void setRandomButtonVisible(boolean visible) {
+		randomButton.setVisible(visible);
 	}
 
-	public Button getFixedButton() {
-		return fixedButton;
+	public void setFixedButtonVisible(boolean visible) {
+		fixedButton.setVisible(visible);
 	}
 
-	public Button getRotationButton() {
-		return rotationButton;
+	public void setRotationButtonVisible(boolean visible) {
+		rotationButton.setVisible(visible);
 	}
-	
 
 	final EventHandler<ActionEvent> COMPUTER_VS_COMPUTER_EVENT = event -> {
 		System.out.println("Computer Checked");

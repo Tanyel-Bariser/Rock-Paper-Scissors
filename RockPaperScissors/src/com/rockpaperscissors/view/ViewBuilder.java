@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * Gathers all dependencies required for RockPaperScissorsView
+ * Gathers dependencies required for RPSView
  * 
  * 
  * @author Tanyel Bariser
@@ -87,6 +87,37 @@ public class ViewBuilder {
 	}
 
 	public RPSView build() {
+		checkForNullArgs();
 		return new RPSView(this);
+	}
+
+	private void checkForNullArgs() {
+		if (controller == null) {
+			throw new NullPointerException("Controller is null");
+		} else if (playerVsComputer == null) {
+			throw new NullPointerException(
+					"Player vs Computer Check Box is null");
+		} else if (computerVsComputer == null) {
+			throw new NullPointerException(
+					"Computer vs Computer Check Box is null");
+		} else if (chooseWeapon == null) {
+			throw new NullPointerException("Choose Weapon Text is null");
+		} else if (rockButton == null) {
+			throw new NullPointerException("Rock Button is null");
+		} else if (paperButton == null) {
+			throw new NullPointerException("Paper Button is null");
+		} else if (scissorsButton == null) {
+			throw new NullPointerException("Scissors Button is null");
+		} else if (chooseStrategy == null) {
+			throw new NullPointerException("Choose Strategy Text is null");
+		} else if (randomButton == null) {
+			throw new NullPointerException("Random Button is null");
+		} else if (fixedButton == null) {
+			throw new NullPointerException("Fixed Button is null");
+		} else if (rotationButton == null) {
+			throw new NullPointerException("Rotation Button is null");
+		} else if (stage == null) {
+			throw new NullPointerException("Stage is null");
+		}
 	}
 }

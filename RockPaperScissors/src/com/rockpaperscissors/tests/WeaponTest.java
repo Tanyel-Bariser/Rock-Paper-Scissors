@@ -1,8 +1,11 @@
-package com.rockpaperscissors.model;
+package com.rockpaperscissors.tests;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import com.rockpaperscissors.model.Result;
+import com.rockpaperscissors.model.Weapon;
 
 public class WeaponTest {
 	

@@ -5,10 +5,24 @@ public class Score {
 	private int ties;
 	private int losses;
 	
+	/**
+	 * Creates blank score board
+	 */
 	public Score() {
-		wins = 0;
-		ties = 0;
-		losses = 0;
+		this(0,  0,  0);
+	}
+	
+	/**
+	 * Allows creation a score board with scores saved from previous games
+	 * 
+	 * @param wins from previous games
+	 * @param ties from previous games
+	 * @param losses from previous games
+	 */
+	public Score(int wins, int ties, int losses) {
+		this.wins = wins;
+		this.ties = ties;
+		this.losses = losses;
 	}
 
 	public int getWins() {

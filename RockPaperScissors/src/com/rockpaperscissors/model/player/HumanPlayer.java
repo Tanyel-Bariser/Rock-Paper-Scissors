@@ -5,55 +5,39 @@ import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 
 public class HumanPlayer implements Player {
-	private final Score score;
-	private Weapon weapon;
+	private final Score scoreBoard;
+	private Weapon chosenWeapon;
 	
 	public HumanPlayer(Score score) {
-		this.score = score;
+		scoreBoard = score;
 	}
 	
-	public void assignRock() {
-		weapon = Weapon.ROCK;
-	}
-	
-	public void assignPaper() {
-		weapon = Weapon.PAPER;
-	}
-	
-	public void assignScissors() {
-		weapon = Weapon.SCISSORS;
-	}
-	
-	public void assignLizard() {
-		weapon = Weapon.LIZARD;
-	}
-	
-	public void assignSpock() {
-		weapon = Weapon.SPOCK;
+	public void assignWeapon(Weapon weapon) {
+		chosenWeapon = weapon;
 	}
 
 	@Override
-	public Weapon playWeapon() {
-		return weapon;
+	public void compete(ComputerOpponent opponent) {
+		Result result = chosenWeapon.against(opponent.playWeapon());
+		updateScore(result);
 	}
 
-	@Override
-	public void updateScore(Result result) {
-		score.updateScore(result);
+	private void updateScore(Result result) {
+		scoreBoard.updateScore(result);
 	}
 
 	@Override
 	public int getWins() {
-		return score.getWins();
+		return scoreBoard.getWins();
 	}
 
 	@Override
 	public int getTies() {
-		return score.getTies();
+		return scoreBoard.getTies();
 	}
 
 	@Override
 	public int getLosses() {
-		return score.getLosses();
+		return scoreBoard.getLosses();
 	}
 }
