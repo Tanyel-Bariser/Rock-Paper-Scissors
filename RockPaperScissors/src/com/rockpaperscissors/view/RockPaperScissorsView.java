@@ -11,24 +11,51 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.rockpaperscissors.model.strategies.FixedStrategy;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
+import com.rockpaperscissors.model.strategies.RotationStrategy;
+
 public class RockPaperScissorsView {
-	private CheckBox playerVsComputer, computerVsComputer;
-	private Text chooseWeapon;
-	private Button rockButton, paperButton, scissorsButton;
+	private final CheckBox playerVsComputer, computerVsComputer;
+	private final Text chooseWeapon, chooseStrategy;
+	private final Button rockButton, paperButton, scissorsButton;
+	private final Button randomButton, fixedButton, rotationButton;
+	private final Stage stage;
 	private final Pane pane = new Pane();
 	private final int FONT_SIZE = 32;
 	private final int WIDTH = 640, HEIGHT = 480;
+	private final int TEXT_Y_POSITION = 170;
+	private final int BUTTON_Y_POSITION = 190;
 
 	public RockPaperScissorsView(ViewBuilder builder) {
 		checkBuilderForNullArgs(builder);
-		setUpPlayerVsComputer(builder.playerVsComputer);
-		setUpComputerVsComputer(builder.computerVsComputer);
-		setUpChooseWeaponText(builder.chooseWeapon);
-		setUpRockButton(builder.rockButton);
-		setUpPaperButton(builder.paperButton);
-		setUpScissorsButton(builder.scissorsButton);
+		playerVsComputer = builder.playerVsComputer;
+		computerVsComputer = builder.computerVsComputer;
+		chooseWeapon = builder.chooseWeapon;
+		rockButton = builder.rockButton;
+		paperButton = builder.paperButton;
+		scissorsButton = builder.scissorsButton;
+		chooseStrategy = builder.chooseStrategy;
+		randomButton = builder.randomButton;
+		fixedButton = builder.fixedButton;
+		rotationButton = builder.rotationButton;
+		stage = builder.stage;
+		setUpView();
+	}
+
+	private void setUpView() {
+		setUpPlayerVsComputer(playerVsComputer);
+		setUpComputerVsComputer(computerVsComputer);
+		setUpChooseWeaponText(chooseWeapon);
+		setUpRockButton(rockButton);
+		setUpPaperButton(paperButton);
+		setUpScissorsButton(scissorsButton);
+		setUpChooseStategyText(chooseStrategy);
+		setUpRandomButton(randomButton);
+		setUpFixedButton(fixedButton);
+		setUpRotationButton(rotationButton);
 		setUpPane();
-		setUpStage(builder.stage);
+		setUpStage(stage);
 	}
 
 	private void checkBuilderForNullArgs(ViewBuilder builder) {
@@ -46,88 +73,153 @@ public class RockPaperScissorsView {
 			throw new NullPointerException("Paper Button is null");
 		} else if (builder.scissorsButton == null) {
 			throw new NullPointerException("Scissors Button is null");
+		} else if (builder.chooseStrategy == null) {
+			throw new NullPointerException("Choose Strategy Text is null");
+		} else if (builder.randomButton == null) {
+			throw new NullPointerException("Random Button is null");
+		} else if (builder.fixedButton == null) {
+			throw new NullPointerException("Random Button is null");
+		} else if (builder.rotationButton == null) {
+			throw new NullPointerException("Random Button is null");
+		} else if (builder.stage == null) {
+			throw new NullPointerException("Stage is null");
 		}
 	}
 
 	// Put this in an EventHandler Strategy Host class and pass the View as an
 	// argument to the static factory method and use getters to get the
 	// computerVsPlayer, chooseWeapon and weaponGroup fields
-	EventHandler<ActionEvent> playerVSComputerEvent = event -> {
+	final EventHandler<ActionEvent> PLAYER_VS_COMPUTER_EVENT = event -> {
 		System.out.println("Player Checked");
 		computerVsComputer.setSelected(false);
+		chooseStrategy.setVisible(false);
+		randomButton.setVisible(false);
+		fixedButton.setVisible(false);
+		rotationButton.setVisible(false);
 		chooseWeapon.setVisible(true);
 		rockButton.setVisible(true);
 		paperButton.setVisible(true);
 		scissorsButton.setVisible(true);
 	};
 
-	EventHandler<ActionEvent> computerVsComputerEvent = event -> {
+	final EventHandler<ActionEvent> COMPUTER_VS_COMPUTER_EVENT = event -> {
 		System.out.println("Computer Checked");
 		playerVsComputer.setSelected(false);
 		chooseWeapon.setVisible(false);
 		rockButton.setVisible(false);
 		paperButton.setVisible(false);
 		scissorsButton.setVisible(false);
+		chooseStrategy.setVisible(true);
+		randomButton.setVisible(true);
+		fixedButton.setVisible(true);
+		rotationButton.setVisible(true);
 	};
 
-	EventHandler<ActionEvent> rockEvent = event -> System.out
+	final EventHandler<ActionEvent> ROCK_EVENT = event -> System.out
 			.println("Rock Button Clicked");
 
-	EventHandler<ActionEvent> paperEvent = event -> System.out
+	final EventHandler<ActionEvent> PAPER_EVENT = event -> System.out
 			.println("Paper Button Clicked");
 
-	EventHandler<ActionEvent> scissorsEvent = event -> System.out
+	final EventHandler<ActionEvent> SCISSORS_EVENT = event -> System.out
 			.println("Scissors Button Clicked");
 
-	private void setUpPlayerVsComputer(CheckBox playerVsPlayer) {
-		this.playerVsComputer = playerVsPlayer;
-		playerVsPlayer.setFont(Font.font(FONT_SIZE));
-		playerVsPlayer.setOnAction(playerVSComputerEvent);
-		playerVsPlayer.setSelected(true);
+	final EventHandler<ActionEvent> RANDOM_EVENT = event -> {
+		System.out.println("Random Button Clicked");
+		RandomStrategy.RANDOM_GESTURE.chooseGesture();
+	};
+
+	final EventHandler<ActionEvent> FIXED_EVENT = event -> {
+		System.out.println("Fixed Button Clicked");
+		FixedStrategy.FIXED_GESTURE.chooseGesture();
+	};
+
+	final EventHandler<ActionEvent> ROTATION_EVENT = event -> {
+		System.out.println("Rotation Button Clicked");
+		RotationStrategy.ROTATION_STRATEGY.chooseGesture();
+	};
+	
+	private void setUpPlayerVsComputer(CheckBox playerVsComputer) {
+		playerVsComputer.setFont(Font.font(FONT_SIZE));
+		playerVsComputer.setOnAction(PLAYER_VS_COMPUTER_EVENT);
+		playerVsComputer.setSelected(true);
+		playerVsComputer.setLayoutX(5);
+		playerVsComputer.setLayoutY(5);
 	}
 
-	private void setUpComputerVsComputer(CheckBox computerVsPlayer) {
-		this.computerVsComputer = computerVsPlayer;
-		computerVsPlayer.setFont(Font.font(FONT_SIZE));
-		computerVsPlayer.setOnAction(computerVsComputerEvent);
-		computerVsPlayer.setLayoutY(HEIGHT / 10);
+	private void setUpComputerVsComputer(CheckBox computerVsComputer) {
+		computerVsComputer.setFont(Font.font(FONT_SIZE));
+		computerVsComputer.setOnAction(COMPUTER_VS_COMPUTER_EVENT);
+		computerVsComputer.setLayoutX(5);
+		computerVsComputer.setLayoutY(55);
 	}
 
 	private void setUpChooseWeaponText(Text chooseWeapon) {
-		this.chooseWeapon = chooseWeapon;
 		chooseWeapon.setFont(Font.font(FONT_SIZE));
 		chooseWeapon.setFill(Color.BLUE);
-		chooseWeapon.setLayoutX(WIDTH / 3.9);
-		chooseWeapon.setLayoutY(HEIGHT / 2.8);
+		chooseWeapon.setLayoutX(165);
+		chooseWeapon.setLayoutY(TEXT_Y_POSITION);
 	}
 
 	private void setUpRockButton(Button rockButton) {
-		this.rockButton = rockButton;
 		rockButton.setFont(Font.font(FONT_SIZE));
 		rockButton.setTextFill(Color.BLUE);
-		rockButton.setOnAction(rockEvent);
-		rockButton.setLayoutX(WIDTH / 8.1);
-		rockButton.setLayoutY(HEIGHT / 2.5);
+		rockButton.setOnAction(ROCK_EVENT);
+		rockButton.setLayoutX(75);
+		rockButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
 	private void setUpPaperButton(Button paperButton) {
-		this.paperButton = paperButton;
 		paperButton.setFont(Font.font(FONT_SIZE));
 		paperButton.setTextFill(Color.BLUE);
-		paperButton.setOnAction(paperEvent);
-		paperButton.setLayoutX(WIDTH / 2.6);
-		paperButton.setLayoutY(HEIGHT / 2.5);
+		paperButton.setOnAction(PAPER_EVENT);
+		paperButton.setLayoutX(245);
+		paperButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
 	private void setUpScissorsButton(Button scissorsButton) {
-		this.scissorsButton = scissorsButton;
 		scissorsButton.setFont(Font.font(FONT_SIZE));
 		scissorsButton.setTextFill(Color.BLUE);
-		scissorsButton.setOnAction(scissorsEvent);
-		scissorsButton.setLayoutX(WIDTH / 1.5);
-		scissorsButton.setLayoutY(HEIGHT / 2.5);
+		scissorsButton.setOnAction(SCISSORS_EVENT);
+		scissorsButton.setLayoutX(425);
+		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
+	private void setUpChooseStategyText(Text chooseStrategy) {
+		chooseStrategy.setFont(Font.font(FONT_SIZE));
+		chooseStrategy.setFill(Color.BLUE);
+		chooseStrategy.setLayoutX(95);
+		chooseStrategy.setLayoutY(TEXT_Y_POSITION);
+		chooseStrategy.setVisible(false);
+	}
+
+	private void setUpRandomButton(Button randomButton) {
+		randomButton.setFont(Font.font(FONT_SIZE));
+		randomButton.setTextFill(Color.BLUE);
+		randomButton.setOnAction(RANDOM_EVENT);
+		randomButton.setLayoutX(60);
+		randomButton.setLayoutY(BUTTON_Y_POSITION);
+		randomButton.setVisible(false);
+	}
+	
+	private void setUpFixedButton(Button fixedButton) {
+		fixedButton.setFont(Font.font(FONT_SIZE));
+		fixedButton.setTextFill(Color.BLUE);
+		fixedButton.setOnAction(FIXED_EVENT);
+		fixedButton.setLayoutX(265);
+		fixedButton.setLayoutY(BUTTON_Y_POSITION);
+		fixedButton.setVisible(false);
+	}
+
+	private void setUpRotationButton(Button rotationButton) {
+		rotationButton.setFont(Font.font(FONT_SIZE));
+		rotationButton.setTextFill(Color.BLUE);
+		rotationButton.setOnAction(ROTATION_EVENT);
+		rotationButton.setLayoutX(425);
+		rotationButton.setLayoutY(BUTTON_Y_POSITION);
+		rotationButton.setVisible(false);
+	}
+	
 	private void setUpPane() {
 		pane.getChildren().add(playerVsComputer);
 		pane.getChildren().add(computerVsComputer);
@@ -135,6 +227,10 @@ public class RockPaperScissorsView {
 		pane.getChildren().add(rockButton);
 		pane.getChildren().add(paperButton);
 		pane.getChildren().add(scissorsButton);
+		pane.getChildren().add(chooseStrategy);
+		pane.getChildren().add(randomButton);
+		pane.getChildren().add(fixedButton);
+		pane.getChildren().add(rotationButton);
 	}
 
 	private void setUpStage(Stage stage) {

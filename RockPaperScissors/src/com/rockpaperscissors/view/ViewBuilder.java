@@ -7,11 +7,12 @@ import javafx.stage.Stage;
 
 public class ViewBuilder {
 	CheckBox playerVsComputer, computerVsComputer;
-	Text chooseWeapon;
+	Text chooseWeapon, chooseStrategy;
 	Button rockButton, paperButton, scissorsButton;
+	Button randomButton, fixedButton, rotationButton;
 	Stage stage;
 
-	public static ViewBuilder view() {
+	public static ViewBuilder createViewBuilder() {
 		return new ViewBuilder();
 	}
 
@@ -44,7 +45,28 @@ public class ViewBuilder {
 		this.scissorsButton = scissorsButton;
 		return this;
 	}
+	
 
+	public ViewBuilder chooseStrategyText(Text chooseStrategy) {
+		this.chooseStrategy = chooseStrategy;
+		return this;
+	}
+	
+	public ViewBuilder randomButton(Button randomButton) {
+		this.randomButton = randomButton;
+		return this;
+	}
+
+	public ViewBuilder fixedButton(Button fixedButton) {
+		this.fixedButton = fixedButton;
+		return this;
+	}
+
+	public ViewBuilder rotationButton(Button rotationButton) {
+		this.rotationButton = rotationButton;
+		return this;
+	}
+	
 	public ViewBuilder stage(Stage stage) {
 		this.stage = stage;
 		return this;
