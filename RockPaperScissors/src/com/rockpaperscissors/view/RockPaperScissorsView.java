@@ -11,12 +11,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.rockpaperscissors.controller.RockPaperScissorsController;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
 import com.rockpaperscissors.model.strategies.FixedStrategy;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
 
 public class RockPaperScissorsView {
+	private final RockPaperScissorsController controller;
 	private final CheckBox playerVsComputer, computerVsComputer;
 	private final Text chooseWeapon, chooseStrategy;
 	private final Button rockButton, paperButton, scissorsButton;
@@ -30,6 +32,7 @@ public class RockPaperScissorsView {
 
 	public RockPaperScissorsView(ViewBuilder builder) {
 		checkBuilderForNullArgs(builder);
+		controller = builder.controller;
 		playerVsComputer = builder.playerVsComputer;
 		computerVsComputer = builder.computerVsComputer;
 		chooseWeapon = builder.chooseWeapon;
@@ -60,7 +63,9 @@ public class RockPaperScissorsView {
 	}
 
 	private void checkBuilderForNullArgs(ViewBuilder builder) {
-		if (builder.playerVsComputer == null) {
+		if (builder.controller == null) {
+			throw new NullPointerException("Controller is null");
+		} else if (builder.playerVsComputer == null) {
 			throw new NullPointerException(
 					"Player vs Computer Check Box is null");
 		} else if (builder.computerVsComputer == null) {
@@ -123,7 +128,7 @@ public class RockPaperScissorsView {
 		System.out.println("Rotation Button Clicked");
 		RotationStrategy.ROTATION_STRATEGY.chooseGesture();
 	};
-	
+
 	public CheckBox getPlayerVsComputer() {
 		return playerVsComputer;
 	}
@@ -131,42 +136,42 @@ public class RockPaperScissorsView {
 	public CheckBox getComputerVsComputer() {
 		return computerVsComputer;
 	}
-	
+
 	public Text getChooseWeapon() {
 		return chooseWeapon;
 	}
-	
+
 	public Button getRockButton() {
 		return rockButton;
 	}
-	
+
 	public Button getPaperButton() {
 		return paperButton;
 	}
-	
+
 	public Button getScissorsButton() {
 		return scissorsButton;
 	}
-	
+
 	public Text getChooseStrategy() {
 		return chooseStrategy;
 	}
-	
+
 	public Button getRandomButton() {
 		return randomButton;
 	}
-	
+
 	public Button getFixedButton() {
 		return fixedButton;
 	}
-	
+
 	public Button getRotationButton() {
 		return rotationButton;
 	}
-	
+
 	private void setUpPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this);
+		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this, controller);
 		playerVsComputer.setOnAction(event.HANDLE);
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
@@ -227,7 +232,7 @@ public class RockPaperScissorsView {
 		randomButton.setLayoutY(BUTTON_Y_POSITION);
 		randomButton.setVisible(false);
 	}
-	
+
 	private void setUpFixedButton(Button fixedButton) {
 		fixedButton.setFont(Font.font(FONT_SIZE));
 		fixedButton.setTextFill(Color.BLUE);
@@ -245,7 +250,7 @@ public class RockPaperScissorsView {
 		rotationButton.setLayoutY(BUTTON_Y_POSITION);
 		rotationButton.setVisible(false);
 	}
-	
+
 	private void setUpPane() {
 		pane.getChildren().add(playerVsComputer);
 		pane.getChildren().add(computerVsComputer);

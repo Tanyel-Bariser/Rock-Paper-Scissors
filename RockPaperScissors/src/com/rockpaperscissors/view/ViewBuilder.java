@@ -1,11 +1,14 @@
 package com.rockpaperscissors.view;
 
+import com.rockpaperscissors.controller.RockPaperScissorsController;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ViewBuilder {
+	RockPaperScissorsController controller;
 	CheckBox playerVsComputer, computerVsComputer;
 	Text chooseWeapon, chooseStrategy;
 	Button rockButton, paperButton, scissorsButton;
@@ -14,6 +17,11 @@ public class ViewBuilder {
 
 	public static ViewBuilder createViewBuilder() {
 		return new ViewBuilder();
+	}
+
+	public ViewBuilder controller(RockPaperScissorsController controller) {
+		this.controller = controller;
+		return this;
 	}
 
 	public ViewBuilder playerVsComputer(CheckBox playerVsComputer) {
@@ -45,13 +53,12 @@ public class ViewBuilder {
 		this.scissorsButton = scissorsButton;
 		return this;
 	}
-	
 
 	public ViewBuilder chooseStrategyText(Text chooseStrategy) {
 		this.chooseStrategy = chooseStrategy;
 		return this;
 	}
-	
+
 	public ViewBuilder randomButton(Button randomButton) {
 		this.randomButton = randomButton;
 		return this;
@@ -66,12 +73,12 @@ public class ViewBuilder {
 		this.rotationButton = rotationButton;
 		return this;
 	}
-	
+
 	public ViewBuilder stage(Stage stage) {
 		this.stage = stage;
 		return this;
 	}
-	
+
 	public RockPaperScissorsView build() {
 		return new RockPaperScissorsView(this);
 	}

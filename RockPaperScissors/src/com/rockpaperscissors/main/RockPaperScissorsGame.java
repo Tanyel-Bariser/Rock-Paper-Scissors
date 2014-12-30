@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.rockpaperscissors.controller.RockPaperScissorsController;
 import com.rockpaperscissors.view.ViewBuilder;
 
 public class RockPaperScissorsGame extends Application {
@@ -17,6 +18,7 @@ public class RockPaperScissorsGame extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ViewBuilder.createViewBuilder()
+				.controller(new RockPaperScissorsController())
 				.playerVsComputer(new CheckBox("Player vs Computer"))
 				.computerVsComputer(new CheckBox("Computer vs Computer"))
 				.chooseWeaponText(new Text("Choose your Weapon"))
