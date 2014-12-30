@@ -6,10 +6,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import com.rockpaperscissors.controller.RockPaperScissorsController;
+import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.ViewBuilder;
 
-public class RockPaperScissorsGame extends Application {
+public class RockPaperScissors extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
@@ -18,7 +19,7 @@ public class RockPaperScissorsGame extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ViewBuilder.createViewBuilder()
-				.controller(new RockPaperScissorsController())
+				.controller(new RPSController(RandomStrategy.RANDOM_GESTURE))
 				.playerVsComputer(new CheckBox("Player vs Computer"))
 				.computerVsComputer(new CheckBox("Computer vs Computer"))
 				.chooseWeaponText(new Text("Choose your Weapon"))

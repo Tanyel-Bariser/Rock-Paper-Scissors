@@ -7,8 +7,8 @@ public class RotationStrategy {
 	}
 
 	private static int rotator = 0;
-	public static final ComputerStrategy ROTATION_STRATEGY = () -> {
+	public static final Strategy ROTATION_STRATEGY = () -> {
 		rotator++;
-		return Weapon.values()[rotator % ComputerStrategy.NUMBER_OF_GESTURES];
+		return Weapon.values()[rotator % Strategy.NUMBER_OF_WEAPONS];
 	};
 }

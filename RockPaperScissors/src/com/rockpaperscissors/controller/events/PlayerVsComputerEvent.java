@@ -3,15 +3,15 @@ package com.rockpaperscissors.controller.events;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import com.rockpaperscissors.controller.RockPaperScissorsController;
+import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.GameType;
-import com.rockpaperscissors.view.RockPaperScissorsView;
+import com.rockpaperscissors.view.RPSView;
 
 public class PlayerVsComputerEvent {
-	private final RockPaperScissorsView view;
-	private final RockPaperScissorsController controller;
+	private final RPSView view;
+	private final RPSController controller;
 	
-	public PlayerVsComputerEvent(RockPaperScissorsView view, RockPaperScissorsController controller) {
+	public PlayerVsComputerEvent(RPSView view, RPSController controller) {
 		this.view = view;
 		this.controller = controller;
 	}

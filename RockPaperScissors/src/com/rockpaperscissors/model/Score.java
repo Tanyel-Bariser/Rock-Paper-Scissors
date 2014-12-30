@@ -1,26 +1,29 @@
 package com.rockpaperscissors.model;
 
 public class Score {
-	private Score() {
+	private int wins;
+	private int ties;
+	private int losses;
+	
+	public Score() {
+		wins = 0;
+		ties = 0;
+		losses = 0;
 	}
 
-	private static int wins;
-	private static int ties;
-	private static int losses;
-
-	public static int getWins() {
+	public int getWins() {
 		return wins;
 	}
 
-	public static int getTies() {
+	public int getTies() {
 		return ties;
 	}
 
-	public static int getLosses() {
+	public int getLosses() {
 		return losses;
 	}
 
-	public static void updateScore(Result result) {
+	public void updateScore(Result result) {
 		switch (result) {
 		case WON:
 			wins++;
@@ -33,7 +36,7 @@ public class Score {
 			break;
 		default:
 			throw new IllegalArgumentException(
-					"Argument in Score.updateScore() should be of type Result.");
+					"Argument for updateScore(Result) should be of type Result.");
 		}
 	}
 }

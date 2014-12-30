@@ -1,14 +1,21 @@
 package com.rockpaperscissors.view;
 
-import com.rockpaperscissors.controller.RockPaperScissorsController;
+import com.rockpaperscissors.controller.RPSController;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Gathers all dependencies required for RockPaperScissorsView
+ * 
+ * 
+ * @author Tanyel Bariser
+ *
+ */
 public class ViewBuilder {
-	RockPaperScissorsController controller;
+	RPSController controller;
 	CheckBox playerVsComputer, computerVsComputer;
 	Text chooseWeapon, chooseStrategy;
 	Button rockButton, paperButton, scissorsButton;
@@ -19,7 +26,7 @@ public class ViewBuilder {
 		return new ViewBuilder();
 	}
 
-	public ViewBuilder controller(RockPaperScissorsController controller) {
+	public ViewBuilder controller(RPSController controller) {
 		this.controller = controller;
 		return this;
 	}
@@ -79,7 +86,7 @@ public class ViewBuilder {
 		return this;
 	}
 
-	public RockPaperScissorsView build() {
-		return new RockPaperScissorsView(this);
+	public RPSView build() {
+		return new RPSView(this);
 	}
 }

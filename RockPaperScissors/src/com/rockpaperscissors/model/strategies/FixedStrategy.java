@@ -10,7 +10,7 @@ public class FixedStrategy {
 
 	// Initialise fixed gesture once per new game
 	private static final Weapon GESTURE = Weapon.values()[new Random()
-			.nextInt(ComputerStrategy.NUMBER_OF_GESTURES)];
+			.nextInt(Strategy.NUMBER_OF_WEAPONS)];
 
-	public static final ComputerStrategy FIXED_GESTURE = () -> GESTURE;
+	public static final Strategy FIXED_GESTURE = () -> GESTURE;
 }

@@ -11,14 +11,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import com.rockpaperscissors.controller.RockPaperScissorsController;
+import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
 import com.rockpaperscissors.model.strategies.FixedStrategy;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
 
-public class RockPaperScissorsView {
-	private final RockPaperScissorsController controller;
+public class RPSView {
+	private final RPSController controller;
 	private final CheckBox playerVsComputer, computerVsComputer;
 	private final Text chooseWeapon, chooseStrategy;
 	private final Button rockButton, paperButton, scissorsButton;
@@ -26,11 +26,10 @@ public class RockPaperScissorsView {
 	private final Stage stage;
 	private final Pane pane = new Pane();
 	private final int FONT_SIZE = 32;
-	private final int WIDTH = 640, HEIGHT = 480;
 	private final int TEXT_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
 
-	public RockPaperScissorsView(ViewBuilder builder) {
+	public RPSView(ViewBuilder builder) {
 		checkBuilderForNullArgs(builder);
 		controller = builder.controller;
 		playerVsComputer = builder.playerVsComputer;
@@ -116,17 +115,17 @@ public class RockPaperScissorsView {
 
 	final EventHandler<ActionEvent> RANDOM_EVENT = event -> {
 		System.out.println("Random Button Clicked");
-		RandomStrategy.RANDOM_GESTURE.chooseGesture();
+		RandomStrategy.RANDOM_GESTURE.chooseWeapon();
 	};
 
 	final EventHandler<ActionEvent> FIXED_EVENT = event -> {
 		System.out.println("Fixed Button Clicked");
-		FixedStrategy.FIXED_GESTURE.chooseGesture();
+		FixedStrategy.FIXED_GESTURE.chooseWeapon();
 	};
 
 	final EventHandler<ActionEvent> ROTATION_EVENT = event -> {
 		System.out.println("Rotation Button Clicked");
-		RotationStrategy.ROTATION_STRATEGY.chooseGesture();
+		RotationStrategy.ROTATION_STRATEGY.chooseWeapon();
 	};
 
 	public CheckBox getPlayerVsComputer() {
@@ -265,8 +264,9 @@ public class RockPaperScissorsView {
 	}
 
 	private void setUpStage(Stage stage) {
-		stage.setScene(new Scene(pane, WIDTH, HEIGHT));
-		stage.setTitle("Rock Paper Scissors");
+		int width = 640, height = 480;
+		stage.setScene(new Scene(pane, width, height));
+		stage.setTitle("Waste an Hour Having Fun");
 		stage.setResizable(false);
 		stage.show();
 	}
