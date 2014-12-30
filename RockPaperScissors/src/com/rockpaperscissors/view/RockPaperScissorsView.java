@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
 import com.rockpaperscissors.model.strategies.FixedStrategy;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
@@ -86,22 +87,6 @@ public class RockPaperScissorsView {
 		}
 	}
 
-	// Put this in an EventHandler Strategy Host class and pass the View as an
-	// argument to the static factory method and use getters to get the
-	// computerVsPlayer, chooseWeapon and weaponGroup fields
-	final EventHandler<ActionEvent> PLAYER_VS_COMPUTER_EVENT = event -> {
-		System.out.println("Player Checked");
-		computerVsComputer.setSelected(false);
-		chooseStrategy.setVisible(false);
-		randomButton.setVisible(false);
-		fixedButton.setVisible(false);
-		rotationButton.setVisible(false);
-		chooseWeapon.setVisible(true);
-		rockButton.setVisible(true);
-		paperButton.setVisible(true);
-		scissorsButton.setVisible(true);
-	};
-
 	final EventHandler<ActionEvent> COMPUTER_VS_COMPUTER_EVENT = event -> {
 		System.out.println("Computer Checked");
 		playerVsComputer.setSelected(false);
@@ -139,9 +124,50 @@ public class RockPaperScissorsView {
 		RotationStrategy.ROTATION_STRATEGY.chooseGesture();
 	};
 	
+	public CheckBox getPlayerVsComputer() {
+		return playerVsComputer;
+	}
+
+	public CheckBox getComputerVsComputer() {
+		return computerVsComputer;
+	}
+	
+	public Text getChooseWeapon() {
+		return chooseWeapon;
+	}
+	
+	public Button getRockButton() {
+		return rockButton;
+	}
+	
+	public Button getPaperButton() {
+		return paperButton;
+	}
+	
+	public Button getScissorsButton() {
+		return scissorsButton;
+	}
+	
+	public Text getChooseStrategy() {
+		return chooseStrategy;
+	}
+	
+	public Button getRandomButton() {
+		return randomButton;
+	}
+	
+	public Button getFixedButton() {
+		return fixedButton;
+	}
+	
+	public Button getRotationButton() {
+		return rotationButton;
+	}
+	
 	private void setUpPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		playerVsComputer.setOnAction(PLAYER_VS_COMPUTER_EVENT);
+		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this);
+		playerVsComputer.setOnAction(event.HANDLE);
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
 		playerVsComputer.setLayoutY(5);
