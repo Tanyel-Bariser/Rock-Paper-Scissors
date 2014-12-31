@@ -17,7 +17,6 @@ public class PaperButtonEvent {
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
-		System.out.println("Paper Button Clicked");
 		humanPlayer.setWeapon(Weapon.PAPER);
 		controller.play();
 	};

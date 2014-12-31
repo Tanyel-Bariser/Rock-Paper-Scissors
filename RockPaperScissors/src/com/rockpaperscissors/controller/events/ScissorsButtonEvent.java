@@ -17,7 +17,6 @@ public class ScissorsButtonEvent {
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
-		System.out.println("Scissors Button Clicked");
 		humanPlayer.setWeapon(Weapon.SCISSORS);
 		controller.play();
 	};

@@ -21,7 +21,6 @@ public class ComputerVsComputerEvent {
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
-		System.out.println("Computer Checked");
 		view.setPlayerVsComputerSelected(false);
 		view.setChooseStrategyVisible(true);
 		view.setRandomButtonVisible(true);

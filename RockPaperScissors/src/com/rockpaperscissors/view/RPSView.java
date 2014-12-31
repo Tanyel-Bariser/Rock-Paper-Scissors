@@ -1,7 +1,5 @@
 package com.rockpaperscissors.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -13,19 +11,18 @@ import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
+import com.rockpaperscissors.controller.events.FixedButtonEvent;
 import com.rockpaperscissors.controller.events.PaperButtonEvent;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
 import com.rockpaperscissors.controller.events.RandomButtonEvent;
 import com.rockpaperscissors.controller.events.RockButtonEvent;
+import com.rockpaperscissors.controller.events.RotationButtonEvent;
 import com.rockpaperscissors.controller.events.ScissorsButtonEvent;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
-import com.rockpaperscissors.model.strategies.FixedStrategy;
-import com.rockpaperscissors.model.strategies.RandomStrategy;
-import com.rockpaperscissors.model.strategies.RotationStrategy;
 
 public class RPSView {
 	private final RPSController controller;
@@ -154,7 +151,8 @@ public class RPSView {
 	private void buildFixedButton(Button fixedButton) {
 		fixedButton.setFont(Font.font(FONT_SIZE));
 		fixedButton.setTextFill(Color.BLUE);
-		fixedButton.setOnAction(FIXED_EVENT);
+		FixedButtonEvent event = new FixedButtonEvent(controller, computerPlayer);
+		fixedButton.setOnAction(event.HANDLE);
 		fixedButton.setLayoutX(265);
 		fixedButton.setLayoutY(BUTTON_Y_POSITION);
 		fixedButton.setVisible(false);
@@ -163,7 +161,8 @@ public class RPSView {
 	private void buildRotationButton(Button rotationButton) {
 		rotationButton.setFont(Font.font(FONT_SIZE));
 		rotationButton.setTextFill(Color.BLUE);
-		rotationButton.setOnAction(ROTATION_EVENT);
+		RotationButtonEvent event = new RotationButtonEvent(controller, computerPlayer);
+		rotationButton.setOnAction(event.HANDLE);
 		rotationButton.setLayoutX(425);
 		rotationButton.setLayoutY(BUTTON_Y_POSITION);
 		rotationButton.setVisible(false);
@@ -271,14 +270,4 @@ public class RPSView {
 	public void showComputerResult() {
 		resultText.setText(computerResult);
 	}
-
-	final EventHandler<ActionEvent> FIXED_EVENT = event -> {
-		System.out.println("Fixed Button Clicked");
-		FixedStrategy.FIXED.chooseWeapon();
-	};
-
-	final EventHandler<ActionEvent> ROTATION_EVENT = event -> {
-		System.out.println("Rotation Button Clicked");
-		RotationStrategy.ROTATION.chooseWeapon();
-	};
 }

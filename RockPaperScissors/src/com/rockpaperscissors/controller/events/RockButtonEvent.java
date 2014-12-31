@@ -17,7 +17,6 @@ public class RockButtonEvent {
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
-		System.out.println("Rock Button Clicked");
 		humanPlayer.setWeapon(Weapon.ROCK);
 		controller.play();
 	};
