@@ -4,7 +4,7 @@ import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.strategies.Strategy;
 
 public class ComputerOpponent {
-	private Strategy strategy;
+	private final Strategy strategy;
 	
 	public ComputerOpponent(Strategy strategy) {
 		this.strategy = strategy;

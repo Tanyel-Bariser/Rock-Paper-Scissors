@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
+import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
+import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.model.strategies.FixedStrategy;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
@@ -64,7 +66,8 @@ public class RPSView {
 
 	private void buildPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this, controller);
+		PlayerVsComputerEvent event = new PlayerVsComputerEvent(
+				this, controller, new HumanPlayer(this, new Score()));
 		playerVsComputer.setOnAction(event.HANDLE);
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
@@ -207,6 +210,30 @@ public class RPSView {
 
 	public void setRotationButtonVisible(boolean visible) {
 		rotationButton.setVisible(visible);
+	}
+	
+	public void setPlayerWeapon(Weapon playerWeapon) {
+		
+	}
+	
+	public void setOpponentWeapon(Weapon opponentWeapon) {
+		
+	}
+	
+	public void setPlayerWins(int playerWins) {
+		
+	}
+	
+	public void setPlayerTies(int playerTies) {
+		
+	}
+
+	public void setPlayerLosses(int playerLosses) {
+		
+	}
+	
+	public void setPlayerResult(Result result) {
+		
 	}
 
 	final EventHandler<ActionEvent> COMPUTER_VS_COMPUTER_EVENT = event -> {

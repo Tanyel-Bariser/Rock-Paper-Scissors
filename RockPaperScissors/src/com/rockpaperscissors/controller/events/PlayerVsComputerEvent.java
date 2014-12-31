@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.model.player.Player;
 import com.rockpaperscissors.view.RPSView;
@@ -12,11 +11,13 @@ import com.rockpaperscissors.view.RPSView;
 public class PlayerVsComputerEvent {
 	private final RPSView view;
 	private final RPSController controller;
-	private static final Player HUMAN_PLAYER = new HumanPlayer(new Score());
-	
-	public PlayerVsComputerEvent(RPSView view, RPSController controller) {
+	private final Player humanPlayer;
+
+	public PlayerVsComputerEvent(RPSView view, RPSController controller,
+			HumanPlayer humanPlayer) {
 		this.view = view;
 		this.controller = controller;
+		this.humanPlayer = humanPlayer;
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
@@ -30,6 +31,6 @@ public class PlayerVsComputerEvent {
 		view.setRockButtonVisible(true);
 		view.setPaperButtonVisible(true);
 		view.setScissorsButtonVisible(true);
-		controller.setPlayer(HUMAN_PLAYER);
+		controller.setPlayer(humanPlayer);
 	};
 }
