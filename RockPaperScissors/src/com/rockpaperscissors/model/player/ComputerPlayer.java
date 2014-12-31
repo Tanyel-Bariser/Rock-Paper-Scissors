@@ -26,7 +26,8 @@ public class ComputerPlayer implements Player {
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		updateScore(result);
-		view.setPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.showComputerResult();
 		view.setPlayerScore(this.toString());
 	}
 

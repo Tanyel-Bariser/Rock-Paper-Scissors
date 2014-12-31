@@ -33,5 +33,6 @@ public class PlayerVsComputerEvent {
 		view.setScissorsButtonVisible(true);
 		controller.setPlayer(humanPlayer);
 		view.setPlayerScore(humanPlayer.toString());
+		view.showHumanResult();
 	};
 }

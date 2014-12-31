@@ -24,7 +24,8 @@ public class HumanPlayer implements Player {
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		updateScore(result);
-		view.setPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.showHumanResult();
 		view.setPlayerScore(this.toString());
 	}
 

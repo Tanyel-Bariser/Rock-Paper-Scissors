@@ -33,13 +33,13 @@ public class RPSView {
 	private final Stage stage;
 	private final Pane pane = new Pane();
 	private final HumanPlayer humanPlayer = new HumanPlayer(this, new Score());
-	private final ComputerPlayer computerPlayer = new ComputerPlayer(this,
-			new Score());
+	private final ComputerPlayer computerPlayer = new ComputerPlayer(this, new Score());
 	private final int FONT_SIZE = 32;
 	private final int RESULTS_FONT_SIZE = 20;
 	private final int TEXT_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
 	private final int RESULT_Y_POSITION = 340;
+	private String humanResult, computerResult = null;
 
 	RPSView(ViewBuilder builder) {
 		controller = builder.controller;
@@ -244,19 +244,26 @@ public class RPSView {
 		scoreText.setText(playerScore);
 	}
 
-	public void setPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
+	public void setHumanPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
 			Result result) {
-		String you;
-		if (playerVsComputer.isSelected()) {
-			you = "You ";
-		} else {
-			you = "Your Computer Player ";
-		}
-		String resultString = you + "chose " + playerWeapon.name() + "\n";
-		resultString += "Computer Opponent chose " + opponentWeapon.name()
-				+ "\n";
-		resultString += you + result.name();
-		resultText.setText(resultString);
+		humanResult = "You chose " + playerWeapon.name() + "\n";
+		humanResult += "Computer Opponent chose " + opponentWeapon.name() + "\n";
+		humanResult += "You " + result.name();
+	}
+	
+	public void setComputerPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
+			Result result) {
+		computerResult = "Your Computer chose " + playerWeapon.name() + "\n";
+		computerResult += "Computer Opponent chose " + opponentWeapon.name() + "\n";
+		computerResult += "Your Computer " + result.name();
+	}
+	
+	public void showHumanResult() {
+		resultText.setText(humanResult);
+	}
+	
+	public void showComputerResult() {
+		resultText.setText(computerResult);
 	}
 
 	final EventHandler<ActionEvent> PAPER_EVENT = event -> System.out
