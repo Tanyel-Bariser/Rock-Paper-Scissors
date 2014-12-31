@@ -9,12 +9,12 @@ public class HumanPlayer implements Player {
 	private final RPSView view;
 	private final Score scoreBoard;
 	private Weapon chosenWeapon;
-	
+
 	public HumanPlayer(RPSView view, Score score) {
 		this.view = view;
 		scoreBoard = score;
 	}
-	
+
 	public void setWeapon(Weapon weapon) {
 		chosenWeapon = weapon;
 	}
@@ -24,15 +24,20 @@ public class HumanPlayer implements Player {
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		updateScore(result);
-		view.setPlayerWeapon(chosenWeapon);
-		view.setOpponentWeapon(opponentWeapon);
-		view.setPlayerWins(scoreBoard.getWins());
-		view.setPlayerTies(scoreBoard.getTies());
-		view.setPlayerLosses(scoreBoard.getLosses());
-		view.setPlayerResult(result);
+		view.setPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setPlayerScore(this.toString());
 	}
 
 	private void updateScore(Result result) {
 		scoreBoard.updateScore(result);
+	}
+	
+	@Override
+	public String toString() {
+		String humanPlayer = "Your Score:\n";
+		humanPlayer += "Wins: " + scoreBoard.getWins() + "\n";
+		humanPlayer += "Ties: " + scoreBoard.getTies() + "\n";
+		humanPlayer += "Losses: " + scoreBoard.getLosses() + "\n";
+		return humanPlayer;
 	}
 }

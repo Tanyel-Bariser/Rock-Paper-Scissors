@@ -32,7 +32,10 @@ public class RockPaperScissors extends Application {
 				.chooseStrategyText(new Text("Choose Your Computer's Strategy"))
 				.randomButton(new Button("Random"))
 				.fixedButton(new Button("Fixed"))
-				.rotationButton(new Button("Rotation")).stage(primaryStage)
+				.rotationButton(new Button("Rotation"))
+				.resultText(new Text())
+				.scoreText(new Text())
+				.stage(primaryStage)
 				.build();
 	}
 }

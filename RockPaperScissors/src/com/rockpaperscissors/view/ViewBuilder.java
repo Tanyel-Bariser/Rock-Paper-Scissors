@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class ViewBuilder {
 	RPSController controller;
 	CheckBox playerVsComputer, computerVsComputer;
-	Text chooseWeapon, chooseStrategy;
+	Text chooseWeapon, chooseStrategy, resultText, scoreText;
 	Button rockButton, paperButton, scissorsButton;
 	Button randomButton, fixedButton, rotationButton;
 	Stage stage;
@@ -80,6 +80,16 @@ public class ViewBuilder {
 		this.rotationButton = rotationButton;
 		return this;
 	}
+	
+	public ViewBuilder resultText(Text resultText) {
+		this.resultText = resultText;
+		return this;
+	}
+	
+	public ViewBuilder scoreText(Text scoreText) {
+		this.scoreText = scoreText;
+		return this;
+	}
 
 	public ViewBuilder stage(Stage stage) {
 		this.stage = stage;
@@ -116,6 +126,10 @@ public class ViewBuilder {
 			throw new NullPointerException("Fixed Button is null");
 		} else if (rotationButton == null) {
 			throw new NullPointerException("Rotation Button is null");
+		} else if (resultText == null) {
+			throw new NullPointerException("Result Text is null");
+		} else if (scoreText  == null) {
+			throw new NullPointerException("Score Text is null");
 		} else if (stage == null) {
 			throw new NullPointerException("Stage is null");
 		}

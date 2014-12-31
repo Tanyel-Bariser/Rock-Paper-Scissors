@@ -10,7 +10,7 @@ public class ComputerPlayer implements Player {
 	private final RPSView view;
 	private final Score scoreBoard;
 	private Strategy chosenStrategy;
-	
+
 	public ComputerPlayer(RPSView view, Score score) {
 		this.view = view;
 		scoreBoard = score;
@@ -19,22 +19,27 @@ public class ComputerPlayer implements Player {
 	public void setStrategy(Strategy strategy) {
 		chosenStrategy = strategy;
 	}
-	
+
 	@Override
 	public void compete(ComputerOpponent opponent) {
 		Weapon chosenWeapon = chosenStrategy.chooseWeapon();
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		updateScore(result);
-		view.setPlayerWeapon(chosenWeapon);
-		view.setOpponentWeapon(opponentWeapon);
-		view.setPlayerWins(scoreBoard.getWins());
-		view.setPlayerTies(scoreBoard.getTies());
-		view.setPlayerLosses(scoreBoard.getLosses());
-		view.setPlayerResult(result);
+		view.setPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setPlayerScore(this.toString());
 	}
-	
+
 	private void updateScore(Result result) {
 		scoreBoard.updateScore(result);
+	}
+
+	@Override
+	public String toString() {
+		String computerPlayer = "Your Computer Player's\nScore:\n";
+		computerPlayer += "Wins: " + scoreBoard.getWins() + "\n";
+		computerPlayer += "Ties: " + scoreBoard.getTies() + "\n";
+		computerPlayer += "Losses: " + scoreBoard.getLosses() + "\n";
+		return computerPlayer;
 	}
 }
