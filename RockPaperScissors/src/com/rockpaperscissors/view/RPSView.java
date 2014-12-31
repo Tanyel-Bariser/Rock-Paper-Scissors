@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
+import com.rockpaperscissors.controller.events.PaperButtonEvent;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
 import com.rockpaperscissors.controller.events.RockButtonEvent;
 import com.rockpaperscissors.model.Result;
@@ -115,7 +116,8 @@ public class RPSView {
 	private void buildPaperButton(Button paperButton) {
 		paperButton.setFont(Font.font(FONT_SIZE));
 		paperButton.setTextFill(Color.BLUE);
-		paperButton.setOnAction(PAPER_EVENT);
+		PaperButtonEvent event = new PaperButtonEvent(controller, humanPlayer);
+		paperButton.setOnAction(event.HANDLE);
 		paperButton.setLayoutX(245);
 		paperButton.setLayoutY(BUTTON_Y_POSITION);
 	}
@@ -265,9 +267,6 @@ public class RPSView {
 	public void showComputerResult() {
 		resultText.setText(computerResult);
 	}
-
-	final EventHandler<ActionEvent> PAPER_EVENT = event -> System.out
-			.println("Paper Button Clicked");
 
 	final EventHandler<ActionEvent> SCISSORS_EVENT = event -> System.out
 			.println("Scissors Button Clicked");

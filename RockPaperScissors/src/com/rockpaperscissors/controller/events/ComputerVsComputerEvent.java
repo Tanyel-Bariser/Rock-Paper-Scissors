@@ -11,13 +11,13 @@ import com.rockpaperscissors.view.RPSView;
 public class ComputerVsComputerEvent {
 	private final RPSView view;
 	private final RPSController controller;
-	private final Player comptuerPlayer;
+	private final Player computerPlayer;
 
 	public ComputerVsComputerEvent(RPSView view, RPSController controller,
 			ComputerPlayer computerPlayer) {
 		this.view = view;
 		this.controller = controller;
-		this.comptuerPlayer = computerPlayer;
+		this.computerPlayer = computerPlayer;
 	}
 
 	public final EventHandler<ActionEvent> HANDLE = event -> {
@@ -31,8 +31,8 @@ public class ComputerVsComputerEvent {
 		view.setRockButtonVisible(false);
 		view.setPaperButtonVisible(false);
 		view.setScissorsButtonVisible(false);
-		controller.setPlayer(comptuerPlayer);
-		view.setPlayerScore(comptuerPlayer.toString());
+		view.setPlayerScore(computerPlayer.toString());
 		view.showComputerResult();
+		controller.setPlayer(computerPlayer);
 	};
 }
