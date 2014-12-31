@@ -15,7 +15,9 @@ import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
 import com.rockpaperscissors.controller.events.PaperButtonEvent;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
+import com.rockpaperscissors.controller.events.RandomButtonEvent;
 import com.rockpaperscissors.controller.events.RockButtonEvent;
+import com.rockpaperscissors.controller.events.ScissorsButtonEvent;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
@@ -125,7 +127,8 @@ public class RPSView {
 	private void buildScissorsButton(Button scissorsButton) {
 		scissorsButton.setFont(Font.font(FONT_SIZE));
 		scissorsButton.setTextFill(Color.BLUE);
-		scissorsButton.setOnAction(SCISSORS_EVENT);
+		ScissorsButtonEvent event = new ScissorsButtonEvent(controller, humanPlayer);
+		scissorsButton.setOnAction(event.HANDLE);
 		scissorsButton.setLayoutX(425);
 		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
 	}
@@ -141,7 +144,8 @@ public class RPSView {
 	private void buildRandomButton(Button randomButton) {
 		randomButton.setFont(Font.font(FONT_SIZE));
 		randomButton.setTextFill(Color.BLUE);
-		randomButton.setOnAction(RANDOM_EVENT);
+		RandomButtonEvent event = new RandomButtonEvent(controller, computerPlayer);
+		randomButton.setOnAction(event.HANDLE);
 		randomButton.setLayoutX(60);
 		randomButton.setLayoutY(BUTTON_Y_POSITION);
 		randomButton.setVisible(false);
@@ -268,21 +272,13 @@ public class RPSView {
 		resultText.setText(computerResult);
 	}
 
-	final EventHandler<ActionEvent> SCISSORS_EVENT = event -> System.out
-			.println("Scissors Button Clicked");
-
-	final EventHandler<ActionEvent> RANDOM_EVENT = event -> {
-		System.out.println("Random Button Clicked");
-		RandomStrategy.RANDOM_GESTURE.chooseWeapon();
-	};
-
 	final EventHandler<ActionEvent> FIXED_EVENT = event -> {
 		System.out.println("Fixed Button Clicked");
-		FixedStrategy.FIXED_GESTURE.chooseWeapon();
+		FixedStrategy.FIXED.chooseWeapon();
 	};
 
 	final EventHandler<ActionEvent> ROTATION_EVENT = event -> {
 		System.out.println("Rotation Button Clicked");
-		RotationStrategy.ROTATION_STRATEGY.chooseWeapon();
+		RotationStrategy.ROTATION.chooseWeapon();
 	};
 }

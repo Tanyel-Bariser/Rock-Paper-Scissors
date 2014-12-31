@@ -22,7 +22,7 @@ public class RockPaperScissors extends Application {
 		ViewBuilder
 				.createViewBuilder()
 				.controller(new RPSController(
-						new ComputerOpponent(RandomStrategy.RANDOM_GESTURE)))
+						new ComputerOpponent(RandomStrategy.RANDOM)))
 				.playerVsComputer(new CheckBox("Player vs Computer"))
 				.computerVsComputer(new CheckBox("Computer vs Computer"))
 				.chooseWeaponText(new Text("Choose Your Weapon"))
