@@ -36,7 +36,7 @@ public class ComputerPlayer implements Player {
 
 	@Override
 	public String toString() {
-		String computerPlayer = "Your Computer Player's\nScore:\n";
+		String computerPlayer = "Your Computer Player's Score:\n";
 		computerPlayer += "Wins: " + scoreBoard.getWins() + "\n";
 		computerPlayer += "Ties: " + scoreBoard.getTies() + "\n";
 		computerPlayer += "Losses: " + scoreBoard.getLosses() + "\n";

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
 import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
+import com.rockpaperscissors.controller.events.RockButtonEvent;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
@@ -31,13 +32,18 @@ public class RPSView {
 	private final Button randomButton, fixedButton, rotationButton;
 	private final Stage stage;
 	private final Pane pane = new Pane();
+	private final HumanPlayer humanPlayer = new HumanPlayer(this, new Score());
+	private final ComputerPlayer computerPlayer = new ComputerPlayer(this,
+			new Score());
 	private final int FONT_SIZE = 32;
+	private final int RESULTS_FONT_SIZE = 20;
 	private final int TEXT_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
-	private final int RESULT_Y_POSITION = 310;
+	private final int RESULT_Y_POSITION = 340;
 
 	RPSView(ViewBuilder builder) {
 		controller = builder.controller;
+		controller.setPlayer(humanPlayer);
 		playerVsComputer = builder.playerVsComputer;
 		computerVsComputer = builder.computerVsComputer;
 		chooseWeapon = builder.chooseWeapon;
@@ -74,7 +80,7 @@ public class RPSView {
 	private void buildPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
 		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this,
-				controller, new HumanPlayer(this, new Score()));
+				controller, humanPlayer);
 		playerVsComputer.setOnAction(event.HANDLE);
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
@@ -84,7 +90,7 @@ public class RPSView {
 	private void buildComputerVsComputer(CheckBox computerVsComputer) {
 		computerVsComputer.setFont(Font.font(FONT_SIZE));
 		ComputerVsComputerEvent event = new ComputerVsComputerEvent(this,
-				controller, new ComputerPlayer(this, new Score()));
+				controller, computerPlayer);
 		computerVsComputer.setOnAction(event.HANDLE);
 		computerVsComputer.setLayoutX(5);
 		computerVsComputer.setLayoutY(55);
@@ -100,7 +106,8 @@ public class RPSView {
 	private void buildRockButton(Button rockButton) {
 		rockButton.setFont(Font.font(FONT_SIZE));
 		rockButton.setTextFill(Color.BLUE);
-		rockButton.setOnAction(ROCK_EVENT);
+		RockButtonEvent event = new RockButtonEvent(controller, humanPlayer);
+		rockButton.setOnAction(event.HANDLE);
 		rockButton.setLayoutX(75);
 		rockButton.setLayoutY(BUTTON_Y_POSITION);
 	}
@@ -157,16 +164,16 @@ public class RPSView {
 	}
 
 	private void buildResultsText(Text result) {
-		result.setFont(Font.font(FONT_SIZE));
+		result.setFont(Font.font(RESULTS_FONT_SIZE));
 		result.setFill(Color.BLUE);
 		result.setLayoutX(5);
 		result.setLayoutY(RESULT_Y_POSITION);
 	}
 
 	private void buildScoreText(Text score) {
-		score.setFont(Font.font(FONT_SIZE));
+		score.setFont(Font.font(RESULTS_FONT_SIZE));
 		score.setFill(Color.BLUE);
-		score.setLayoutX(310);
+		score.setLayoutX(365);
 		score.setLayoutY(RESULT_Y_POSITION);
 	}
 
@@ -186,7 +193,7 @@ public class RPSView {
 	}
 
 	private void buildStage(Stage stage) {
-		int width = 640, height = 480;
+		int width = 640, height = 420;
 		stage.setScene(new Scene(pane, width, height));
 		stage.setTitle("Waste an Hour Having Fun");
 		stage.setResizable(false);
@@ -195,17 +202,14 @@ public class RPSView {
 
 	public void setPlayerVsComputerSelected(boolean selected) {
 		playerVsComputer.setSelected(selected);
-		;
 	}
 
 	public void setComputerVsComputerSelected(boolean selected) {
 		computerVsComputer.setSelected(selected);
-		;
 	}
 
 	public void setChooseWeaponVisible(boolean visible) {
 		chooseWeapon.setVisible(visible);
-		;
 	}
 
 	public void setRockButtonVisible(boolean visible) {
@@ -222,7 +226,6 @@ public class RPSView {
 
 	public void setChooseStrategyVisible(boolean visible) {
 		chooseStrategy.setVisible(visible);
-		;
 	}
 
 	public void setRandomButtonVisible(boolean visible) {
@@ -237,26 +240,24 @@ public class RPSView {
 		rotationButton.setVisible(visible);
 	}
 
-	public void setPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
-			Result result) {
-		String you;
-		if (playerVsComputer.isSelected())
-			you = "You ";
-		else
-			you = "Your Computer Player ";
-		String resultString = you + "chose " + playerWeapon.name() + "\n";
-		resultString += "The Computer Opponent chose " + opponentWeapon.name()
-				+ "\n";
-		resultString += you + result.name();
-		resultText.setText(resultString);
-	}
-
 	public void setPlayerScore(String playerScore) {
 		scoreText.setText(playerScore);
 	}
 
-	final EventHandler<ActionEvent> ROCK_EVENT = event -> System.out
-			.println("Rock Button Clicked");
+	public void setPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
+			Result result) {
+		String you;
+		if (playerVsComputer.isSelected()) {
+			you = "You ";
+		} else {
+			you = "Your Computer Player ";
+		}
+		String resultString = you + "chose " + playerWeapon.name() + "\n";
+		resultString += "Computer Opponent chose " + opponentWeapon.name()
+				+ "\n";
+		resultString += you + result.name();
+		resultText.setText(resultString);
+	}
 
 	final EventHandler<ActionEvent> PAPER_EVENT = event -> System.out
 			.println("Paper Button Clicked");
