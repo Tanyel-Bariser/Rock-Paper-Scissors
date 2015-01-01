@@ -37,7 +37,7 @@ public class Score {
 			losses++;
 			break;
 		default:
-			throw new IllegalArgumentException(
+			throw new NullPointerException(
 					"Argument for updateScore(Result) should be of type Result.");
 		}
 	}

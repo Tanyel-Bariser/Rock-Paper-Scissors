@@ -1,6 +1,6 @@
 package com.rockpaperscissors.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertSame;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,6 +35,11 @@ public class ScoreTest {
 		assertSame(4, score.getWins());
 		assertSame(2, score.getTies());
 		assertSame(3, score.getLosses());
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void updateScoreNullThrowsException() {
+		score.updateScore(null);
 	}
 	
 	@Test
