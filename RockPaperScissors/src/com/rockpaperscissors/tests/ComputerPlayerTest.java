@@ -54,6 +54,9 @@ public class ComputerPlayerTest {
 		player.compete(opponent);
 	}
 	
+	/*************************************************************************
+	* Tests ComputerPlayer.compete(ComputerOpponent) Updates Score Correctly *
+	*************************************************************************/
 	@Test
 	public void competeUpdatesScoreWithWonWhenRockAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);

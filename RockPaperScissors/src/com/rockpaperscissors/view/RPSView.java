@@ -32,6 +32,7 @@ public class RPSView {
 	private final Button randomButton, fixedButton, rotationButton;
 	private final Stage stage;
 	private final Pane pane = new Pane();
+	// Event handlers only accept exact subtypes of Player for type safety
 	private final HumanPlayer humanPlayer = new HumanPlayer(this, new Score());
 	private final ComputerPlayer computerPlayer = new ComputerPlayer(this, new Score());
 	private final int FONT_SIZE = 32;
@@ -39,7 +40,8 @@ public class RPSView {
 	private final int TEXT_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
 	private final int RESULT_Y_POSITION = 340;
-	private String humanResult, computerResult = null;
+	private String humanResult = null;
+	private String computerResult = null;
 
 	RPSView(ViewBuilder builder) {
 		controller = builder.controller;

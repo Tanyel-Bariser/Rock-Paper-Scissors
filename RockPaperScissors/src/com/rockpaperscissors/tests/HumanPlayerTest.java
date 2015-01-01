@@ -49,7 +49,11 @@ public class HumanPlayerTest {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.compete(opponent);
 	}
+
 	
+	 /**********************************************************************
+	 * Tests HumanPlayer.compete(ComputerOpponent) Updates Score Correctly *
+	 **********************************************************************/
 	@Test
 	public void competeUpdatesScoreWithWonWhenRockAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
@@ -120,5 +124,33 @@ public class HumanPlayerTest {
 		player.setWeapon(Weapon.SCISSORS);
 		player.compete(opponent);
 		verify(score).updateScore(Result.LOST);
+	}
+	
+	
+	/*********************************************************************
+	* Tests HumanPlayer.compete(ComputerOpponent) Updates View Correctly *
+	*********************************************************************/	
+	@Test
+	public void competeUpdatesResultInViewCorrectly() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		player.setWeapon(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).setHumanPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
+	}
+	
+	@Test
+	public void competeTellsViewToShowNewResult() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		player.setWeapon(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).showHumanResult();
+	}
+	
+	@Test
+	public void competeUpdatesScoreInViewUsingToString() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		player.setWeapon(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).setPlayerScore(player.toString());
 	}
 }
