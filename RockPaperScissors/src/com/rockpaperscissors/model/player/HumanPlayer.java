@@ -20,14 +20,13 @@ public class HumanPlayer implements Player {
 	}
 
 	@Override
-	public Result compete(ComputerOpponent opponent) {
+	public void compete(ComputerOpponent opponent) {
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		score.updateScore(result);
 		view.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
 		view.showHumanResult();
 		view.setPlayerScore(this.toString());
-		return result;
 	}
 	
 	@Override

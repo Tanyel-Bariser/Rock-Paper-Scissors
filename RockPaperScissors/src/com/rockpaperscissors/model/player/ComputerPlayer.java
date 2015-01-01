@@ -21,7 +21,7 @@ public class ComputerPlayer implements Player {
 	}
 
 	@Override
-	public Result compete(ComputerOpponent opponent) {
+	public void compete(ComputerOpponent opponent) {
 		Weapon chosenWeapon = chosenStrategy.chooseWeapon();
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
@@ -29,7 +29,6 @@ public class ComputerPlayer implements Player {
 		view.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
 		view.showComputerResult();
 		view.setPlayerScore(this.toString());
-		return result;
 	}
 
 	@Override
