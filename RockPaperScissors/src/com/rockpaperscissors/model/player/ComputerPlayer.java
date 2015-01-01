@@ -36,7 +36,7 @@ public class ComputerPlayer implements Player {
 		String computerPlayer = "Your Computer Player's Score:\n";
 		computerPlayer += "Wins: " + score.getWins() + "\n";
 		computerPlayer += "Ties: " + score.getTies() + "\n";
-		computerPlayer += "Losses: " + score.getLosses() + "\n";
+		computerPlayer += "Losses: " + score.getLosses();
 		return computerPlayer;
 	}
 }

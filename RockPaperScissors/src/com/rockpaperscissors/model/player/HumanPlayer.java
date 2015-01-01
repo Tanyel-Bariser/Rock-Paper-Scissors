@@ -34,7 +34,7 @@ public class HumanPlayer implements Player {
 		String humanPlayer = "Your Score:\n";
 		humanPlayer += "Wins: " + score.getWins() + "\n";
 		humanPlayer += "Ties: " + score.getTies() + "\n";
-		humanPlayer += "Losses: " + score.getLosses() + "\n";
+		humanPlayer += "Losses: " + score.getLosses();
 		return humanPlayer;
 	}
 }

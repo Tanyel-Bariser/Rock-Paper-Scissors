@@ -1,5 +1,6 @@
 package com.rockpaperscissors.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -127,5 +128,41 @@ public class ComputerPlayerTest {
 		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
 		player.compete(opponent);
 		verify(score).updateScore(Result.LOST);
+	}
+	
+	/*********************************************************************
+	* Tests ComputerPlayer.compete(ComputerOpponent) Updates View Correctly *
+	*********************************************************************/	
+	@Test
+	public void competeUpdatesResultInViewCorrectly() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).setComputerPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
+	}
+	
+	@Test
+	public void competeTellsViewToShowNewResult() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).showComputerResult();
+	}
+	
+	@Test
+	public void toStringDisplaysReadableScore() {
+		when(score.getWins()).thenReturn(4);
+		when(score.getTies()).thenReturn(3);
+		when(score.getLosses()).thenReturn(2);
+		String expectedOutput = "Your Computer Player's Score:\nWins: 4\nTies: 3\nLosses: 2";
+		assertEquals(expectedOutput, player.toString());
+	}
+	
+	@Test
+	public void competeUpdatesScoreInViewUsingToString() {
+		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
+		player.compete(opponent);
+		verify(view).setPlayerScore(player.toString());
 	}
 }

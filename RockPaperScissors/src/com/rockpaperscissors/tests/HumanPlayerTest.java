@@ -1,5 +1,6 @@
 package com.rockpaperscissors.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -144,6 +145,15 @@ public class HumanPlayerTest {
 		player.setWeapon(Weapon.ROCK);
 		player.compete(opponent);
 		verify(view).showHumanResult();
+	}
+	
+	@Test
+	public void toStringDisplaysReadableScore() {
+		when(score.getWins()).thenReturn(4);
+		when(score.getTies()).thenReturn(3);
+		when(score.getLosses()).thenReturn(2);
+		String expectedOutput = "Your Score:\nWins: 4\nTies: 3\nLosses: 2";
+		assertEquals(expectedOutput, player.toString());
 	}
 	
 	@Test
