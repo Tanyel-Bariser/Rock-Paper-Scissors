@@ -15,6 +15,7 @@ import javafx.stage.Stage;
  *
  */
 public class ViewBuilder {
+	// Package-private fields only visible to RPSView
 	RPSController controller;
 	CheckBox playerVsComputer, computerVsComputer;
 	Text chooseWeapon, chooseStrategy, resultText, scoreText;
@@ -33,6 +34,7 @@ public class ViewBuilder {
 
 	public ViewBuilder playerVsComputer(CheckBox playerVsComputer) {
 		this.playerVsComputer = playerVsComputer;
+		playerVsComputer.arm();
 		return this;
 	}
 

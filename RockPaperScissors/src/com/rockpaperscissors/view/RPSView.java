@@ -43,6 +43,12 @@ public class RPSView {
 	private String humanResult = null;
 	private String computerResult = null;
 
+	/**
+	 * Package-private constructor only visible to ViewBuilder
+	 * Sets dependencies and invokes buildView() to build view's components
+	 * 
+	 * @param builder
+	 */
 	RPSView(ViewBuilder builder) {
 		controller = builder.controller;
 		controller.setPlayer(humanPlayer);
