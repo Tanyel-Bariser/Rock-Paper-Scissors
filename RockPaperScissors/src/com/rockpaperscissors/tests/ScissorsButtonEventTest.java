@@ -18,13 +18,13 @@ import com.rockpaperscissors.model.player.HumanPlayer;
 @RunWith(MockitoJUnitRunner.class)
 public class ScissorsButtonEventTest {
 	@Mock RPSController controller;
-	@Mock HumanPlayer player;
+	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
 	ScissorsButtonEvent event;
 
 	@Before
 	public void setUp() {
-		event = new ScissorsButtonEvent(controller, player);
+		event = new ScissorsButtonEvent(controller, humanPlayer);
 		event.HANDLE.handle(action);
 	}
 
@@ -35,7 +35,7 @@ public class ScissorsButtonEventTest {
 
 	@Test
 	public void handleSetsHumanPlayerWeaponScissors() {
-		verify(player).setWeapon(Weapon.SCISSORS);
+		verify(humanPlayer).setWeapon(Weapon.SCISSORS);
 	}
 	
 	@Test

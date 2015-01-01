@@ -11,20 +11,20 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.events.RockButtonEvent;
-import com.rockpaperscissors.model.Weapon;
-import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.controller.events.RandomButtonEvent;
+import com.rockpaperscissors.model.player.ComputerPlayer;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RockButtonEventTest {
+public class RandomButtonEventTest {
 	@Mock RPSController controller;
-	@Mock HumanPlayer humanPlayer;
+	@Mock ComputerPlayer computerPlayer;
 	@Mock ActionEvent action;
-	RockButtonEvent event;
+	RandomButtonEvent event;
 
 	@Before
 	public void setUp() {
-		event = new RockButtonEvent(controller, humanPlayer);
+		event = new RandomButtonEvent(controller, computerPlayer);
 		event.HANDLE.handle(action);
 	}
 
@@ -34,8 +34,8 @@ public class RockButtonEventTest {
 	}
 
 	@Test
-	public void handleSetsHumanPlayerWeaponRock() {
-		verify(humanPlayer).setWeapon(Weapon.ROCK);
+	public void handleSetsComputerPlayerRandomStrategy() {
+		verify(computerPlayer).setStrategy(RandomStrategy.RANDOM);
 	}
 	
 	@Test
