@@ -25,18 +25,18 @@ public class RotationStrategyTest {
 	}
 
 	@Test
-	public void rotationStrategyScissorsFollowsPaperFollowsRockFollowsScissorsAgain() {
-		Weapon weapon = RotationStrategy.ROTATION.chooseWeapon();
-		switch (weapon) {
+	public void rotationStrategyRotatesInOrderRockPaperScissors() {
+		Weapon firstWeapon = RotationStrategy.ROTATION.chooseWeapon();
+		Weapon nextWeapon = RotationStrategy.ROTATION.chooseWeapon();
+		switch (firstWeapon) {
 		case ROCK:
-			assertEquals(Weapon.PAPER, RotationStrategy.ROTATION.chooseWeapon());
+			assertEquals(Weapon.PAPER, nextWeapon);
 			break;
 		case PAPER:
-			assertEquals(Weapon.SCISSORS,
-					RotationStrategy.ROTATION.chooseWeapon());
+			assertEquals(Weapon.SCISSORS, nextWeapon);
 			break;
 		case SCISSORS:
-			assertEquals(Weapon.ROCK, RotationStrategy.ROTATION.chooseWeapon());
+			assertEquals(Weapon.ROCK, nextWeapon);
 			break;
 		}
 	}
