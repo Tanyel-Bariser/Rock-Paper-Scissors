@@ -25,18 +25,6 @@ public class Score {
 		this.losses = losses;
 	}
 
-	public int getWins() {
-		return wins;
-	}
-
-	public int getTies() {
-		return ties;
-	}
-
-	public int getLosses() {
-		return losses;
-	}
-
 	public void updateScore(Result result) {
 		switch (result) {
 		case WON:
@@ -52,5 +40,17 @@ public class Score {
 			throw new IllegalArgumentException(
 					"Argument for updateScore(Result) should be of type Result.");
 		}
+	}
+
+	public int getWins() {
+		return wins;
+	}
+
+	public int getTies() {
+		return ties;
+	}
+
+	public int getLosses() {
+		return losses;
 	}
 }
