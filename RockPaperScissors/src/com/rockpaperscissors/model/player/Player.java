@@ -1,7 +1,9 @@
 package com.rockpaperscissors.model.player;
 
+import com.rockpaperscissors.model.Result;
+
 public interface Player {
 	
-	void compete(ComputerOpponent opponent);
+	Result compete(ComputerOpponent opponent);
 
 }

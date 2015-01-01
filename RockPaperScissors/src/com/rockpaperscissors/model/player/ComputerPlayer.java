@@ -8,12 +8,12 @@ import com.rockpaperscissors.view.RPSView;
 
 public class ComputerPlayer implements Player {
 	private final RPSView view;
-	private final Score scoreBoard;
+	private final Score score;
 	private Strategy chosenStrategy;
 
 	public ComputerPlayer(RPSView view, Score score) {
 		this.view = view;
-		scoreBoard = score;
+		this.score = score;
 	}
 
 	public void setStrategy(Strategy strategy) {
@@ -21,22 +21,23 @@ public class ComputerPlayer implements Player {
 	}
 
 	@Override
-	public void compete(ComputerOpponent opponent) {
+	public Result compete(ComputerOpponent opponent) {
 		Weapon chosenWeapon = chosenStrategy.chooseWeapon();
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
-		scoreBoard.updateScore(result);
+		score.updateScore(result);
 		view.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
 		view.showComputerResult();
 		view.setPlayerScore(this.toString());
+		return result;
 	}
 
 	@Override
 	public String toString() {
 		String computerPlayer = "Your Computer Player's Score:\n";
-		computerPlayer += "Wins: " + scoreBoard.getWins() + "\n";
-		computerPlayer += "Ties: " + scoreBoard.getTies() + "\n";
-		computerPlayer += "Losses: " + scoreBoard.getLosses() + "\n";
+		computerPlayer += "Wins: " + score.getWins() + "\n";
+		computerPlayer += "Ties: " + score.getTies() + "\n";
+		computerPlayer += "Losses: " + score.getLosses() + "\n";
 		return computerPlayer;
 	}
 }
