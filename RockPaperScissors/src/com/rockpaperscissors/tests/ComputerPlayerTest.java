@@ -14,19 +14,22 @@ import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
-import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.model.player.ComputerPlayer;
+import com.rockpaperscissors.model.strategies.Strategy;
 import com.rockpaperscissors.view.RPSView;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HumanPlayerTest {
+public class ComputerPlayerTest {
 	@Mock RPSView view;
 	@Mock Score score;
 	@Mock ComputerOpponent opponent;
-	HumanPlayer player;
+	@Mock Strategy strategy;
+	ComputerPlayer player;
 
 	@Before
 	public void setUp() throws Exception {
-		player = new HumanPlayer(view, score);
+		player = new ComputerPlayer(view, score);
+		player.setStrategy(strategy);
 	}
 
 	@After
@@ -40,20 +43,21 @@ public class HumanPlayerTest {
 	@Test (expected = NullPointerException.class)
 	public void competeWithOpponentWhoPlaysNullThrowsException() {
 		when(opponent.playWeapon()).thenReturn(null);
-		player.setWeapon(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
 		player.compete(opponent);
 	}
 	
 	@Test (expected = NullPointerException.class)
-	public void competeBeforeSettingPlayersWeaponThrowsException() {
+	public void competeBeforeSettingPlayersStrategyThrowsException() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
+		player.setStrategy(null);
 		player.compete(opponent);
 	}
 	
 	@Test
 	public void competeUpdatesScoreWithWonWhenRockAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
-		player.setWeapon(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
 		player.compete(opponent);
 		verify(score).updateScore(Result.WON);
 	}
@@ -61,7 +65,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithTiedWhenRockAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.setWeapon(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
 		player.compete(opponent);
 		verify(score).updateScore(Result.TIED);
 	}
@@ -69,7 +73,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithLostWhenRockAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
-		player.setWeapon(Weapon.ROCK);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
 		player.compete(opponent);
 		verify(score).updateScore(Result.LOST);
 	}
@@ -77,7 +81,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithWonWhenPaperAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.setWeapon(Weapon.PAPER);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
 		player.compete(opponent);
 		verify(score).updateScore(Result.WON);
 	}
@@ -85,7 +89,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithTiedWhenPaperAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
-		player.setWeapon(Weapon.PAPER);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
 		player.compete(opponent);
 		verify(score).updateScore(Result.TIED);
 	}
@@ -93,7 +97,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithLostWhenPaperAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
-		player.setWeapon(Weapon.PAPER);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
 		player.compete(opponent);
 		verify(score).updateScore(Result.LOST);
 	}
@@ -101,7 +105,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithWonWhenScissorsAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
-		player.setWeapon(Weapon.SCISSORS);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
 		player.compete(opponent);
 		verify(score).updateScore(Result.WON);
 	}
@@ -109,7 +113,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithTiedWhenScissorsAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
-		player.setWeapon(Weapon.SCISSORS);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
 		player.compete(opponent);
 		verify(score).updateScore(Result.TIED);
 	}
@@ -117,7 +121,7 @@ public class HumanPlayerTest {
 	@Test
 	public void competeUpdatesScoreWithLostWhenScissorsAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.setWeapon(Weapon.SCISSORS);
+		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
 		player.compete(opponent);
 		verify(score).updateScore(Result.LOST);
 	}
