@@ -19,13 +19,13 @@ import com.rockpaperscissors.view.RPSView;
 public class PlayerVsComputerEventTest {
 	@Mock RPSView view;
 	@Mock RPSController controller;
-	@Mock HumanPlayer player;
+	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
 	PlayerVsComputerEvent event;
 
 	@Before
 	public void setUp() throws Exception {
-		event = new PlayerVsComputerEvent(view, controller, player);
+		event = new PlayerVsComputerEvent(view, controller, humanPlayer);
 		event.HANDLE.handle(action);
 	}
 
@@ -81,7 +81,7 @@ public class PlayerVsComputerEventTest {
 	
 	@Test
 	public void handleSetsHumanPlayerScoreViaToString() {
-		verify(view).setPlayerScore(player.toString());
+		verify(view).setPlayerScore(humanPlayer.toString());
 	}
 	
 	@Test
@@ -91,6 +91,6 @@ public class PlayerVsComputerEventTest {
 	
 	@Test
 	public void handleSetsHumanPlayerInController() {
-		verify(controller).setPlayer(player);
+		verify(controller).setPlayer(humanPlayer);
 	}
 }
