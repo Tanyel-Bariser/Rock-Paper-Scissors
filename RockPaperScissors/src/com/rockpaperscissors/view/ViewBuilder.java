@@ -10,9 +10,7 @@ import javafx.stage.Stage;
 /**
  * Gathers dependencies required for RPSView
  * 
- * 
  * @author Tanyel Bariser
- *
  */
 public class ViewBuilder {
 	// Package-private fields only visible to RPSView
@@ -23,86 +21,157 @@ public class ViewBuilder {
 	Button randomButton, fixedButton, rotationButton;
 	Stage stage;
 
+	/**
+	 * Static factory method creates an instance of this class
+	 * 
+	 * @return an instance of ViewBuilder
+	 */
 	public static ViewBuilder createViewBuilder() {
 		return new ViewBuilder();
 	}
 
+	/**
+	 * @param controller dependency required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder controller(RPSController controller) {
 		this.controller = controller;
 		return this;
 	}
 
+	/**
+	 * @param playerVsComputer check box required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder playerVsComputer(CheckBox playerVsComputer) {
 		this.playerVsComputer = playerVsComputer;
 		playerVsComputer.arm();
 		return this;
 	}
 
+	/**
+	 * @param computerVsComputer check box required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder computerVsComputer(CheckBox computerVsComputer) {
 		this.computerVsComputer = computerVsComputer;
 		return this;
 	}
 
+	/**
+	 * @param chooseWeapon text node required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder chooseWeaponText(Text chooseWeapon) {
 		this.chooseWeapon = chooseWeapon;
 		return this;
 	}
 
+	/**
+	 * @param rockButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder rockButton(Button rockButton) {
 		this.rockButton = rockButton;
 		return this;
 	}
 
+	/**
+	 * @param paperButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder paperButton(Button paperButton) {
 		this.paperButton = paperButton;
 		return this;
 	}
 
+	/**
+	 * @param scissorsButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder scissorsButton(Button scissorsButton) {
 		this.scissorsButton = scissorsButton;
 		return this;
 	}
 
+	/**
+	 * @param chooseStrategy required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder chooseStrategyText(Text chooseStrategy) {
 		this.chooseStrategy = chooseStrategy;
 		return this;
 	}
 
+	/**
+	 * @param randomButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder randomButton(Button randomButton) {
 		this.randomButton = randomButton;
 		return this;
 	}
 
+	/**
+	 * @param fixedButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder fixedButton(Button fixedButton) {
 		this.fixedButton = fixedButton;
 		return this;
 	}
 
+	/**
+	 * @param rotationButton required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder rotationButton(Button rotationButton) {
 		this.rotationButton = rotationButton;
 		return this;
 	}
 	
+	/**
+	 * @param resultText required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder resultText(Text resultText) {
 		this.resultText = resultText;
 		return this;
 	}
 	
+	/**
+	 * @param scoreText required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder scoreText(Text scoreText) {
 		this.scoreText = scoreText;
 		return this;
 	}
 
+	/**
+	 * @param stage required for RPSView
+	 * @return same instance of ViewBuilder
+	 */
 	public ViewBuilder stage(Stage stage) {
 		this.stage = stage;
 		return this;
 	}
 
+	/**
+	 * Checks to makes sure all arguments required for RPSView have be gathered
+	 * Then builds RPSView and returns it
+	 * 
+	 * @return instance of RPSView
+	 */
 	public RPSView build() {
 		checkForNullArgs();
 		return new RPSView(this);
 	}
 
+	/**
+	 * Checks that each dependency has be assigned correctly
+	 * @throws NullPoinerException
+	 */
 	private void checkForNullArgs() {
 		if (controller == null) {
 			throw new NullPointerException("Controller is null");

@@ -24,6 +24,11 @@ import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
+/**
+ * GUI for the game, builds/sets up all components the user interface requires
+ * 
+ * @author Tanyel Bariser
+ */
 public class RPSView {
 	private final RPSController controller;
 	private final CheckBox playerVsComputer, computerVsComputer;
@@ -47,7 +52,7 @@ public class RPSView {
 	 * Package-private constructor only visible to ViewBuilder
 	 * Sets dependencies and invokes buildView() to build view's components
 	 * 
-	 * @param builder
+	 * @param builder containing RPSView's dependencies
 	 */
 	RPSView(ViewBuilder builder) {
 		controller = builder.controller;
@@ -68,6 +73,9 @@ public class RPSView {
 		buildView();
 	}
 
+	/**
+	 * Invokes all methods required to build all GUI components
+	 */
 	private void buildView() {
 		buildPlayerVsComputer(playerVsComputer);
 		buildComputerVsComputer(computerVsComputer);
@@ -85,6 +93,11 @@ public class RPSView {
 		buildStage(stage);
 	}
 
+	/**
+	 * Sets up check box for Player vs Computer mode
+	 * 
+	 * @param playerVsComputer check box
+	 */
 	private void buildPlayerVsComputer(CheckBox playerVsComputer) {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
 		PlayerVsComputerEvent event = new PlayerVsComputerEvent(this,
@@ -95,6 +108,11 @@ public class RPSView {
 		playerVsComputer.setLayoutY(5);
 	}
 
+	/**
+	 * Sets up check box for Computer vs Computer mode
+	 * 
+	 * @param computerVsComputer check box
+	 */
 	private void buildComputerVsComputer(CheckBox computerVsComputer) {
 		computerVsComputer.setFont(Font.font(FONT_SIZE));
 		ComputerVsComputerEvent event = new ComputerVsComputerEvent(this,
@@ -104,6 +122,11 @@ public class RPSView {
 		computerVsComputer.setLayoutY(55);
 	}
 
+	/**
+	 * Sets up text node to ask user which weapon they want to choose
+	 * 
+	 * @param chooseWeapon text
+	 */
 	private void buildChooseWeaponText(Text chooseWeapon) {
 		chooseWeapon.setFont(Font.font(FONT_SIZE));
 		chooseWeapon.setFill(Color.BLUE);
@@ -111,6 +134,11 @@ public class RPSView {
 		chooseWeapon.setLayoutY(TEXT_Y_POSITION);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the rock weapon
+	 * 
+	 * @param rockButton
+	 */
 	private void buildRockButton(Button rockButton) {
 		rockButton.setFont(Font.font(FONT_SIZE));
 		rockButton.setTextFill(Color.BLUE);
@@ -120,6 +148,11 @@ public class RPSView {
 		rockButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the paper weapon
+	 * 
+	 * @param paperButton
+	 */
 	private void buildPaperButton(Button paperButton) {
 		paperButton.setFont(Font.font(FONT_SIZE));
 		paperButton.setTextFill(Color.BLUE);
@@ -129,6 +162,11 @@ public class RPSView {
 		paperButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the scissors weapon
+	 * 
+	 * @param scissorsButton
+	 */
 	private void buildScissorsButton(Button scissorsButton) {
 		scissorsButton.setFont(Font.font(FONT_SIZE));
 		scissorsButton.setTextFill(Color.BLUE);
@@ -138,6 +176,12 @@ public class RPSView {
 		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
 	}
 
+	/**
+	 * Sets up text node to ask user which strategy
+	 * to choose for their computer player
+	 * 
+	 * @param chooseStrategy text
+	 */
 	private void buildChooseStategyText(Text chooseStrategy) {
 		chooseStrategy.setFont(Font.font(FONT_SIZE));
 		chooseStrategy.setFill(Color.BLUE);
@@ -146,6 +190,11 @@ public class RPSView {
 		chooseStrategy.setVisible(false);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the random strategy
+	 * 
+	 * @param randomButton
+	 */	
 	private void buildRandomButton(Button randomButton) {
 		randomButton.setFont(Font.font(FONT_SIZE));
 		randomButton.setTextFill(Color.BLUE);
@@ -156,6 +205,11 @@ public class RPSView {
 		randomButton.setVisible(false);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the fixed strategy
+	 * 
+	 * @param fixedButton
+	 */	
 	private void buildFixedButton(Button fixedButton) {
 		fixedButton.setFont(Font.font(FONT_SIZE));
 		fixedButton.setTextFill(Color.BLUE);
@@ -166,6 +220,11 @@ public class RPSView {
 		fixedButton.setVisible(false);
 	}
 
+	/**
+	 * Sets up button to allow user to choose the rotation strategy
+	 * 
+	 * @param rotationButton
+	 */	
 	private void buildRotationButton(Button rotationButton) {
 		rotationButton.setFont(Font.font(FONT_SIZE));
 		rotationButton.setTextFill(Color.BLUE);
@@ -176,6 +235,11 @@ public class RPSView {
 		rotationButton.setVisible(false);
 	}
 
+	/**
+	 * Sets up text node to show user the results of the most recent game
+	 * 
+	 * @param result text
+	 */
 	private void buildResultsText(Text result) {
 		result.setFont(Font.font(RESULTS_FONT_SIZE));
 		result.setFill(Color.BLUE);
@@ -183,6 +247,11 @@ public class RPSView {
 		result.setLayoutY(RESULT_Y_POSITION);
 	}
 
+	/**
+	 * Sets up text node to show user the score for the specific player
+	 * 
+	 * @param score text
+	 */
 	private void buildScoreText(Text score) {
 		score.setFont(Font.font(RESULTS_FONT_SIZE));
 		score.setFill(Color.BLUE);
@@ -190,6 +259,9 @@ public class RPSView {
 		score.setLayoutY(RESULT_Y_POSITION);
 	}
 
+	/**
+	 * Sets up Pane, which stores all GUI components
+	 */
 	private void buildPane() {
 		pane.getChildren().add(playerVsComputer);
 		pane.getChildren().add(computerVsComputer);
@@ -205,6 +277,11 @@ public class RPSView {
 		pane.getChildren().add(scoreText);
 	}
 
+	/**
+	 * Sets up the stage, which is top level JavaFX container for GUI
+	 * 
+	 * @param stage
+	 */
 	private void buildStage(Stage stage) {
 		int width = 640, height = 420;
 		stage.setScene(new Scene(pane, width, height));
@@ -213,57 +290,124 @@ public class RPSView {
 		stage.show();
 	}
 
+	/**
+	 * Can change whether or not the Player vs Computer check box is selected
+	 * 
+	 * @param selected
+	 */
 	public void setPlayerVsComputerSelected(boolean selected) {
 		playerVsComputer.setSelected(selected);
 	}
 
+	/**
+	 * Can change whether or not the Computer vs Computer check box is selected
+	 * 
+	 * @param selected
+	 */
 	public void setComputerVsComputerSelected(boolean selected) {
 		computerVsComputer.setSelected(selected);
 	}
 
+	/**
+	 * Can show or hide choose weapon text to user
+	 * 
+	 * @param visible
+	 */
 	public void setChooseWeaponVisible(boolean visible) {
 		chooseWeapon.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide rock button to user
+	 * 
+	 * @param visible
+	 */
 	public void setRockButtonVisible(boolean visible) {
 		rockButton.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide paper button to user
+	 * 
+	 * @param visible
+	 */
 	public void setPaperButtonVisible(boolean visible) {
 		paperButton.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide scissors button to user
+	 * 
+	 * @param visible
+	 */
 	public void setScissorsButtonVisible(boolean visible) {
 		scissorsButton.setVisible(visible);
 	}
-
+	
+	/**
+	 * Can show or hide choose strategy text to user
+	 * 
+	 * @param visible
+	 */
 	public void setChooseStrategyVisible(boolean visible) {
 		chooseStrategy.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide random button to user
+	 * 
+	 * @param visible
+	 */
 	public void setRandomButtonVisible(boolean visible) {
 		randomButton.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide fixed button to user
+	 * 
+	 * @param visible
+	 */
 	public void setFixedButtonVisible(boolean visible) {
 		fixedButton.setVisible(visible);
 	}
 
+	/**
+	 * Can show or hide rotation button to user
+	 * 
+	 * @param visible
+	 */
 	public void setRotationButtonVisible(boolean visible) {
 		rotationButton.setVisible(visible);
 	}
 
+	/**
+	 * @param playerScore text to show user player's score
+	 */
 	public void setPlayerScore(String playerScore) {
 		scoreText.setText(playerScore);
 	}
 
+	/**
+	 * Readable string showing most recent result for human player
+	 * 
+	 * @param playerWeapon weapon chosen by player
+	 * @param opponentWeapon weapon chosen by computer opponent
+	 * @param result outcome of game
+	 */
 	public void setHumanPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
 			Result result) {
 		humanResult = "You chose " + playerWeapon.name() + "\n";
 		humanResult += "Computer Opponent chose " + opponentWeapon.name() + "\n";
 		humanResult += "You " + result.name();
 	}
-	
+
+	/**
+	 * Readable string showing most recent result for computer player
+	 * 
+	 * @param playerWeapon weapon chosen by player
+	 * @param opponentWeapon weapon chosen by computer opponent
+	 * @param result outcome of game
+	 */
 	public void setComputerPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
 			Result result) {
 		computerResult = "Your Computer chose " + playerWeapon.name() + "\n";
@@ -271,10 +415,17 @@ public class RPSView {
 		computerResult += "Your Computer " + result.name();
 	}
 	
+	/**
+	 * Human Player result is shown during Player vs Computer mode
+	 */
 	public void showHumanResult() {
 		resultText.setText(humanResult);
 	}
 	
+
+	/**
+	 * Computer Player result is shown during Computer vs Computer mode
+	 */
 	public void showComputerResult() {
 		resultText.setText(computerResult);
 	}

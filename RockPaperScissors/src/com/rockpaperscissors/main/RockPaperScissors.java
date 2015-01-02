@@ -11,14 +11,29 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.ViewBuilder;
 
+/**
+ * Main class to run the game.
+ * 
+ * @author Tanyel Bariser
+ */
 public class RockPaperScissors extends Application {
 
+	/**
+	 * Invokes the launch method to start JavaFX's Application superclass
+	 * 
+	 * @param args main method (command line) arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	 * Builds all JavaFX components required for the RPSView class
+	 * 
+	 * @param primaryStage is the top level JavaFX container for GUI
+	 */
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		ViewBuilder
 				.createViewBuilder()
 				.controller(new RPSController(

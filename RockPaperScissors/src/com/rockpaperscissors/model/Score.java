@@ -1,5 +1,10 @@
 package com.rockpaperscissors.model;
 
+/**
+ * This class contains the score for players
+ * 
+ * @author Tanyel Bariser
+ */
 public class Score {
 	private int wins;
 	private int ties;
@@ -13,7 +18,7 @@ public class Score {
 	}
 	
 	/**
-	 * Allows creation a score board with scores saved from previous games
+	 * Allows creation of a score board with scores saved from previous games
 	 * 
 	 * @param wins from previous games
 	 * @param ties from previous games
@@ -25,6 +30,11 @@ public class Score {
 		this.losses = losses;
 	}
 
+	/**
+	 * Takes the result of the last game and updates the score accordingly
+	 * 
+	 * @param result of last game
+	 */
 	public void updateScore(Result result) {
 		switch (result) {
 		case WON:
@@ -42,14 +52,23 @@ public class Score {
 		}
 	}
 
+	/**
+	 * @return the number of times the player has won
+	 */
 	public int getWins() {
 		return wins;
 	}
 
+	/**
+	 * @return the number of times the player has tied
+	 */
 	public int getTies() {
 		return ties;
 	}
 
+	/**
+	 * @return the number of times the player has lost
+	 */
 	public int getLosses() {
 		return losses;
 	}
