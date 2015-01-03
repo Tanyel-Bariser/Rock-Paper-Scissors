@@ -40,18 +40,20 @@ public class ViewBuilder {
 	
 	public static View createRPSView(Stage stage) {
 		ViewBuilder builder = new ViewBuilder(stage);
-		builder.build();
+		builder.addAllToPane();
+		builder.buildStage();
 		return new RPSView(builder);
 	}
 	
 	private ViewBuilder(Stage stage) {
 		this.stage = stage;
+		buildViewComponents();
 	}
 
 	/**
 	 * Invokes all methods required to build all GUI components
 	 */
-	private void buildView() {
+	private void buildViewComponents() {
 		buildPlayerVsComputer();
 		buildComputerVsComputer();
 		buildChooseWeaponText();
@@ -64,8 +66,6 @@ public class ViewBuilder {
 		buildRotationButton();
 		buildResultsText();
 		buildScoreText();
-		buildPane();
-		buildStage();
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class ViewBuilder {
 	/**
 	 * Sets up Pane, which stores all GUI components
 	 */
-	private void buildPane() {
+	private void addAllToPane() {
 		pane.getChildren().add(playerVsComputer);
 		pane.getChildren().add(computerVsComputer);
 		pane.getChildren().add(chooseWeapon);
@@ -246,7 +246,6 @@ public class ViewBuilder {
 	 */
 	public ViewBuilder playerVsComputer(CheckBox playerVsComputer) {
 		this.playerVsComputer = playerVsComputer;
-		playerVsComputer.arm();
 		return this;
 	}
 
@@ -357,7 +356,8 @@ public class ViewBuilder {
 	 */
 	public View build() {
 		checkForNullArgs();
-		buildView();
+		addAllToPane();
+		buildStage();
 		return new RPSView(this);
 	}
 

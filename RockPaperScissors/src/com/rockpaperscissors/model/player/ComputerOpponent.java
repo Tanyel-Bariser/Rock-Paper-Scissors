@@ -1,6 +1,7 @@
 package com.rockpaperscissors.model.player;
 
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.model.strategies.Strategy;
 
 /**
@@ -10,6 +11,10 @@ import com.rockpaperscissors.model.strategies.Strategy;
  */
 public class ComputerOpponent {
 	private final Strategy strategy;
+	
+	public ComputerOpponent() {
+		this(RandomStrategy.RANDOM);
+	}
 	
 	/**
 	 * Creates computer opponent with a default strategy

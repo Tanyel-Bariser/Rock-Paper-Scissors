@@ -4,7 +4,6 @@ import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.Player;
-import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.View;
 
 /**
@@ -18,7 +17,7 @@ public class RPSController {
 	private Player player;
 	
 	public RPSController(View view) {
-		this(view, new ComputerOpponent(RandomStrategy.RANDOM));
+		this(view, new ComputerOpponent());
 	}
 	
 	/**
