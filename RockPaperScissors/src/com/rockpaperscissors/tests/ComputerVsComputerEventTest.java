@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
+import com.rockpaperscissors.controller.eventhandlers.ComputerVsComputerEvent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.view.RPSView;
 

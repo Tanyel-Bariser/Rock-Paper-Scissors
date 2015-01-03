@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.events.RandomButtonEvent;
+import com.rockpaperscissors.controller.eventhandlers.RandomButtonEvent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 

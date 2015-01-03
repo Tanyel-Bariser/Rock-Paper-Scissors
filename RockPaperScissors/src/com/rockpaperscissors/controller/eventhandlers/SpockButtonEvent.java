@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.events;
+package com.rockpaperscissors.controller.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -6,37 +6,39 @@ import javafx.event.EventHandler;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.HumanPlayer;
+
 /**
- * This class handles the logic when the user clicks the Paper button
+ * SPOCK IS CURRENTLY NOT USED IN THIS VERSION 
+ * This class handles the logic when the user clicks the Spock button
  * 
  * @author Tanyel Bariser
  */
-public class PaperButtonEvent {
+public class SpockButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
-	
+
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new PaperButtonEvent(controller, humanPlayer).HANDLE;
+		return new SpockButtonEvent(controller, humanPlayer).HANDLE;
 	}
 	
 	/**
-	 * Creates class to handle Paper button click
+	 * Creates class to handle Spock button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	private PaperButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private SpockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
 
 	/**
-	 * Sets Paper as the human player's weapon of choice
+	 * Sets Spock as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
 	private final EventHandler<ActionEvent> HANDLE = event -> {
-		humanPlayer.setWeapon(Weapon.PAPER);
+		humanPlayer.setWeapon(Weapon.SPOCK);
 		controller.play();
 	};
 }

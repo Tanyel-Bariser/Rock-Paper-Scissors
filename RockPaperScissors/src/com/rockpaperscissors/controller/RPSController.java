@@ -5,12 +5,10 @@ import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.Player;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
-import com.rockpaperscissors.view.RPSView;
 import com.rockpaperscissors.view.View;
 
 /**
  * Coordinates information between the Model classes and the View
- * 
  * 
  * @author Tanyel Bariser
  */
@@ -26,7 +24,7 @@ public class RPSController {
 	/**
 	 * Creates the controller with a computer opponent as a dependency
 	 * 
-	 * @param opponent the user player against
+	 * @param opponent the user plays against
 	 */
 	public RPSController(View view, ComputerOpponent opponent) {
 		this.view = view;

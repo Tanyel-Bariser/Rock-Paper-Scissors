@@ -11,5 +11,7 @@ public interface Player {
 	 * @param opponent this player competes against
 	 */
 	void compete(RPSController controller, ComputerOpponent opponent);
+	
+	String readableScore();
 
 }

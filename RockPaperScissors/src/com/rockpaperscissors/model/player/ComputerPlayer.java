@@ -53,16 +53,21 @@ public class ComputerPlayer implements Player {
 		score.updateScore(result);
 		controller.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
 	}
+	
+	@Override
+	public String readableScore() {
+		String readableScore = "Your Computer Player's Score:\n";
+		readableScore += "Wins: " + score.getWins() + "\n";
+		readableScore += "Ties: " + score.getTies() + "\n";
+		readableScore += "Losses: " + score.getLosses();
+		return readableScore;
+	}
 
 	/**
 	 * Readable text displaying the current score of this player
 	 */
 	@Override
 	public String toString() {
-		String computerPlayer = "Your Computer Player's Score:\n";
-		computerPlayer += "Wins: " + score.getWins() + "\n";
-		computerPlayer += "Ties: " + score.getTies() + "\n";
-		computerPlayer += "Losses: " + score.getLosses();
-		return computerPlayer;
+		return readableScore();
 	}
 }

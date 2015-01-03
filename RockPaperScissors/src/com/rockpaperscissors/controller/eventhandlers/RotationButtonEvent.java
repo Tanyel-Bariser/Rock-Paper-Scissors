@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.events;
+package com.rockpaperscissors.controller.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

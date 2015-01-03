@@ -51,15 +51,20 @@ public class HumanPlayer implements Player {
 		controller.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
 	}
 	
+	@Override
+	public String readableScore() {
+		String readableScore = "Your Score:\n";
+		readableScore += "Wins: " + score.getWins() + "\n";
+		readableScore += "Ties: " + score.getTies() + "\n";
+		readableScore += "Losses: " + score.getLosses();
+		return readableScore;
+	}
+	
 	/**
 	 * Readable text displaying the current score of this player
 	 */
 	@Override
 	public String toString() {
-		String humanPlayer = "Your Score:\n";
-		humanPlayer += "Wins: " + score.getWins() + "\n";
-		humanPlayer += "Ties: " + score.getTies() + "\n";
-		humanPlayer += "Losses: " + score.getLosses();
-		return humanPlayer;
+		return readableScore();
 	}
 }

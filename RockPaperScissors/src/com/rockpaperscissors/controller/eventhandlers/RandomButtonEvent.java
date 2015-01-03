@@ -1,43 +1,43 @@
-package com.rockpaperscissors.controller.events;
+package com.rockpaperscissors.controller.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.ComputerPlayer;
-import com.rockpaperscissors.model.strategies.FixedStrategy;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 /** 
- * This class handles the logic when the user clicks the Fixed button
+ * This class handles the logic when the user clicks the Random button
  * 
  * @author Tanyel Bariser
  */
-public class FixedButtonEvent {
+public class RandomButtonEvent {
 	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
-	
+
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			ComputerPlayer computerPlayer) {
-		return new FixedButtonEvent(controller, computerPlayer).HANDLE;
+		return new RandomButtonEvent(controller, computerPlayer).HANDLE;
 	}
 	
 	/**
-	 * Creates class to handle Fixed button click
+	 * Creates class to handle Random button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	private FixedButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
+	private RandomButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
 
 	/**
-	 * Sets Fixed as the user's computer player's strategy of choice
+	 * Sets Random as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
 	private final EventHandler<ActionEvent> HANDLE = event -> {
-		computerPlayer.setStrategy(FixedStrategy.FIXED);
+		computerPlayer.setStrategy(RandomStrategy.RANDOM);
 		controller.play();
 	};
 }
