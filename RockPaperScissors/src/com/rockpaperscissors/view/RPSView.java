@@ -1,13 +1,22 @@
 package com.rockpaperscissors.view;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 
+import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
+import com.rockpaperscissors.controller.events.FixedButtonEvent;
+import com.rockpaperscissors.controller.events.PaperButtonEvent;
+import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
+import com.rockpaperscissors.controller.events.RandomButtonEvent;
+import com.rockpaperscissors.controller.events.RockButtonEvent;
+import com.rockpaperscissors.controller.events.RotationButtonEvent;
+import com.rockpaperscissors.controller.events.ScissorsButtonEvent;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.model.player.ComputerPlayer;
+import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
  * GUI for the game, builds/sets up all components the user interface requires
@@ -43,36 +52,24 @@ public class RPSView {
 		scoreText = builder.scoreText;
 	}
 	
-	public void setPlayerVsComputerOnAction(EventHandler<ActionEvent> handler) {
-		playerVsComputer.setOnAction(handler);
-	}
-	
-	public void setComputerVsComputerOnAction(EventHandler<ActionEvent> handler) {
-		computerVsComputer.setOnAction(handler);
-	}
-	
-	public void setRockButtonOnAction(EventHandler<ActionEvent> handler) {
-		rockButton.setOnAction(handler);
-	}
-	
-	public void setPaperButtonOnAction(EventHandler<ActionEvent> handler) {
-		paperButton.setOnAction(handler);
-	}
-	
-	public void setScissorsButtonOnAction(EventHandler<ActionEvent> handler) {
-		scissorsButton.setOnAction(handler);
-	}
-	
-	public void setRandomButtonOnAction(EventHandler<ActionEvent> handler) {
-		randomButton.setOnAction(handler);
-	}
-	
-	public void setFixedButtonOnAction(EventHandler<ActionEvent> handler) {
-		fixedButton.setOnAction(handler);
-	}
-	
-	public void setRotationButtonOnAction(EventHandler<ActionEvent> handler) {
-		rotationButton.setOnAction(handler);
+	public void setButtonOnActionEvents(RPSController controller,
+			HumanPlayer humanPlayer, ComputerPlayer computerPlayer) {
+		playerVsComputer.setOnAction(
+				PlayerVsComputerEvent.getHandler(controller, humanPlayer));
+		computerVsComputer.setOnAction(
+				ComputerVsComputerEvent.getHandler(controller, computerPlayer));
+		rockButton.setOnAction(
+				RockButtonEvent.getHandler(controller, humanPlayer));
+		paperButton.setOnAction(
+				PaperButtonEvent.getHandler(controller, humanPlayer));
+		scissorsButton.setOnAction(
+				ScissorsButtonEvent.getHandler(controller, humanPlayer));
+		randomButton.setOnAction(
+				RandomButtonEvent.getHandler(controller, computerPlayer));
+		fixedButton.setOnAction(
+				FixedButtonEvent.getHandler(controller, computerPlayer));
+		rotationButton.setOnAction(
+				RotationButtonEvent.getHandler(controller, computerPlayer));	
 	}
 	
 	/**

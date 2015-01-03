@@ -4,14 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
-import com.rockpaperscissors.controller.events.FixedButtonEvent;
-import com.rockpaperscissors.controller.events.PaperButtonEvent;
-import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
-import com.rockpaperscissors.controller.events.RandomButtonEvent;
-import com.rockpaperscissors.controller.events.RockButtonEvent;
-import com.rockpaperscissors.controller.events.RotationButtonEvent;
-import com.rockpaperscissors.controller.events.ScissorsButtonEvent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.view.RPSView;
@@ -34,36 +26,16 @@ public class RockPaperScissors extends Application {
 	}
 
 	/**
-	 * Builds all JavaFX components required for the RPSView class
+	 * Sets up objects required to play the game
 	 * 
-	 * @param primaryStage is the top level JavaFX container for GUI
+	 * @param stage is the top level JavaFX container for GUI
 	 */
 	@Override
 	public void start(Stage stage) {
 		RPSView view = ViewBuilder.createDefaultView(stage);
 		RPSController controller = new RPSController(view);
-		setViewButtonEventHandlers(view, controller);
-	}
-	
-	private void setViewButtonEventHandlers(RPSView view, RPSController controller) {
 		HumanPlayer humanPlayer = new HumanPlayer();
 		ComputerPlayer computerPlayer = new ComputerPlayer();
-	
-		view.setPlayerVsComputerOnAction(
-				PlayerVsComputerEvent.getHandler(controller, humanPlayer));
-		view.setComputerVsComputerOnAction(
-				ComputerVsComputerEvent.getHandler(controller, computerPlayer));
-		view.setRockButtonOnAction(
-				RockButtonEvent.getHandler(controller, humanPlayer));
-		view.setPaperButtonOnAction(
-				PaperButtonEvent.getHandler(controller, humanPlayer));
-		view.setScissorsButtonOnAction(
-				ScissorsButtonEvent.getHandler(controller, humanPlayer));
-		view.setRandomButtonOnAction(
-				RandomButtonEvent.getHandler(controller, computerPlayer));
-		view.setFixedButtonOnAction(
-				FixedButtonEvent.getHandler(controller, computerPlayer));
-		view.setRotationButtonOnAction(
-				RotationButtonEvent.getHandler(controller, computerPlayer));
+		view.setButtonOnActionEvents(controller, humanPlayer, computerPlayer);
 	}
 }
