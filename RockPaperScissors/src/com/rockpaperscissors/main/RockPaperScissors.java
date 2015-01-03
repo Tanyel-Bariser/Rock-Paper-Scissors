@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.ComputerOpponent;
+import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.ViewBuilder;
 
@@ -33,24 +34,8 @@ public class RockPaperScissors extends Application {
 	 * @param primaryStage is the top level JavaFX container for GUI
 	 */
 	@Override
-	public void start(Stage primaryStage) {
-		ViewBuilder
-				.createViewBuilder()
-				.controller(new RPSController(
-						new ComputerOpponent(RandomStrategy.RANDOM)))
-				.playerVsComputer(new CheckBox("Player vs Computer"))
-				.computerVsComputer(new CheckBox("Computer vs Computer"))
-				.chooseWeaponText(new Text("Choose Your Weapon"))
-				.rockButton(new Button("Rock"))
-				.paperButton(new Button("Paper"))
-				.scissorsButton(new Button("Scissors"))
-				.chooseStrategyText(new Text("Choose Your Computer's Strategy"))
-				.randomButton(new Button("Random"))
-				.fixedButton(new Button("Fixed"))
-				.rotationButton(new Button("Rotation"))
-				.resultText(new Text())
-				.scoreText(new Text())
-				.stage(primaryStage)
-				.build();
+	public void start(Stage stage) {
+		ViewBuilder.createDefaultView(stage);
+		//ViewBuilder.createViewBuilder(stage).humanPlayer(new HumanPlayer()).build();
 	}
 }

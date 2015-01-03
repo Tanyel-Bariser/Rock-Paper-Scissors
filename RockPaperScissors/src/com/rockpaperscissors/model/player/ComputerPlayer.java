@@ -1,10 +1,10 @@
 package com.rockpaperscissors.model.player;
 
+import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.strategies.Strategy;
-import com.rockpaperscissors.view.RPSView;
 
 /**
  * Computer player allows the user to choose a strategy
@@ -13,18 +13,20 @@ import com.rockpaperscissors.view.RPSView;
  * @author Tanyel Bariser
  */
 public class ComputerPlayer implements Player {
-	private final RPSView view;
 	private final Score score;
 	private Strategy chosenStrategy;
 
+	public ComputerPlayer() {
+		this(new Score());
+	}
+	
 	/**
 	 * Creates the user's computer player
 	 * 
 	 * @param view is the GUI
 	 * @param score for the user's computer player
 	 */
-	public ComputerPlayer(RPSView view, Score score) {
-		this.view = view;
+	public ComputerPlayer(Score score) {
 		this.score = score;
 	}
 
@@ -44,14 +46,12 @@ public class ComputerPlayer implements Player {
 	 * @param opponent this player competes against
 	 */
 	@Override
-	public void compete(ComputerOpponent opponent) {
+	public void compete(RPSController controller, ComputerOpponent opponent) {
 		Weapon chosenWeapon = chosenStrategy.chooseWeapon();
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		score.updateScore(result);
-		view.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
-		view.showComputerResult();
-		view.setPlayerScore(this.toString());
+		controller.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
 	}
 
 	/**

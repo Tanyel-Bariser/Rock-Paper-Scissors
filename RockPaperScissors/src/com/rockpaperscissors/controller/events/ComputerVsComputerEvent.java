@@ -14,7 +14,6 @@ import com.rockpaperscissors.view.RPSView;
  * @author Tanyel Bariser
  */
 public class ComputerVsComputerEvent {
-	private final RPSView view;
 	private final RPSController controller;
 	private final Player computerPlayer;
 
@@ -25,9 +24,8 @@ public class ComputerVsComputerEvent {
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from (cannot be HumanPlayer)
 	 */
-	public ComputerVsComputerEvent(RPSView view, RPSController controller,
+	public ComputerVsComputerEvent(RPSController controller,
 			ComputerPlayer computerPlayer) {
-		this.view = view;
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
@@ -39,17 +37,7 @@ public class ComputerVsComputerEvent {
 	 * Sets computer player in RPSController class making it the playable player
 	 */
 	public final EventHandler<ActionEvent> HANDLE = event -> {
-		view.setPlayerVsComputerSelected(false);
-		view.setChooseStrategyVisible(true);
-		view.setRandomButtonVisible(true);
-		view.setFixedButtonVisible(true);
-		view.setRotationButtonVisible(true);
-		view.setChooseWeaponVisible(false);
-		view.setRockButtonVisible(false);
-		view.setPaperButtonVisible(false);
-		view.setScissorsButtonVisible(false);
-		view.setPlayerScore(computerPlayer.toString());
-		view.showComputerResult();
 		controller.setPlayer(computerPlayer);
+		controller.setComputerVsComputerMode();
 	};
 }

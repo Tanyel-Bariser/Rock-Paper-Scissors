@@ -1,5 +1,7 @@
 package com.rockpaperscissors.model.player;
 
+import com.rockpaperscissors.controller.RPSController;
+
 public interface Player {
 	
 	/**
@@ -8,6 +10,6 @@ public interface Player {
 	 * 
 	 * @param opponent this player competes against
 	 */
-	void compete(ComputerOpponent opponent);
+	void compete(RPSController controller, ComputerOpponent opponent);
 
 }
