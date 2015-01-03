@@ -38,7 +38,7 @@ public class ViewBuilder {
 	private final int RESULT_Y_POSITION = 340;
 
 	
-	public static RPSView createDefaultView(Stage stage) {
+	public static View createRPSView(Stage stage) {
 		ViewBuilder builder = new ViewBuilder(stage);
 		builder.build();
 		return new RPSView(builder);
@@ -355,7 +355,7 @@ public class ViewBuilder {
 	 * 
 	 * @return instance of RPSView
 	 */
-	public RPSView build() {
+	public View build() {
 		checkForNullArgs();
 		buildView();
 		return new RPSView(this);

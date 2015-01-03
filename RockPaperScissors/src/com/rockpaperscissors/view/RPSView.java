@@ -19,11 +19,11 @@ import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
- * GUI for the game, builds/sets up all components the user interface requires
+ * Contains all GUI components the game requires
  * 
  * @author Tanyel Bariser
  */
-public class RPSView {
+public class RPSView implements View {
 	private final CheckBox playerVsComputer, computerVsComputer;
 	private final Text chooseWeapon, chooseStrategy, resultText, scoreText;
 	private final Button rockButton, paperButton, scissorsButton;
@@ -55,9 +55,9 @@ public class RPSView {
 	public void setButtonOnActionEvents(RPSController controller,
 			HumanPlayer humanPlayer, ComputerPlayer computerPlayer) {
 		playerVsComputer.setOnAction(
-				PlayerVsComputerEvent.getHandler(controller, humanPlayer));
+				PlayerVsComputerEvent.getHandler(this, controller, humanPlayer));
 		computerVsComputer.setOnAction(
-				ComputerVsComputerEvent.getHandler(controller, computerPlayer));
+				ComputerVsComputerEvent.getHandler(this, controller, computerPlayer));
 		rockButton.setOnAction(
 				RockButtonEvent.getHandler(controller, humanPlayer));
 		paperButton.setOnAction(
@@ -72,101 +72,30 @@ public class RPSView {
 				RotationButtonEvent.getHandler(controller, computerPlayer));	
 	}
 	
-	/**
-	 * Can change whether or not the Player vs Computer check box is selected
-	 * 
-	 * @param selected
-	 */
-	public void setPlayerVsComputerSelected(boolean selected) {
-		playerVsComputer.setSelected(selected);
-	}
-
-	/**
-	 * Can change whether or not the Computer vs Computer check box is selected
-	 * 
-	 * @param selected
-	 */
-	public void setComputerVsComputerSelected(boolean selected) {
-		computerVsComputer.setSelected(selected);
-	}
-
-	/**
-	 * Can show or hide choose weapon text to user
-	 * 
-	 * @param visible
-	 */
-	public void setChooseWeaponVisible(boolean visible) {
-		chooseWeapon.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide rock button to user
-	 * 
-	 * @param visible
-	 */
-	public void setRockButtonVisible(boolean visible) {
-		rockButton.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide paper button to user
-	 * 
-	 * @param visible
-	 */
-	public void setPaperButtonVisible(boolean visible) {
-		paperButton.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide scissors button to user
-	 * 
-	 * @param visible
-	 */
-	public void setScissorsButtonVisible(boolean visible) {
-		scissorsButton.setVisible(visible);
+	public void setPlayerVsComputerMode() {
+		computerVsComputer.setSelected(false);
+		chooseStrategy.setVisible(false);
+		randomButton.setVisible(false);
+		fixedButton.setVisible(false);
+		rotationButton.setVisible(false);
+		chooseWeapon.setVisible(true);
+		rockButton.setVisible(true);
+		paperButton.setVisible(true);
+		scissorsButton.setVisible(true);
+		resultText.setText(humanResult);
 	}
 	
-	/**
-	 * Can show or hide choose strategy text to user
-	 * 
-	 * @param visible
-	 */
-	public void setChooseStrategyVisible(boolean visible) {
-		chooseStrategy.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide random button to user
-	 * 
-	 * @param visible
-	 */
-	public void setRandomButtonVisible(boolean visible) {
-		randomButton.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide fixed button to user
-	 * 
-	 * @param visible
-	 */
-	public void setFixedButtonVisible(boolean visible) {
-		fixedButton.setVisible(visible);
-	}
-
-	/**
-	 * Can show or hide rotation button to user
-	 * 
-	 * @param visible
-	 */
-	public void setRotationButtonVisible(boolean visible) {
-		rotationButton.setVisible(visible);
-	}
-
-	/**
-	 * @param playerScore text to show user player's score
-	 */
-	public void setPlayerScore(String playerScore) {
-		scoreText.setText(playerScore);
+	public void setComputerVsComputerMode() {
+		playerVsComputer.setSelected(false);
+		chooseStrategy.setVisible(true);
+		randomButton.setVisible(true);
+		fixedButton.setVisible(true);
+		rotationButton.setVisible(true);
+		chooseWeapon.setVisible(false);
+		rockButton.setVisible(false);
+		paperButton.setVisible(false);
+		scissorsButton.setVisible(false);
+		resultText.setText(computerResult);
 	}
 
 	/**
@@ -181,6 +110,7 @@ public class RPSView {
 		humanResult = "You chose " + playerWeapon.name() + "\n";
 		humanResult += "Computer Opponent chose " + opponentWeapon.name() + "\n";
 		humanResult += "You " + result.name();
+		resultText.setText(humanResult);
 	}
 
 	/**
@@ -195,19 +125,13 @@ public class RPSView {
 		computerResult = "Your Computer chose " + playerWeapon.name() + "\n";
 		computerResult += "Computer Opponent chose " + opponentWeapon.name() + "\n";
 		computerResult += "Your Computer " + result.name();
-	}
-	
-	/**
-	 * Human Player result is shown during Player vs Computer mode
-	 */
-	public void showHumanResult() {
-		resultText.setText(humanResult);
+		resultText.setText(computerResult);
 	}
 
 	/**
-	 * Computer Player result is shown during Computer vs Computer mode
+	 * @param playerScore text to show user player's score
 	 */
-	public void showComputerResult() {
-		resultText.setText(computerResult);
+	public void setPlayerScore(String playerScore) {
+		scoreText.setText(playerScore);
 	}
 }

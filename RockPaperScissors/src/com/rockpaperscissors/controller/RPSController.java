@@ -6,6 +6,7 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.Player;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 import com.rockpaperscissors.view.RPSView;
+import com.rockpaperscissors.view.View;
 
 /**
  * Coordinates information between the Model classes and the View
@@ -14,11 +15,11 @@ import com.rockpaperscissors.view.RPSView;
  * @author Tanyel Bariser
  */
 public class RPSController {
-	private final RPSView view;
+	private final View view;
 	private final ComputerOpponent opponent;
 	private Player player;
 	
-	public RPSController(RPSView view) {
+	public RPSController(View view) {
 		this(view, new ComputerOpponent(RandomStrategy.RANDOM));
 	}
 	
@@ -27,7 +28,7 @@ public class RPSController {
 	 * 
 	 * @param opponent the user player against
 	 */
-	public RPSController(RPSView view, ComputerOpponent opponent) {
+	public RPSController(View view, ComputerOpponent opponent) {
 		this.view = view;
 		this.opponent = opponent;
 	}
@@ -51,49 +52,18 @@ public class RPSController {
 		player.compete(this, opponent);
 	}
 
-	public void setPlayerVsComputerMode() {
-		view.setComputerVsComputerSelected(false);
-		view.setChooseStrategyVisible(false);
-		view.setRandomButtonVisible(false);
-		view.setFixedButtonVisible(false);
-		view.setRotationButtonVisible(false);
-		view.setChooseWeaponVisible(true);
-		view.setRockButtonVisible(true);
-		view.setPaperButtonVisible(true);
-		view.setScissorsButtonVisible(true);
-		view.showHumanResult();
-		showPlayerScore();
-	}
-	
-	public void setComputerVsComputerMode() {
-		view.setPlayerVsComputerSelected(false);
-		view.setChooseStrategyVisible(true);
-		view.setRandomButtonVisible(true);
-		view.setFixedButtonVisible(true);
-		view.setRotationButtonVisible(true);
-		view.setChooseWeaponVisible(false);
-		view.setRockButtonVisible(false);
-		view.setPaperButtonVisible(false);
-		view.setScissorsButtonVisible(false);
-		view.showComputerResult();
-		showPlayerScore();
-	}
-
 	public void setHumanPlayerResult(Weapon chosenWeapon,
 			Weapon opponentWeapon, Result result) {
 		view.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
-		view.showHumanResult();
 		showPlayerScore();
 	}
 
 	public void setComputerPlayerResult(Weapon chosenWeapon,
 			Weapon opponentWeapon, Result result) {
 		view.setComputerPlayerResult(chosenWeapon, opponentWeapon, result);
-		view.showComputerResult();
 		showPlayerScore();
 	}
 	
-
 	public void showPlayerScore() {
 		view.setPlayerScore(player.toString());
 	}

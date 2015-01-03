@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.Player;
+import com.rockpaperscissors.view.RPSView;
+import com.rockpaperscissors.view.View;
 /**
  * This class handles the logic when the user clicks the "Computer vs Computer"
  * check box.
@@ -13,12 +15,13 @@ import com.rockpaperscissors.model.player.Player;
  * @author Tanyel Bariser
  */
 public class ComputerVsComputerEvent {
+	private final View view;
 	private final RPSController controller;
 	private final Player computerPlayer;
 	
-	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+	public static EventHandler<ActionEvent> getHandler(View view, RPSController controller,
 			ComputerPlayer computerPlayer) {
-		return new ComputerVsComputerEvent(controller, computerPlayer).HANDLE;
+		return new ComputerVsComputerEvent(view, controller, computerPlayer).HANDLE;
 	}
 
 	/**
@@ -28,8 +31,9 @@ public class ComputerVsComputerEvent {
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from (cannot be HumanPlayer)
 	 */
-	private ComputerVsComputerEvent(RPSController controller,
+	private ComputerVsComputerEvent(View view, RPSController controller,
 			ComputerPlayer computerPlayer) {
+		this.view = view;
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
@@ -42,6 +46,7 @@ public class ComputerVsComputerEvent {
 	 */
 	private final EventHandler<ActionEvent> HANDLE = event -> {
 		controller.setPlayer(computerPlayer);
-		controller.setComputerVsComputerMode();
+		controller.showPlayerScore();
+		view.setComputerVsComputerMode();
 	};
 }
