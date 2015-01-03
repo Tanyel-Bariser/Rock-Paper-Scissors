@@ -9,19 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.events.ComputerVsComputerEvent;
-import com.rockpaperscissors.controller.events.FixedButtonEvent;
-import com.rockpaperscissors.controller.events.PaperButtonEvent;
-import com.rockpaperscissors.controller.events.PlayerVsComputerEvent;
-import com.rockpaperscissors.controller.events.RandomButtonEvent;
-import com.rockpaperscissors.controller.events.RockButtonEvent;
-import com.rockpaperscissors.controller.events.RotationButtonEvent;
-import com.rockpaperscissors.controller.events.ScissorsButtonEvent;
-import com.rockpaperscissors.model.player.ComputerPlayer;
-import com.rockpaperscissors.model.player.HumanPlayer;
-import com.rockpaperscissors.model.player.Player;
-
 /**
  * Builds and sets up all dependencies required for RPSView
  * Allows optional injection for as many or few of RPSView's dependencies
@@ -29,16 +16,6 @@ import com.rockpaperscissors.model.player.Player;
  * @author Tanyel Bariser
  */
 public class ViewBuilder {
-	// Initialises default dependencies of RPSView
-	RPSController controller = new RPSController();
-	private Player humanPlayer = new HumanPlayer();
-	private Player computerPlayer = new ComputerPlayer();
-	private final int FONT_SIZE = 32;
-	private final int RESULTS_FONT_SIZE = 20;
-	private final int TEXT_Y_POSITION = 170;
-	private final int BUTTON_Y_POSITION = 190;
-	private final int RESULT_Y_POSITION = 340;
-	// GUI components
 	CheckBox playerVsComputer = new CheckBox("Player vs Computer");
 	CheckBox computerVsComputer = new CheckBox("Computer vs Computer");
 	Text chooseWeapon = new Text("Choose Your Weapon");
@@ -53,6 +30,13 @@ public class ViewBuilder {
 	Button rotationButton = new Button("Rotation");
 	private final Pane pane = new Pane();
 	private final Stage stage;
+
+	private final int FONT_SIZE = 32;
+	private final int RESULTS_FONT_SIZE = 20;
+	private final int TEXT_Y_POSITION = 170;
+	private final int BUTTON_Y_POSITION = 190;
+	private final int RESULT_Y_POSITION = 340;
+
 	
 	public static RPSView createDefaultView(Stage stage) {
 		ViewBuilder builder = new ViewBuilder(stage);
@@ -89,8 +73,6 @@ public class ViewBuilder {
 	 */
 	private void buildPlayerVsComputer() {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		PlayerVsComputerEvent event = new PlayerVsComputerEvent(controller, (HumanPlayer) humanPlayer);
-		playerVsComputer.setOnAction(event.HANDLE);
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
 		playerVsComputer.setLayoutY(5);
@@ -102,8 +84,6 @@ public class ViewBuilder {
 	 */
 	private void buildComputerVsComputer() {
 		computerVsComputer.setFont(Font.font(FONT_SIZE));
-		ComputerVsComputerEvent event = new ComputerVsComputerEvent(controller, (ComputerPlayer) computerPlayer);
-		computerVsComputer.setOnAction(event.HANDLE);
 		computerVsComputer.setLayoutX(5);
 		computerVsComputer.setLayoutY(55);
 		computerVsComputer.setSelected(false);
@@ -126,9 +106,6 @@ public class ViewBuilder {
 	private void buildRockButton() {
 		rockButton.setFont(Font.font(FONT_SIZE));
 		rockButton.setTextFill(Color.BLUE);
-		RockButtonEvent event = new RockButtonEvent(controller,
-				(HumanPlayer) humanPlayer);
-		rockButton.setOnAction(event.HANDLE);
 		rockButton.setLayoutX(75);
 		rockButton.setLayoutY(BUTTON_Y_POSITION);
 		rockButton.setVisible(false);
@@ -140,9 +117,6 @@ public class ViewBuilder {
 	private void buildPaperButton() {
 		paperButton.setFont(Font.font(FONT_SIZE));
 		paperButton.setTextFill(Color.BLUE);
-		PaperButtonEvent event = new PaperButtonEvent(controller,
-				(HumanPlayer) humanPlayer);
-		paperButton.setOnAction(event.HANDLE);
 		paperButton.setLayoutX(245);
 		paperButton.setLayoutY(BUTTON_Y_POSITION);
 		paperButton.setVisible(false);
@@ -154,9 +128,6 @@ public class ViewBuilder {
 	private void buildScissorsButton() {
 		scissorsButton.setFont(Font.font(FONT_SIZE));
 		scissorsButton.setTextFill(Color.BLUE);
-		ScissorsButtonEvent event = new ScissorsButtonEvent(controller,
-				(HumanPlayer) humanPlayer);
-		scissorsButton.setOnAction(event.HANDLE);
 		scissorsButton.setLayoutX(425);
 		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
 		scissorsButton.setVisible(false);
@@ -181,8 +152,6 @@ public class ViewBuilder {
 	private void buildRandomButton() {
 		randomButton.setFont(Font.font(FONT_SIZE));
 		randomButton.setTextFill(Color.BLUE);
-		RandomButtonEvent event = new RandomButtonEvent(controller, (ComputerPlayer) computerPlayer);
-		randomButton.setOnAction(event.HANDLE);
 		randomButton.setLayoutX(60);
 		randomButton.setLayoutY(BUTTON_Y_POSITION);
 		randomButton.setVisible(false);
@@ -194,8 +163,6 @@ public class ViewBuilder {
 	private void buildFixedButton() {
 		fixedButton.setFont(Font.font(FONT_SIZE));
 		fixedButton.setTextFill(Color.BLUE);
-		FixedButtonEvent event = new FixedButtonEvent(controller, (ComputerPlayer) computerPlayer);
-		fixedButton.setOnAction(event.HANDLE);
 		fixedButton.setLayoutX(265);
 		fixedButton.setLayoutY(BUTTON_Y_POSITION);
 		fixedButton.setVisible(false);
@@ -207,8 +174,6 @@ public class ViewBuilder {
 	private void buildRotationButton() {
 		rotationButton.setFont(Font.font(FONT_SIZE));
 		rotationButton.setTextFill(Color.BLUE);
-		RotationButtonEvent event = new RotationButtonEvent(controller, (ComputerPlayer) computerPlayer);
-		rotationButton.setOnAction(event.HANDLE);
 		rotationButton.setLayoutX(425);
 		rotationButton.setLayoutY(BUTTON_Y_POSITION);
 		rotationButton.setVisible(false);
@@ -273,33 +238,6 @@ public class ViewBuilder {
 	 */
 	public static ViewBuilder createViewBuilder(Stage stage) {
 		return new ViewBuilder(stage);
-	}
-
-	/**
-	 * @param controller dependency required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public ViewBuilder controller(RPSController controller) {
-		this.controller = controller;
-		return this;
-	}
-	
-	/**
-	 * @param humanPlayer allows manual choice of weapon by user
-	 * @return same instance of ViewBuilder
-	 */
-	public ViewBuilder humanPlayer(HumanPlayer humanPlayer) {
-		this.humanPlayer = humanPlayer;
-		return this;
-	}
-
-	/**
-	 * @param computerPlayer allows user choice of strategy to choose weapon
-	 * @return same instance of ViewBuilder
-	 */
-	public ViewBuilder computerPlayer(ComputerPlayer computerPlayer) {
-		this.computerPlayer = computerPlayer;
-		return this;
 	}
 	
 	/**
@@ -428,9 +366,7 @@ public class ViewBuilder {
 	 * @throws NullPoinerException
 	 */
 	private void checkForNullArgs() {
-		if (controller == null) {
-			throw new NullPointerException("Controller is null");
-		} else if (playerVsComputer == null) {
+		if (playerVsComputer == null) {
 			throw new NullPointerException(
 					"Player vs Computer Check Box is null");
 		} else if (computerVsComputer == null) {

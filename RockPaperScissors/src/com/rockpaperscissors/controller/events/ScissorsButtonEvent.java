@@ -15,13 +15,18 @@ public class ScissorsButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new ScissorsButtonEvent(controller, humanPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Scissors button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	public ScissorsButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private ScissorsButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
@@ -30,7 +35,7 @@ public class ScissorsButtonEvent {
 	 * Sets Scissors as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		humanPlayer.setWeapon(Weapon.SCISSORS);
 		controller.play();
 	};

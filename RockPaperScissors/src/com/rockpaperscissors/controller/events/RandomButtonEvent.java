@@ -15,6 +15,11 @@ import com.rockpaperscissors.model.strategies.RandomStrategy;
 public class RandomButtonEvent {
 	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
+
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			ComputerPlayer computerPlayer) {
+		return new RandomButtonEvent(controller, computerPlayer).HANDLE;
+	}
 	
 	/**
 	 * Creates class to handle Random button click
@@ -22,7 +27,7 @@ public class RandomButtonEvent {
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	public RandomButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
+	private RandomButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
@@ -31,7 +36,7 @@ public class RandomButtonEvent {
 	 * Sets Random as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		computerPlayer.setStrategy(RandomStrategy.RANDOM);
 		controller.play();
 	};

@@ -15,13 +15,18 @@ public class PaperButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new PaperButtonEvent(controller, humanPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Paper button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	public PaperButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private PaperButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
@@ -30,7 +35,7 @@ public class PaperButtonEvent {
 	 * Sets Paper as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		humanPlayer.setWeapon(Weapon.PAPER);
 		controller.play();
 	};

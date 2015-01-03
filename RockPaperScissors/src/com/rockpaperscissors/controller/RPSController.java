@@ -14,12 +14,12 @@ import com.rockpaperscissors.view.RPSView;
  * @author Tanyel Bariser
  */
 public class RPSController {
+	private final RPSView view;
 	private final ComputerOpponent opponent;
-	private RPSView view;
 	private Player player;
 	
-	public RPSController() {
-		this(new ComputerOpponent(RandomStrategy.RANDOM));
+	public RPSController(RPSView view) {
+		this(view, new ComputerOpponent(RandomStrategy.RANDOM));
 	}
 	
 	/**
@@ -27,12 +27,9 @@ public class RPSController {
 	 * 
 	 * @param opponent the user player against
 	 */
-	public RPSController(ComputerOpponent opponent) {
-		this.opponent = opponent;
-	}
-	
-	public void setView(RPSView view) {
+	public RPSController(RPSView view, ComputerOpponent opponent) {
 		this.view = view;
+		this.opponent = opponent;
 	}
 	
 	/**

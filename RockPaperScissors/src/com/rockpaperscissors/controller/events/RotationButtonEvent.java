@@ -16,13 +16,18 @@ public class RotationButtonEvent {
 	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			ComputerPlayer computerPlayer) {
+		return new RotationButtonEvent(controller, computerPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Rotation button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	public RotationButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
+	private RotationButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
@@ -31,7 +36,7 @@ public class RotationButtonEvent {
 	 * Sets Rotation as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		computerPlayer.setStrategy(RotationStrategy.ROTATION);
 		controller.play();
 	};

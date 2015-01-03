@@ -15,13 +15,18 @@ public class RockButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new RockButtonEvent(controller, humanPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Rock button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	public RockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private RockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
@@ -30,7 +35,7 @@ public class RockButtonEvent {
 	 * Sets Rock as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		humanPlayer.setWeapon(Weapon.ROCK);
 		controller.play();
 	};

@@ -1,10 +1,11 @@
 package com.rockpaperscissors.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 
-import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Weapon;
 
@@ -14,7 +15,6 @@ import com.rockpaperscissors.model.Weapon;
  * @author Tanyel Bariser
  */
 public class RPSView {
-	private final RPSController controller;
 	private final CheckBox playerVsComputer, computerVsComputer;
 	private final Text chooseWeapon, chooseStrategy, resultText, scoreText;
 	private final Button rockButton, paperButton, scissorsButton;
@@ -29,8 +29,6 @@ public class RPSView {
 	 * @param builder containing RPSView's dependencies
 	 */
 	RPSView(ViewBuilder builder) {
-		controller = builder.controller;
-		controller.setView(this);
 		playerVsComputer = builder.playerVsComputer;
 		computerVsComputer = builder.computerVsComputer;
 		chooseWeapon = builder.chooseWeapon;
@@ -43,6 +41,38 @@ public class RPSView {
 		rotationButton = builder.rotationButton;
 		resultText = builder.resultText;
 		scoreText = builder.scoreText;
+	}
+	
+	public void setPlayerVsComputerOnAction(EventHandler<ActionEvent> handler) {
+		playerVsComputer.setOnAction(handler);
+	}
+	
+	public void setComputerVsComputerOnAction(EventHandler<ActionEvent> handler) {
+		computerVsComputer.setOnAction(handler);
+	}
+	
+	public void setRockButtonOnAction(EventHandler<ActionEvent> handler) {
+		rockButton.setOnAction(handler);
+	}
+	
+	public void setPaperButtonOnAction(EventHandler<ActionEvent> handler) {
+		paperButton.setOnAction(handler);
+	}
+	
+	public void setScissorsButtonOnAction(EventHandler<ActionEvent> handler) {
+		scissorsButton.setOnAction(handler);
+	}
+	
+	public void setRandomButtonOnAction(EventHandler<ActionEvent> handler) {
+		randomButton.setOnAction(handler);
+	}
+	
+	public void setFixedButtonOnAction(EventHandler<ActionEvent> handler) {
+		fixedButton.setOnAction(handler);
+	}
+	
+	public void setRotationButtonOnAction(EventHandler<ActionEvent> handler) {
+		rotationButton.setOnAction(handler);
 	}
 	
 	/**

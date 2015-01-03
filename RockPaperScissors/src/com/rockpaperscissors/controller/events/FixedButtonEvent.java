@@ -16,13 +16,18 @@ public class FixedButtonEvent {
 	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			ComputerPlayer computerPlayer) {
+		return new FixedButtonEvent(controller, computerPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Fixed button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	public FixedButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
+	private FixedButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
 		this.controller = controller;
 		this.computerPlayer = computerPlayer;
 	}
@@ -31,7 +36,7 @@ public class FixedButtonEvent {
 	 * Sets Fixed as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		computerPlayer.setStrategy(FixedStrategy.FIXED);
 		controller.play();
 	};

@@ -16,6 +16,11 @@ import com.rockpaperscissors.model.player.HumanPlayer;
 public class SpockButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
+
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new SpockButtonEvent(controller, humanPlayer).HANDLE;
+	}
 	
 	/**
 	 * Creates class to handle Spock button click
@@ -23,7 +28,7 @@ public class SpockButtonEvent {
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	public SpockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private SpockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
@@ -32,7 +37,7 @@ public class SpockButtonEvent {
 	 * Sets Spock as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		humanPlayer.setWeapon(Weapon.SPOCK);
 		controller.play();
 	};

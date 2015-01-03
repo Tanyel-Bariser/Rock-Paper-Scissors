@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.model.player.Player;
-import com.rockpaperscissors.view.RPSView;
 /**
  * This class handles the logic when the user clicks the "Player vs Computer"
  * check box.
@@ -16,6 +15,11 @@ import com.rockpaperscissors.view.RPSView;
 public class PlayerVsComputerEvent {
 	private final RPSController controller;
 	private final Player humanPlayer;
+	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new PlayerVsComputerEvent(controller, humanPlayer).HANDLE;
+	}
 
 	/**
 	 * Creates class to handle Player vs Computer mode
@@ -24,7 +28,7 @@ public class PlayerVsComputerEvent {
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon (cannot be ComputerPlayer)
 	 */
-	public PlayerVsComputerEvent(RPSController controller,
+	private PlayerVsComputerEvent(RPSController controller,
 			HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
@@ -36,7 +40,7 @@ public class PlayerVsComputerEvent {
 	 * 
 	 * Sets human player in RPSController class making it the playable player 
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		controller.setPlayer(humanPlayer);
 		controller.setPlayerVsComputerMode();
 	};

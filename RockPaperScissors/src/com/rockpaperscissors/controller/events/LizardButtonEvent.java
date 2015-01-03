@@ -17,13 +17,18 @@ public class LizardButtonEvent {
 	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
 	
+	public static EventHandler<ActionEvent> getHandler(RPSController controller,
+			HumanPlayer humanPlayer) {
+		return new LizardButtonEvent(controller, humanPlayer).HANDLE;
+	}
+	
 	/**
 	 * Creates class to handle Lizard button click
 	 * 
 	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	public LizardButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
+	private LizardButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
 		this.controller = controller;
 		this.humanPlayer = humanPlayer;
 	}
@@ -32,7 +37,7 @@ public class LizardButtonEvent {
 	 * Sets Lizard as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	public final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLE = event -> {
 		humanPlayer.setWeapon(Weapon.LIZARD);
 		controller.play();
 	};
