@@ -1,4 +1,4 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.controller.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
@@ -12,21 +12,21 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.ComputerVsComputerEvent;
-import com.rockpaperscissors.model.player.ComputerPlayer;
+import com.rockpaperscissors.controller.eventhandlers.PlayerVsComputerEvent;
+import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.view.RPSView;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ComputerVsComputerEventTest {
+public class PlayerVsComputerEventTest {
 	@Mock RPSView view;
 	@Mock RPSController controller;
-	@Mock ComputerPlayer computerPlayer;
+	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
 	EventHandler<ActionEvent> handler;
 
 	@Before
 	public void setUp() throws Exception {
-		handler = ComputerVsComputerEvent.getHandler(view, controller, computerPlayer);
+		handler = PlayerVsComputerEvent.getHandler(view, controller, humanPlayer);
 		handler.handle(action);
 	}
 
@@ -34,11 +34,10 @@ public class ComputerVsComputerEventTest {
 	public void tearDown() throws Exception {
 		handler = null;
 	}
-
-
+	
 	@Test
-	public void handleSetsComputerPlayerInController() {
-		verify(controller).setPlayer(computerPlayer);
+	public void handleSetsHumanPlayerInController() {
+		verify(controller).setPlayer(humanPlayer);
 	}
 
 	@Test
@@ -47,7 +46,7 @@ public class ComputerVsComputerEventTest {
 	}
 	
 	@Test
-	public void handleMakesPlayerVsComputerCheckBoxUnselected() {
-		verify(view).setComputerVsComputerMode();
+	public void handleMakesComputerVsComputerCheckBoxUnselected() {
+		verify(view).setPlayerVsComputerMode();
 	}
 }

@@ -1,4 +1,4 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.controller;
 
 import static org.mockito.Mockito.verify;
 

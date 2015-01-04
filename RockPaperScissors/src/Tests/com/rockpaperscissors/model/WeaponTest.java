@@ -1,4 +1,4 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.model;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package com.rockpaperscissors.tests;
+package com.rockpaperscissors.controller.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;

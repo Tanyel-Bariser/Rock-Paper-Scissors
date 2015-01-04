@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.Player;
-import com.rockpaperscissors.view.RPSView;
 import com.rockpaperscissors.view.View;
 /**
  * This class handles the logic when the user clicks the "Computer vs Computer"
