@@ -62,6 +62,6 @@ public class RPSController {
 	}
 	
 	public void showPlayerScore() {
-		view.setPlayerScore(player.toString());
+		view.setPlayerScore(player.readableScore());
 	}
 }

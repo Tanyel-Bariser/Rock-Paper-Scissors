@@ -19,7 +19,7 @@ public class LizardButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new LizardButtonEvent(controller, humanPlayer).HANDLE;
+		return new LizardButtonEvent(controller, humanPlayer).HANDLER;
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class LizardButtonEvent {
 	 * Sets Lizard as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.LIZARD);
 		controller.play();
 	};

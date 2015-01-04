@@ -18,7 +18,7 @@ public class FixedButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			ComputerPlayer computerPlayer) {
-		return new FixedButtonEvent(controller, computerPlayer).HANDLE;
+		return new FixedButtonEvent(controller, computerPlayer).HANDLER;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class FixedButtonEvent {
 	 * Sets Fixed as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		computerPlayer.setStrategy(FixedStrategy.FIXED);
 		controller.play();
 	};

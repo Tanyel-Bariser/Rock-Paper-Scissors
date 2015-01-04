@@ -2,6 +2,7 @@ package com.rockpaperscissors.tests;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,17 +21,17 @@ public class RotationButtonEventTest {
 	@Mock RPSController controller;
 	@Mock ComputerPlayer computerPlayer;
 	@Mock ActionEvent action;
-	RotationButtonEvent event;
+	EventHandler<ActionEvent> handler;
 
 	@Before
 	public void setUp() {
-		event = new RotationButtonEvent(controller, computerPlayer);
-		event.HANDLE.handle(action);
+		handler = RotationButtonEvent.getHandler(controller, computerPlayer);
+		handler.handle(action);
 	}
 
 	@After
 	public void tearDown() {
-		event = null;
+		handler = null;
 	}
 
 	@Test

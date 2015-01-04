@@ -11,29 +11,29 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.HumanPlayer;
-import com.rockpaperscissors.view.RPSView;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HumanPlayerTest {
-	@Mock RPSView view;
+	@Mock RPSController controller;
 	@Mock Score score;
 	@Mock ComputerOpponent opponent;
 	HumanPlayer player;
 
 	@Before
 	public void setUp() throws Exception {
-		player = new HumanPlayer(view, score);
+		player = new HumanPlayer(score);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		controller = null;
 		player = null;
-		view = null;
 		score = null;
 		opponent = null;
 	}
@@ -42,24 +42,20 @@ public class HumanPlayerTest {
 	public void competeWithOpponentWhoPlaysNullThrowsException() {
 		when(opponent.playWeapon()).thenReturn(null);
 		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 	}
 	
 	@Test (expected = NullPointerException.class)
 	public void competeBeforeSettingPlayersWeaponThrowsException() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 	}
-
 	
-	 /**********************************************************************
-	 * Tests HumanPlayer.compete(ComputerOpponent) Updates Score Correctly *
-	 **********************************************************************/
 	@Test
 	public void competeUpdatesScoreWithWonWhenRockAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 	
@@ -67,7 +63,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenRockAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 	
@@ -75,7 +71,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithLostWhenRockAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
@@ -83,7 +79,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithWonWhenPaperAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.setWeapon(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 	
@@ -91,7 +87,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenPaperAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		player.setWeapon(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 	
@@ -99,7 +95,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithLostWhenPaperAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		player.setWeapon(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
@@ -107,7 +103,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithWonWhenScissorsAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		player.setWeapon(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 
@@ -115,7 +111,7 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenScissorsAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		player.setWeapon(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 
@@ -123,44 +119,24 @@ public class HumanPlayerTest {
 	public void competeUpdatesScoreWithLostWhenScissorsAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.setWeapon(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
-	
-	/*********************************************************************
-	* Tests HumanPlayer.compete(ComputerOpponent) Updates View Correctly *
-	*********************************************************************/	
 	@Test
-	public void competeUpdatesResultInViewCorrectly() {
+	public void competeUpdatesResultInControllerCorrectly() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).setHumanPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
+		player.compete(controller, opponent);
+		verify(controller).setHumanPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
 	}
-	
+
 	@Test
-	public void competeTellsViewToShowNewResult() {
-		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).showHumanResult();
-	}
-	
-	@Test
-	public void toStringDisplaysReadableScore() {
+	public void testReadableScore() {
 		when(score.getWins()).thenReturn(4);
 		when(score.getTies()).thenReturn(3);
 		when(score.getLosses()).thenReturn(2);
 		String expectedOutput = "Your Score:\nWins: 4\nTies: 3\nLosses: 2";
-		assertEquals(expectedOutput, player.toString());
-	}
-	
-	@Test
-	public void competeUpdatesScoreInViewUsingToString() {
-		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		player.setWeapon(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).setPlayerScore(player.toString());
+		assertEquals(expectedOutput, player.readableScore());
 	}
 }

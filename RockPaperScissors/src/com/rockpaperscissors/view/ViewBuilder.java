@@ -33,7 +33,7 @@ public class ViewBuilder {
 
 	private final int FONT_SIZE = 32;
 	private final int RESULTS_FONT_SIZE = 20;
-	private final int TEXT_Y_POSITION = 170;
+	private final int CHOOSE_Y_POSITION = 170;
 	private final int BUTTON_Y_POSITION = 190;
 	private final int RESULT_Y_POSITION = 340;
 
@@ -96,7 +96,7 @@ public class ViewBuilder {
 		chooseWeapon.setFont(Font.font(FONT_SIZE));
 		chooseWeapon.setFill(Color.BLUE);
 		chooseWeapon.setLayoutX(165);
-		chooseWeapon.setLayoutY(TEXT_Y_POSITION);
+		chooseWeapon.setLayoutY(CHOOSE_Y_POSITION);
 		chooseWeapon.setVisible(false);
 	}
 
@@ -141,8 +141,7 @@ public class ViewBuilder {
 		chooseStrategy.setFont(Font.font(FONT_SIZE));
 		chooseStrategy.setFill(Color.BLUE);
 		chooseStrategy.setLayoutX(85);
-		chooseStrategy.setLayoutY(TEXT_Y_POSITION);
-		chooseStrategy.setVisible(false);
+		chooseStrategy.setLayoutY(CHOOSE_Y_POSITION);
 		chooseStrategy.setVisible(false);
 	}
 

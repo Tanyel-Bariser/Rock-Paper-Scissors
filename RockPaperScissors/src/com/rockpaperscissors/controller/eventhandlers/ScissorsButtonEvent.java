@@ -17,7 +17,7 @@ public class ScissorsButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new ScissorsButtonEvent(controller, humanPlayer).HANDLE;
+		return new ScissorsButtonEvent(controller, humanPlayer).HANDLER;
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class ScissorsButtonEvent {
 	 * Sets Scissors as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.SCISSORS);
 		controller.play();
 	};

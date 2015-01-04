@@ -2,6 +2,7 @@ package com.rockpaperscissors.tests;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,17 +21,17 @@ public class SpockButtonEventTest {
 	@Mock RPSController controller;
 	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
-	SpockButtonEvent event;
+	EventHandler<ActionEvent> handler;
 
 	@Before
 	public void setUp() {
-		event = new SpockButtonEvent(controller, humanPlayer);
-		event.HANDLE.handle(action);
+		handler = SpockButtonEvent.getHandler(controller, humanPlayer);
+		handler.handle(action);
 	}
 
 	@After
 	public void tearDown() {
-		event = null;
+		handler = null;
 	}
 
 	@Test

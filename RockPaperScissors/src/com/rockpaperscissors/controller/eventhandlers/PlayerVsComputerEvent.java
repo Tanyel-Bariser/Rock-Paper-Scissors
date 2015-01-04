@@ -20,7 +20,7 @@ public class PlayerVsComputerEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(View view, RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new PlayerVsComputerEvent(view, controller, humanPlayer).HANDLE;
+		return new PlayerVsComputerEvent(view, controller, humanPlayer).HANDLER;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class PlayerVsComputerEvent {
 	 * 
 	 * Sets human player in RPSController class making it the playable player 
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		controller.setPlayer(humanPlayer);
 		controller.showPlayerScore();
 		view.setPlayerVsComputerMode();

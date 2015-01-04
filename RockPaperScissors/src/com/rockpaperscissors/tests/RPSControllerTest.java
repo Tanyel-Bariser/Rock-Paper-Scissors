@@ -12,16 +12,18 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.Player;
+import com.rockpaperscissors.view.View;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RPSControllerTest {
+	@Mock View view;
 	@Mock ComputerOpponent opponent;
 	@Mock Player player;
 	RPSController controller;
 	
 	@Before
 	public void setUp() {
-		controller = new RPSController(opponent);
+		controller = new RPSController(view, opponent);
 	}
 	
 	@After
@@ -38,6 +40,6 @@ public class RPSControllerTest {
 	public void playMakesPlayercompeteWithOpponent() {
 		controller.setPlayer(player);
 		controller.play();
-		verify(player).compete(opponent);
+		verify(player).compete(controller, opponent);
 	}
 }

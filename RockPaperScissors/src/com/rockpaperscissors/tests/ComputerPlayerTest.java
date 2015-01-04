@@ -11,17 +11,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.Strategy;
-import com.rockpaperscissors.view.RPSView;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ComputerPlayerTest {
-	@Mock RPSView view;
+	@Mock RPSController controller;
 	@Mock Score score;
 	@Mock ComputerOpponent opponent;
 	@Mock Strategy strategy;
@@ -29,14 +29,14 @@ public class ComputerPlayerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		player = new ComputerPlayer(view, score);
+		player = new ComputerPlayer(score);
 		player.setStrategy(strategy);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		player = null;
-		view = null;
+		controller = null;
 		score = null;
 		opponent = null;
 	}
@@ -45,14 +45,14 @@ public class ComputerPlayerTest {
 	public void competeWithOpponentWhoPlaysNullThrowsException() {
 		when(opponent.playWeapon()).thenReturn(null);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 	}
 	
 	@Test (expected = NullPointerException.class)
 	public void competeBeforeSettingPlayersStrategyThrowsException() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		player.setStrategy(null);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 	}
 	
 	/*************************************************************************
@@ -62,7 +62,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithWonWhenRockAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 	
@@ -70,7 +70,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenRockAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 	
@@ -78,7 +78,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithLostWhenRockAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
@@ -86,7 +86,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithWonWhenPaperAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 	
@@ -94,7 +94,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenPaperAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 	
@@ -102,7 +102,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithLostWhenPaperAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.PAPER);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
@@ -110,7 +110,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithWonWhenScissorsAgainstPaper() {
 		when(opponent.playWeapon()).thenReturn(Weapon.PAPER);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.WON);
 	}
 
@@ -118,7 +118,7 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithTiedWhenScissorsAgainstScissors() {
 		when(opponent.playWeapon()).thenReturn(Weapon.SCISSORS);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.TIED);
 	}
 
@@ -126,43 +126,24 @@ public class ComputerPlayerTest {
 	public void competeUpdatesScoreWithLostWhenScissorsAgainstRock() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.SCISSORS);
-		player.compete(opponent);
+		player.compete(controller, opponent);
 		verify(score).updateScore(Result.LOST);
 	}
 	
-	/*********************************************************************
-	* Tests ComputerPlayer.compete(ComputerOpponent) Updates View Correctly *
-	*********************************************************************/	
 	@Test
-	public void competeUpdatesResultInViewCorrectly() {
+	public void competeUpdatesResultInControllerCorrectly() {
 		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
 		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).setComputerPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
+		player.compete(controller, opponent);
+		verify(controller).setComputerPlayerResult(Weapon.ROCK, Weapon.ROCK, Result.TIED);
 	}
 	
 	@Test
-	public void competeTellsViewToShowNewResult() {
-		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).showComputerResult();
-	}
-	
-	@Test
-	public void toStringDisplaysReadableScore() {
+	public void testReadableScore() {
 		when(score.getWins()).thenReturn(4);
 		when(score.getTies()).thenReturn(3);
 		when(score.getLosses()).thenReturn(2);
 		String expectedOutput = "Your Computer Player's Score:\nWins: 4\nTies: 3\nLosses: 2";
-		assertEquals(expectedOutput, player.toString());
-	}
-	
-	@Test
-	public void competeUpdatesScoreInViewUsingToString() {
-		when(opponent.playWeapon()).thenReturn(Weapon.ROCK);
-		when(strategy.chooseWeapon()).thenReturn(Weapon.ROCK);
-		player.compete(opponent);
-		verify(view).setPlayerScore(player.toString());
+		assertEquals(expectedOutput, player.readableScore());
 	}
 }

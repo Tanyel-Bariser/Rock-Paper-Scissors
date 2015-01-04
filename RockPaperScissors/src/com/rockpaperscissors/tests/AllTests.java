@@ -15,5 +15,4 @@ import org.junit.runners.Suite.SuiteClasses;
 		RPSControllerTest.class, ScissorsButtonEventTest.class,
 		ScoreTest.class, SpockButtonEventTest.class, WeaponTest.class })
 public class AllTests {
-
 }

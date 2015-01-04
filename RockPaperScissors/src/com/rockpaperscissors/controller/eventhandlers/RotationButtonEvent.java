@@ -18,7 +18,7 @@ public class RotationButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			ComputerPlayer computerPlayer) {
-		return new RotationButtonEvent(controller, computerPlayer).HANDLE;
+		return new RotationButtonEvent(controller, computerPlayer).HANDLER;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class RotationButtonEvent {
 	 * Sets Rotation as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		computerPlayer.setStrategy(RotationStrategy.ROTATION);
 		controller.play();
 	};

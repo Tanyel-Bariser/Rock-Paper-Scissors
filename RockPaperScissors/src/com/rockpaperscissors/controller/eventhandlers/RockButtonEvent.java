@@ -17,7 +17,7 @@ public class RockButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new RockButtonEvent(controller, humanPlayer).HANDLE;
+		return new RockButtonEvent(controller, humanPlayer).HANDLER;
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class RockButtonEvent {
 	 * Sets Rock as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.ROCK);
 		controller.play();
 	};

@@ -17,7 +17,7 @@ public class PaperButtonEvent {
 	
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			HumanPlayer humanPlayer) {
-		return new PaperButtonEvent(controller, humanPlayer).HANDLE;
+		return new PaperButtonEvent(controller, humanPlayer).HANDLER;
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class PaperButtonEvent {
 	 * Sets Paper as the human player's weapon of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.PAPER);
 		controller.play();
 	};

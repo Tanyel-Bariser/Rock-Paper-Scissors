@@ -18,7 +18,7 @@ public class RandomButtonEvent {
 
 	public static EventHandler<ActionEvent> getHandler(RPSController controller,
 			ComputerPlayer computerPlayer) {
-		return new RandomButtonEvent(controller, computerPlayer).HANDLE;
+		return new RandomButtonEvent(controller, computerPlayer).HANDLER;
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class RandomButtonEvent {
 	 * Sets Random as the user's computer player's strategy of choice
 	 * Initiates play of the game
 	 */
-	private final EventHandler<ActionEvent> HANDLE = event -> {
+	private final EventHandler<ActionEvent> HANDLER = event -> {
 		computerPlayer.setStrategy(RandomStrategy.RANDOM);
 		controller.play();
 	};
