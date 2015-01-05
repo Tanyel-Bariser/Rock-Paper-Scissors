@@ -4,34 +4,27 @@ import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.eventhandlers.RandomButtonEvent;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RandomButtonEventTest {
-	@Mock RPSController controller;
 	@Mock ComputerPlayer computerPlayer;
+	@Mock ComputerOpponent opponent;
 	@Mock ActionEvent action;
 	EventHandler<ActionEvent> handler;
 
 	@Before
 	public void setUp() {
-		handler = RandomButtonEvent.getHandler(controller, computerPlayer);
+		handler = RandomButtonEvent.getHandler(computerPlayer, opponent);
 		handler.handle(action);
-	}
-
-	@After
-	public void tearDown() {
-		handler = null;
 	}
 
 	@Test
@@ -40,7 +33,7 @@ public class RandomButtonEventTest {
 	}
 	
 	@Test
-	public void handleInvokesControllerPlay() {
-		verify(controller).play();
+	public void handlerPlayerCompetesOpponent() {
+		verify(computerPlayer).compete(opponent);
 	}
 }
