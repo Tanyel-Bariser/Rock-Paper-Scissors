@@ -1,9 +1,9 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
 
@@ -13,23 +13,23 @@ import com.rockpaperscissors.model.strategies.RotationStrategy;
  * @author Tanyel Bariser
  */
 public class RotationButtonEvent {
-	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
-	
-	public static EventHandler<ActionEvent> getHandler(RPSController controller,
-			ComputerPlayer computerPlayer) {
-		return new RotationButtonEvent(controller, computerPlayer).HANDLER;
+	private final ComputerOpponent opponent;
+
+	public static EventHandler<ActionEvent> getHandler(ComputerPlayer computerPlayer,
+			ComputerOpponent opponent) {
+		return new RotationButtonEvent(computerPlayer, opponent).HANDLER;
 	}
 	
 	/**
 	 * Creates class to handle Rotation button click
 	 * 
-	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	private RotationButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
-		this.controller = controller;
+	private RotationButtonEvent(ComputerPlayer computerPlayer,
+			ComputerOpponent opponent) {
 		this.computerPlayer = computerPlayer;
+		this.opponent = opponent;
 	}
 
 	/**
@@ -38,6 +38,6 @@ public class RotationButtonEvent {
 	 */
 	private final EventHandler<ActionEvent> HANDLER = event -> {
 		computerPlayer.setStrategy(RotationStrategy.ROTATION);
-		controller.play();
+		computerPlayer.compete(opponent);
 	};
 }

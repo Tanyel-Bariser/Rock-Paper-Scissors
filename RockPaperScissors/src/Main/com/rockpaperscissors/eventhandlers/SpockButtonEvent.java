@@ -1,10 +1,10 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
@@ -14,23 +14,21 @@ import com.rockpaperscissors.model.player.HumanPlayer;
  * @author Tanyel Bariser
  */
 public class SpockButtonEvent {
-	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
-
-	public static EventHandler<ActionEvent> getHandler(RPSController controller,
-			HumanPlayer humanPlayer) {
-		return new SpockButtonEvent(controller, humanPlayer).HANDLER;
+	private final ComputerOpponent opponent;
+	
+	public static EventHandler<ActionEvent> getHandler(HumanPlayer humanPlayer, ComputerOpponent opponent) {
+		return new SpockButtonEvent(humanPlayer, opponent).HANDLER;
 	}
 	
 	/**
 	 * Creates class to handle Spock button click
 	 * 
-	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	private SpockButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
-		this.controller = controller;
+	private SpockButtonEvent(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		this.humanPlayer = humanPlayer;
+		this.opponent = opponent;
 	}
 
 	/**
@@ -39,6 +37,6 @@ public class SpockButtonEvent {
 	 */
 	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.SPOCK);
-		controller.play();
+		humanPlayer.compete(opponent);
 	};
 }

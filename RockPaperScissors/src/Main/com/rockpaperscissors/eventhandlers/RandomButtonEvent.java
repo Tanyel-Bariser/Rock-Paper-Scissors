@@ -1,9 +1,9 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 
@@ -13,23 +13,23 @@ import com.rockpaperscissors.model.strategies.RandomStrategy;
  * @author Tanyel Bariser
  */
 public class RandomButtonEvent {
-	private final RPSController controller;
 	private final ComputerPlayer computerPlayer;
+	private final ComputerOpponent opponent;
 
-	public static EventHandler<ActionEvent> getHandler(RPSController controller,
-			ComputerPlayer computerPlayer) {
-		return new RandomButtonEvent(controller, computerPlayer).HANDLER;
+	public static EventHandler<ActionEvent> getHandler(ComputerPlayer computerPlayer,
+			ComputerOpponent opponent) {
+		return new RandomButtonEvent(computerPlayer, opponent).HANDLER;
 	}
 	
 	/**
 	 * Creates class to handle Random button click
 	 * 
-	 * @param controller coordinates between the view and model
 	 * @param computerPlayer has play strategies the user can choose from
 	 */
-	private RandomButtonEvent(RPSController controller, ComputerPlayer computerPlayer) {
-		this.controller = controller;
+	private RandomButtonEvent(ComputerPlayer computerPlayer,
+			ComputerOpponent opponent) {
 		this.computerPlayer = computerPlayer;
+		this.opponent = opponent;
 	}
 
 	/**
@@ -38,6 +38,6 @@ public class RandomButtonEvent {
 	 */
 	private final EventHandler<ActionEvent> HANDLER = event -> {
 		computerPlayer.setStrategy(RandomStrategy.RANDOM);
-		controller.play();
+		computerPlayer.compete(opponent);
 	};
 }

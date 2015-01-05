@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.RotationButtonEvent;
+import com.rockpaperscissors.eventhandlers.RotationButtonEvent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
 

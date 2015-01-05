@@ -3,7 +3,7 @@ package com.rockpaperscissors.main;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import com.rockpaperscissors.controller.RPSController;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.view.View;
@@ -33,9 +33,9 @@ public class RockPaperScissors extends Application {
 	@Override
 	public void start(Stage stage) {
 		View view = ViewBuilder.createRPSView(stage);
-		RPSController controller = new RPSController(view);
-		HumanPlayer humanPlayer = new HumanPlayer();
-		ComputerPlayer computerPlayer = new ComputerPlayer();
-		view.setButtonOnActionEvents(controller, humanPlayer, computerPlayer);
+		HumanPlayer humanPlayer = new HumanPlayer(view);
+		ComputerPlayer computerPlayer = new ComputerPlayer(view);
+		ComputerOpponent opponent = new ComputerOpponent();
+		view.buildButtonOnActionEvents(humanPlayer, computerPlayer, opponent);
 	}
 }

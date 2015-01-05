@@ -76,7 +76,6 @@ public class ViewBuilder {
 		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
 		playerVsComputer.setLayoutY(5);
-		playerVsComputer.setSelected(false);
 	}
 
 	/**
@@ -97,7 +96,6 @@ public class ViewBuilder {
 		chooseWeapon.setFill(Color.BLUE);
 		chooseWeapon.setLayoutX(165);
 		chooseWeapon.setLayoutY(CHOOSE_Y_POSITION);
-		chooseWeapon.setVisible(false);
 	}
 
 	/**
@@ -108,7 +106,6 @@ public class ViewBuilder {
 		rockButton.setTextFill(Color.BLUE);
 		rockButton.setLayoutX(75);
 		rockButton.setLayoutY(BUTTON_Y_POSITION);
-		rockButton.setVisible(false);
 	}
 
 	/**
@@ -119,7 +116,6 @@ public class ViewBuilder {
 		paperButton.setTextFill(Color.BLUE);
 		paperButton.setLayoutX(245);
 		paperButton.setLayoutY(BUTTON_Y_POSITION);
-		paperButton.setVisible(false);
 	}
 
 	/**
@@ -130,7 +126,6 @@ public class ViewBuilder {
 		scissorsButton.setTextFill(Color.BLUE);
 		scissorsButton.setLayoutX(425);
 		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
-		scissorsButton.setVisible(false);
 	}
 
 	/**

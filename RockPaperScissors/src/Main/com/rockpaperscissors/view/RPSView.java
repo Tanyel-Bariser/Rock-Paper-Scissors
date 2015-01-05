@@ -4,17 +4,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.text.Text;
 
-import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.ComputerVsComputerEvent;
-import com.rockpaperscissors.controller.eventhandlers.FixedButtonEvent;
-import com.rockpaperscissors.controller.eventhandlers.PaperButtonEvent;
-import com.rockpaperscissors.controller.eventhandlers.PlayerVsComputerEvent;
-import com.rockpaperscissors.controller.eventhandlers.RandomButtonEvent;
-import com.rockpaperscissors.controller.eventhandlers.RockButtonEvent;
-import com.rockpaperscissors.controller.eventhandlers.RotationButtonEvent;
-import com.rockpaperscissors.controller.eventhandlers.ScissorsButtonEvent;
+import com.rockpaperscissors.eventhandlers.ComputerVsComputerEvent;
+import com.rockpaperscissors.eventhandlers.FixedButtonEvent;
+import com.rockpaperscissors.eventhandlers.PaperButtonEvent;
+import com.rockpaperscissors.eventhandlers.PlayerVsComputerEvent;
+import com.rockpaperscissors.eventhandlers.RandomButtonEvent;
+import com.rockpaperscissors.eventhandlers.RockButtonEvent;
+import com.rockpaperscissors.eventhandlers.RotationButtonEvent;
+import com.rockpaperscissors.eventhandlers.ScissorsButtonEvent;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
@@ -52,24 +52,24 @@ public class RPSView implements View {
 		scoreText = builder.scoreText;
 	}
 	
-	public void setButtonOnActionEvents(RPSController controller,
-			HumanPlayer humanPlayer, ComputerPlayer computerPlayer) {
+	public void buildButtonOnActionEvents(HumanPlayer humanPlayer,
+			ComputerPlayer computerPlayer, ComputerOpponent opponent) {
 		playerVsComputer.setOnAction(
-				PlayerVsComputerEvent.getHandler(this, controller, humanPlayer));
+				PlayerVsComputerEvent.getHandler(this, humanPlayer));
 		computerVsComputer.setOnAction(
-				ComputerVsComputerEvent.getHandler(this, controller, computerPlayer));
+				ComputerVsComputerEvent.getHandler(this, computerPlayer));
 		rockButton.setOnAction(
-				RockButtonEvent.getHandler(controller, humanPlayer));
+				RockButtonEvent.getHandler(humanPlayer, opponent));
 		paperButton.setOnAction(
-				PaperButtonEvent.getHandler(controller, humanPlayer));
+				PaperButtonEvent.getHandler(humanPlayer, opponent));
 		scissorsButton.setOnAction(
-				ScissorsButtonEvent.getHandler(controller, humanPlayer));
+				ScissorsButtonEvent.getHandler(humanPlayer, opponent));
 		randomButton.setOnAction(
-				RandomButtonEvent.getHandler(controller, computerPlayer));
+				RandomButtonEvent.getHandler(computerPlayer, opponent));
 		fixedButton.setOnAction(
-				FixedButtonEvent.getHandler(controller, computerPlayer));
+				FixedButtonEvent.getHandler(computerPlayer, opponent));
 		rotationButton.setOnAction(
-				RotationButtonEvent.getHandler(controller, computerPlayer));	
+				RotationButtonEvent.getHandler(computerPlayer, opponent));	
 	}
 	
 	public void setPlayerVsComputerMode() {

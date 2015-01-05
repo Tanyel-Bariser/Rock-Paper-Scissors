@@ -1,9 +1,9 @@
 package com.rockpaperscissors.model.player;
 
-import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Result;
 import com.rockpaperscissors.model.Score;
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.view.View;
 
 /**
  * Human Player allows the user to manually choose the weapon to play with
@@ -11,11 +11,12 @@ import com.rockpaperscissors.model.Weapon;
  * @author Tanyel Bariser
  */
 public class HumanPlayer implements Player {
+	private final View view;
 	private final Score score;
 	private Weapon chosenWeapon;
 	
-	public HumanPlayer() {
-		this(new Score());
+	public HumanPlayer(View view) {
+		this(view, new Score());
 	}
 
 	/**
@@ -24,7 +25,8 @@ public class HumanPlayer implements Player {
 	 * @param view is the GUI
 	 * @param score for this player
 	 */
-	public HumanPlayer(Score score) {
+	public HumanPlayer(View view, Score score) {
+		this.view = view;
 		this.score = score;
 	}
 
@@ -44,11 +46,12 @@ public class HumanPlayer implements Player {
 	 * @param opponent this player competes against
 	 */
 	@Override
-	public void compete(RPSController controller, ComputerOpponent opponent) {
+	public void compete(ComputerOpponent opponent) {
 		Weapon opponentWeapon = opponent.playWeapon();
 		Result result = chosenWeapon.against(opponentWeapon);
 		score.updateScore(result);
-		controller.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setHumanPlayerResult(chosenWeapon, opponentWeapon, result);
+		view.setPlayerScore(readableScore());
 	}
 	
 	@Override

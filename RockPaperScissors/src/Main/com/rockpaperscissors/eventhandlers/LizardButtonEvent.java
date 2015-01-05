@@ -1,10 +1,10 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-import com.rockpaperscissors.controller.RPSController;
 import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
@@ -14,23 +14,21 @@ import com.rockpaperscissors.model.player.HumanPlayer;
  * @author Tanyel Bariser
  */
 public class LizardButtonEvent {
-	private final RPSController controller;
 	private final HumanPlayer humanPlayer;
+	private final ComputerOpponent opponent;
 	
-	public static EventHandler<ActionEvent> getHandler(RPSController controller,
-			HumanPlayer humanPlayer) {
-		return new LizardButtonEvent(controller, humanPlayer).HANDLER;
+	public static EventHandler<ActionEvent> getHandler(HumanPlayer humanPlayer, ComputerOpponent opponent) {
+		return new LizardButtonEvent(humanPlayer, opponent).HANDLER;
 	}
 	
 	/**
 	 * Creates class to handle Lizard button click
 	 * 
-	 * @param controller coordinates between the view and model
 	 * @param humanPlayer allows user to manually choose weapon
 	 */
-	private LizardButtonEvent(RPSController controller, HumanPlayer humanPlayer) {
-		this.controller = controller;
+	private LizardButtonEvent(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		this.humanPlayer = humanPlayer;
+		this.opponent = opponent;
 	}
 
 	/**
@@ -39,6 +37,6 @@ public class LizardButtonEvent {
 	 */
 	private final EventHandler<ActionEvent> HANDLER = event -> {
 		humanPlayer.setWeapon(Weapon.LIZARD);
-		controller.play();
+		humanPlayer.compete(opponent);
 	};
 }

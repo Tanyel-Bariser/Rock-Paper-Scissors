@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
@@ -12,35 +12,41 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.PaperButtonEvent;
-import com.rockpaperscissors.model.Weapon;
+import com.rockpaperscissors.eventhandlers.PlayerVsComputerEvent;
 import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.view.RPSView;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PaperButtonEventTest {
+public class PlayerVsComputerEventTest {
+	@Mock RPSView view;
 	@Mock RPSController controller;
 	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
 	EventHandler<ActionEvent> handler;
 
 	@Before
-	public void setUp() {
-		handler = PaperButtonEvent.getHandler(controller, humanPlayer);
+	public void setUp() throws Exception {
+		handler = PlayerVsComputerEvent.getHandler(view, controller, humanPlayer);
 		handler.handle(action);
 	}
 
 	@After
-	public void tearDown() {
+	public void tearDown() throws Exception {
 		handler = null;
-	}
-
-	@Test
-	public void handleSetsHumanPlayerWeaponPaper() {
-		verify(humanPlayer).setWeapon(Weapon.PAPER);
 	}
 	
 	@Test
-	public void handleInvokesControllerPlay() {
-		verify(controller).play();
+	public void handleSetsHumanPlayerInController() {
+		verify(controller).setPlayer(humanPlayer);
+	}
+
+	@Test
+	public void handleShowsPlayerScore() {
+		verify(controller).showPlayerScore();
+	}
+	
+	@Test
+	public void handleMakesComputerVsComputerCheckBoxUnselected() {
+		verify(view).setPlayerVsComputerMode();
 	}
 }

@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
@@ -12,12 +12,12 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.LizardButtonEvent;
+import com.rockpaperscissors.eventhandlers.PaperButtonEvent;
 import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 @RunWith(MockitoJUnitRunner.class)
-public class LizardButtonEventTest {
+public class PaperButtonEventTest {
 	@Mock RPSController controller;
 	@Mock HumanPlayer humanPlayer;
 	@Mock ActionEvent action;
@@ -25,7 +25,7 @@ public class LizardButtonEventTest {
 
 	@Before
 	public void setUp() {
-		handler = LizardButtonEvent.getHandler(controller, humanPlayer);
+		handler = PaperButtonEvent.getHandler(controller, humanPlayer);
 		handler.handle(action);
 	}
 
@@ -35,8 +35,8 @@ public class LizardButtonEventTest {
 	}
 
 	@Test
-	public void handleSetsHumanPlayerWeaponLizard() {
-		verify(humanPlayer).setWeapon(Weapon.LIZARD);
+	public void handleSetsHumanPlayerWeaponPaper() {
+		verify(humanPlayer).setWeapon(Weapon.PAPER);
 	}
 	
 	@Test

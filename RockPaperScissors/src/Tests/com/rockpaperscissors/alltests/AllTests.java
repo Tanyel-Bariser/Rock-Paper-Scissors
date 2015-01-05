@@ -4,17 +4,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.rockpaperscissors.controller.RPSControllerTest;
-import com.rockpaperscissors.controller.eventhandlers.ComputerVsComputerEventTest;
-import com.rockpaperscissors.controller.eventhandlers.FixedButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.LizardButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.PaperButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.PlayerVsComputerEventTest;
-import com.rockpaperscissors.controller.eventhandlers.RandomButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.RockButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.RotationButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.ScissorsButtonEventTest;
-import com.rockpaperscissors.controller.eventhandlers.SpockButtonEventTest;
+import com.rockpaperscissors.eventhandlers.ComputerVsComputerEventTest;
+import com.rockpaperscissors.eventhandlers.FixedButtonEventTest;
+import com.rockpaperscissors.eventhandlers.LizardButtonEventTest;
+import com.rockpaperscissors.eventhandlers.PaperButtonEventTest;
+import com.rockpaperscissors.eventhandlers.PlayerVsComputerEventTest;
+import com.rockpaperscissors.eventhandlers.RandomButtonEventTest;
+import com.rockpaperscissors.eventhandlers.RockButtonEventTest;
+import com.rockpaperscissors.eventhandlers.RotationButtonEventTest;
+import com.rockpaperscissors.eventhandlers.ScissorsButtonEventTest;
+import com.rockpaperscissors.eventhandlers.SpockButtonEventTest;
 import com.rockpaperscissors.model.ScoreTest;
 import com.rockpaperscissors.model.WeaponTest;
 import com.rockpaperscissors.model.player.ComputerOpponentTest;
@@ -32,7 +31,7 @@ import com.rockpaperscissors.strategies.RotationStrategyTest;
 		PlayerVsComputerEventTest.class, RandomButtonEventTest.class,
 		RandomStrategyTest.class, RockButtonEventTest.class,
 		RotationButtonEventTest.class, RotationStrategyTest.class,
-		RPSControllerTest.class, ScissorsButtonEventTest.class,
-		ScoreTest.class, SpockButtonEventTest.class, WeaponTest.class })
+		ScissorsButtonEventTest.class, ScoreTest.class,
+		SpockButtonEventTest.class, WeaponTest.class })
 public class AllTests {
 }

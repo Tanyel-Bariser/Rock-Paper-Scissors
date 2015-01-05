@@ -1,4 +1,4 @@
-package com.rockpaperscissors.controller.eventhandlers;
+package com.rockpaperscissors.eventhandlers;
 
 import static org.mockito.Mockito.verify;
 import javafx.event.ActionEvent;
@@ -12,20 +12,20 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.rockpaperscissors.controller.RPSController;
-import com.rockpaperscissors.controller.eventhandlers.RockButtonEvent;
-import com.rockpaperscissors.model.Weapon;
-import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.eventhandlers.RandomButtonEvent;
+import com.rockpaperscissors.model.player.ComputerPlayer;
+import com.rockpaperscissors.model.strategies.RandomStrategy;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RockButtonEventTest {
+public class RandomButtonEventTest {
 	@Mock RPSController controller;
-	@Mock HumanPlayer humanPlayer;
+	@Mock ComputerPlayer computerPlayer;
 	@Mock ActionEvent action;
 	EventHandler<ActionEvent> handler;
 
 	@Before
 	public void setUp() {
-		handler = RockButtonEvent.getHandler(controller, humanPlayer);
+		handler = RandomButtonEvent.getHandler(controller, computerPlayer);
 		handler.handle(action);
 	}
 
@@ -35,8 +35,8 @@ public class RockButtonEventTest {
 	}
 
 	@Test
-	public void handleSetsHumanPlayerWeaponRock() {
-		verify(humanPlayer).setWeapon(Weapon.ROCK);
+	public void handleSetsComputerPlayerRandomStrategy() {
+		verify(computerPlayer).setStrategy(RandomStrategy.RANDOM);
 	}
 	
 	@Test
