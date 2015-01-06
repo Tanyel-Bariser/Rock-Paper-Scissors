@@ -19,8 +19,6 @@ import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
- * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
- * 
  * Contains all GUI components the game requires
  * 
  * @author Tanyel Bariser
@@ -51,6 +49,7 @@ public class RPSView implements View {
 		rotationButton = builder.rotationButton;
 		resultText = builder.resultText;
 		scoreText = builder.scoreText;
+		setPlayerVsComputerMode();
 	}
 	
 	public void buildButtonOnActionEvents(HumanPlayer humanPlayer,

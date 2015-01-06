@@ -10,8 +10,6 @@ import com.rockpaperscissors.view.View;
 import com.rockpaperscissors.view.RPSViewBuilder;
 
 /**
- * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
- * 
  * Main class to run the game.
  * 
  * @author Tanyel Bariser

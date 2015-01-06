@@ -10,8 +10,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
- * 
  * Builds and sets up dependencies required for RPSView
  * 
  * @author Tanyel Bariser
@@ -32,27 +30,33 @@ public class RPSViewBuilder {
 	final Pane pane = new Pane();
 	private final Stage stage;
 
-	private final int FONT_SIZE = 32;
-	private final int RESULTS_FONT_SIZE = 20;
-	private final int CHOOSE_Y_POSITION = 170;
-	private final int BUTTON_Y_POSITION = 190;
-	private final int RESULT_Y_POSITION = 340;
+	// X and Y positions of GUI components and font sizes
+	static final Color COLOUR = Color.BLUE;
+	static final int LEFT_EDGE = 5;
+	static final int BUTTON_Y = 190;
+	static final int RESULT_Y = 340;
+	static final int CHOOSE_TEXT_Y = 170;
+	static final int PLAYER_Y = 5;
+	static final int COMPUTER_Y = 55;
+	static final int WEAPON_X = 165;
+	static final int ROCK_X = 75;
+	static final int PAPER_X = 245;
+	static final int SCISSORS_X = 425;
+	static final int STRATEGY_X = 85;
+	static final int RANDOM_X = 60;
+	static final int FIXED_X = 265;
+	static final int ROTATION_X = 425;
+	static final int SCORE_X = 365;
+	static final int FONT_SIZE = 32;
+	static final int RESULTS_SIZE = 20;
 
-	
 	public static View getRPSView(Stage stage) {
 		return new RPSView(new RPSViewBuilder(stage));
 	}
 	
-	private RPSViewBuilder(Stage stage) {
+	RPSViewBuilder(Stage stage) {
 		this.stage = stage;
 		buildViewComponents();
-	}
-	
-	/**
-	 * @return an instance of ViewBuilder (being used for unit testing)
-	 */
-	static RPSViewBuilder getRPSViewBuilder(Stage stage) {
-		return new RPSViewBuilder(stage);
 	}
 	
 	/**
@@ -80,10 +84,10 @@ public class RPSViewBuilder {
 	 */
 	private void buildPlayerVsComputer() {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		playerVsComputer.setLayoutX(5);
-		playerVsComputer.setLayoutY(5);
+		playerVsComputer.setLayoutX(LEFT_EDGE);
+		playerVsComputer.setLayoutY(PLAYER_Y);
 		playerVsComputer.setSelected(true);
-		playerVsComputer.setId("PvC");
+		playerVsComputer.setId("pvc");
 	}
 
 	/**
@@ -91,9 +95,9 @@ public class RPSViewBuilder {
 	 */
 	private void buildComputerVsComputer() {
 		computerVsComputer.setFont(Font.font(FONT_SIZE));
-		computerVsComputer.setLayoutX(5);
-		computerVsComputer.setLayoutY(55);
-		computerVsComputer.setSelected(false);
+		computerVsComputer.setLayoutX(LEFT_EDGE);
+		computerVsComputer.setLayoutY(COMPUTER_Y);
+		computerVsComputer.setId("cvc");
 	}
 
 	/**
@@ -101,9 +105,10 @@ public class RPSViewBuilder {
 	 */
 	private void buildChooseWeaponText() {
 		chooseWeapon.setFont(Font.font(FONT_SIZE));
-		chooseWeapon.setFill(Color.BLUE);
-		chooseWeapon.setLayoutX(165);
-		chooseWeapon.setLayoutY(CHOOSE_Y_POSITION);
+		chooseWeapon.setFill(COLOUR);
+		chooseWeapon.setLayoutX(WEAPON_X);
+		chooseWeapon.setLayoutY(CHOOSE_TEXT_Y);
+		chooseWeapon.setId("weapon");
 	}
 
 	/**
@@ -111,9 +116,9 @@ public class RPSViewBuilder {
 	 */
 	private void buildRockButton() {
 		rockButton.setFont(Font.font(FONT_SIZE));
-		rockButton.setTextFill(Color.BLUE);
-		rockButton.setLayoutX(75);
-		rockButton.setLayoutY(BUTTON_Y_POSITION);
+		rockButton.setTextFill(COLOUR);
+		rockButton.setLayoutX(ROCK_X);
+		rockButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
@@ -121,9 +126,9 @@ public class RPSViewBuilder {
 	 */
 	private void buildPaperButton() {
 		paperButton.setFont(Font.font(FONT_SIZE));
-		paperButton.setTextFill(Color.BLUE);
-		paperButton.setLayoutX(245);
-		paperButton.setLayoutY(BUTTON_Y_POSITION);
+		paperButton.setTextFill(COLOUR);
+		paperButton.setLayoutX(PAPER_X);
+		paperButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
@@ -131,9 +136,9 @@ public class RPSViewBuilder {
 	 */
 	private void buildScissorsButton() {
 		scissorsButton.setFont(Font.font(FONT_SIZE));
-		scissorsButton.setTextFill(Color.BLUE);
-		scissorsButton.setLayoutX(425);
-		scissorsButton.setLayoutY(BUTTON_Y_POSITION);
+		scissorsButton.setTextFill(COLOUR);
+		scissorsButton.setLayoutX(SCISSORS_X);
+		scissorsButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
@@ -142,10 +147,10 @@ public class RPSViewBuilder {
 	 */
 	private void buildChooseStategyText() {
 		chooseStrategy.setFont(Font.font(FONT_SIZE));
-		chooseStrategy.setFill(Color.BLUE);
-		chooseStrategy.setLayoutX(85);
-		chooseStrategy.setLayoutY(CHOOSE_Y_POSITION);
-		chooseStrategy.setVisible(false);
+		chooseStrategy.setFill(COLOUR);
+		chooseStrategy.setLayoutX(STRATEGY_X);
+		chooseStrategy.setLayoutY(CHOOSE_TEXT_Y);
+		chooseStrategy.setId("strategy");
 	}
 
 	/**
@@ -153,10 +158,9 @@ public class RPSViewBuilder {
 	 */	
 	private void buildRandomButton() {
 		randomButton.setFont(Font.font(FONT_SIZE));
-		randomButton.setTextFill(Color.BLUE);
-		randomButton.setLayoutX(60);
-		randomButton.setLayoutY(BUTTON_Y_POSITION);
-		randomButton.setVisible(false);
+		randomButton.setTextFill(COLOUR);
+		randomButton.setLayoutX(RANDOM_X);
+		randomButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
@@ -164,10 +168,9 @@ public class RPSViewBuilder {
 	 */	
 	private void buildFixedButton() {
 		fixedButton.setFont(Font.font(FONT_SIZE));
-		fixedButton.setTextFill(Color.BLUE);
-		fixedButton.setLayoutX(265);
-		fixedButton.setLayoutY(BUTTON_Y_POSITION);
-		fixedButton.setVisible(false);
+		fixedButton.setTextFill(COLOUR);
+		fixedButton.setLayoutX(FIXED_X);
+		fixedButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
@@ -175,30 +178,29 @@ public class RPSViewBuilder {
 	 */	
 	private void buildRotationButton() {
 		rotationButton.setFont(Font.font(FONT_SIZE));
-		rotationButton.setTextFill(Color.BLUE);
-		rotationButton.setLayoutX(425);
-		rotationButton.setLayoutY(BUTTON_Y_POSITION);
-		rotationButton.setVisible(false);
+		rotationButton.setTextFill(COLOUR);
+		rotationButton.setLayoutX(ROTATION_X);
+		rotationButton.setLayoutY(BUTTON_Y);
 	}
 
 	/**
 	 * Sets up text node to show user the results of the most recent game
 	 */
 	private void buildResultsText() {
-		resultText.setFont(Font.font(RESULTS_FONT_SIZE));
-		resultText.setFill(Color.BLUE);
-		resultText.setLayoutX(5);
-		resultText.setLayoutY(RESULT_Y_POSITION);
+		resultText.setFont(Font.font(RESULTS_SIZE));
+		resultText.setFill(COLOUR);
+		resultText.setLayoutX(LEFT_EDGE);
+		resultText.setLayoutY(RESULT_Y);
 	}
 
 	/**
 	 * Sets up text node to show user the score for the specific player
 	 */
 	private void buildScoreText() {
-		scoreText.setFont(Font.font(RESULTS_FONT_SIZE));
-		scoreText.setFill(Color.BLUE);
-		scoreText.setLayoutX(365);
-		scoreText.setLayoutY(RESULT_Y_POSITION);
+		scoreText.setFont(Font.font(RESULTS_SIZE));
+		scoreText.setFill(COLOUR);
+		scoreText.setLayoutX(SCORE_X);
+		scoreText.setLayoutY(RESULT_Y);
 	}
 
 	/**
