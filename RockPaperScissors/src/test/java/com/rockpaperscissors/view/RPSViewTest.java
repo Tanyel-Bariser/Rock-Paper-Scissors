@@ -36,6 +36,11 @@ public class RPSViewTest extends GuiTest {
 
 		builder = new RPSViewBuilder(new Stage());
 		builder.rockButton = rockButton;
+		builder.paperButton = paperButton;
+		builder.scissorsButton = scissorsButton;
+		builder.randomButton = randomButton;
+		builder.fixedButton = fixedButton;
+		builder.rotationButton = rotationButton;		
 
 		view = new RPSView(builder);
 		view.buildButtonOnActionEvents(new HumanPlayer(view),
@@ -49,6 +54,36 @@ public class RPSViewTest extends GuiTest {
 	@Test
 	public void rockButtonHasEventHandler() {
 		EventHandler<ActionEvent> handler = rockButton.getOnAction();
+		assertNotNull(handler);
+	}
+
+	@Test
+	public void paperButtonHasEventHandler() {
+		EventHandler<ActionEvent> handler = paperButton.getOnAction();
+		assertNotNull(handler);
+	}
+
+	@Test
+	public void scissorsButtonHasEventHandler() {
+		EventHandler<ActionEvent> handler = scissorsButton.getOnAction();
+		assertNotNull(handler);
+	}
+
+	@Test
+	public void randomButtonHasEventHandler() {
+		EventHandler<ActionEvent> handler = randomButton.getOnAction();
+		assertNotNull(handler);
+	}
+
+	@Test
+	public void fixedButtonHasEventHandler() {
+		EventHandler<ActionEvent> handler = fixedButton.getOnAction();
+		assertNotNull(handler);
+	}
+
+	@Test
+	public void rotationButtonHasEventHandler() {
+		EventHandler<ActionEvent> handler = rotationButton.getOnAction();
 		assertNotNull(handler);
 	}
 }
