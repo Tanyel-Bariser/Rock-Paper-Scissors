@@ -24,12 +24,12 @@ import com.rockpaperscissors.model.player.HumanPlayer;
  * @author Tanyel Bariser
  */
 public class RPSView implements View {
-	private final CheckBox playerVsComputer, computerVsComputer;
-	private final Text chooseWeapon, chooseStrategy, resultText, scoreText;
-	private final Button rockButton, paperButton, scissorsButton;
-	private final Button randomButton, fixedButton, rotationButton;
-	private String humanResult = null;
-	private String computerResult = null;
+	final CheckBox playerVsComputer, computerVsComputer;
+	final Text chooseWeapon, chooseStrategy, resultText, scoreText;
+	final Button rockButton, paperButton, scissorsButton;
+	final Button randomButton, fixedButton, rotationButton;
+	String humanResult = null;
+	String computerResult = null;
 
 	/**
 	 * Package-private constructor only visible to RPSViewBuilder

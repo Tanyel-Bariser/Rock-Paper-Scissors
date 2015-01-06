@@ -21,12 +21,12 @@ public class RPSViewBuilder {
 	final Text chooseStrategy = new Text("Choose Your Computer's Strategy");
 	final Text resultText = new Text();
 	final Text scoreText = new Text();
-	final Button rockButton = new Button("Rock");
-	final Button paperButton = new Button("Paper");
-	final Button scissorsButton = new Button("Scissors");
-	final Button randomButton = new Button("Random");
-	final Button fixedButton = new Button("Fixed");
-	final Button rotationButton = new Button("Rotation");
+	Button rockButton = new Button("Rock");
+	Button paperButton = new Button("Paper");
+	Button scissorsButton = new Button("Scissors");
+	Button randomButton = new Button("Random");
+	Button fixedButton = new Button("Fixed");
+	Button rotationButton = new Button("Rotation");
 	final Pane pane = new Pane();
 	private final Stage stage;
 
