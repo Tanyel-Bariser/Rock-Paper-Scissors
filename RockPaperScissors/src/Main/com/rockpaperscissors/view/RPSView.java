@@ -19,6 +19,8 @@ import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
+ * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
+ * 
  * Contains all GUI components the game requires
  * 
  * @author Tanyel Bariser
@@ -32,12 +34,11 @@ public class RPSView implements View {
 	private String computerResult = null;
 
 	/**
-	 * Package-private constructor only visible to ViewBuilder
-	 * Sets dependencies and invokes buildView() to build view's components
+	 * Package-private constructor only visible to RPSViewBuilder
 	 * 
 	 * @param builder containing RPSView's dependencies
 	 */
-	RPSView(ViewBuilder builder) {
+	RPSView(RPSViewBuilder builder) {
 		playerVsComputer = builder.playerVsComputer;
 		computerVsComputer = builder.computerVsComputer;
 		chooseWeapon = builder.chooseWeapon;

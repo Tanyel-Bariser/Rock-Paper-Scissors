@@ -6,11 +6,11 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
-public class ViewTest extends GuiTest {
+public class RPSViewTest extends GuiTest {
 
 	@Override
 	protected Parent getRootNode() {
-		ViewBuilder builder = ViewBuilder.createViewBuilder(new Stage());
+		RPSViewBuilder builder = RPSViewBuilder.getViewBuilder(new Stage());
 		return builder.playerVsComputer;
 	}
 	

@@ -7,9 +7,11 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 import com.rockpaperscissors.view.View;
-import com.rockpaperscissors.view.ViewBuilder;
+import com.rockpaperscissors.view.RPSViewBuilder;
 
 /**
+ * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
+ * 
  * Main class to run the game.
  * 
  * @author Tanyel Bariser
@@ -32,7 +34,7 @@ public class RockPaperScissors extends Application {
 	 */
 	@Override
 	public void start(Stage stage) {
-		View view = ViewBuilder.createRPSView(stage);
+		View view = RPSViewBuilder.getRPSView(stage);
 		HumanPlayer humanPlayer = new HumanPlayer(view);
 		ComputerPlayer computerPlayer = new ComputerPlayer(view);
 		ComputerOpponent opponent = new ComputerOpponent();

@@ -10,12 +10,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * Builds and sets up all dependencies required for RPSView
- * Allows optional injection for as many or few of RPSView's dependencies
+ * IMPORTANT: All code using the JavaFX 8 API are currently in need of unit tests!
+ * 
+ * Builds and sets up dependencies required for RPSView
  * 
  * @author Tanyel Bariser
  */
-public class ViewBuilder {
+public class RPSViewBuilder {
 	CheckBox playerVsComputer = new CheckBox("Player vs Computer");
 	CheckBox computerVsComputer = new CheckBox("Computer vs Computer");
 	Text chooseWeapon = new Text("Choose Your Weapon");
@@ -38,14 +39,11 @@ public class ViewBuilder {
 	private final int RESULT_Y_POSITION = 340;
 
 	
-	public static View createRPSView(Stage stage) {
-		ViewBuilder builder = new ViewBuilder(stage);
-		builder.addAllToPane();
-		builder.buildStage();
-		return new RPSView(builder);
+	public static View getRPSView(Stage stage) {
+		return new RPSView(new RPSViewBuilder(stage));
 	}
 	
-	private ViewBuilder(Stage stage) {
+	private RPSViewBuilder(Stage stage) {
 		this.stage = stage;
 		buildViewComponents();
 	}
@@ -66,6 +64,8 @@ public class ViewBuilder {
 		buildRotationButton();
 		buildResultsText();
 		buildScoreText();
+		addAllToPane();
+		buildStage();
 	}
 
 	/**
@@ -73,9 +73,9 @@ public class ViewBuilder {
 	 */
 	private void buildPlayerVsComputer() {
 		playerVsComputer.setFont(Font.font(FONT_SIZE));
-		playerVsComputer.setSelected(true);
 		playerVsComputer.setLayoutX(5);
 		playerVsComputer.setLayoutY(5);
+		playerVsComputer.setSelected(true);
 	}
 
 	/**
@@ -221,7 +221,8 @@ public class ViewBuilder {
 		stage.setResizable(false);
 		stage.show();
 	}
-
+	
+	
 	
 	/****************************************************************
 	 * The following methods allow optional injection of as many or *
@@ -230,15 +231,15 @@ public class ViewBuilder {
 	/**
 	 * @return an instance of ViewBuilder
 	 */
-	public static ViewBuilder createViewBuilder(Stage stage) {
-		return new ViewBuilder(stage);
+	public static RPSViewBuilder getViewBuilder(Stage stage) {
+		return new RPSViewBuilder(stage);
 	}
 	
 	/**
 	 * @param playerVsComputer check box required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder playerVsComputer(CheckBox playerVsComputer) {
+	public RPSViewBuilder playerVsComputer(CheckBox playerVsComputer) {
 		this.playerVsComputer = playerVsComputer;
 		return this;
 	}
@@ -247,7 +248,7 @@ public class ViewBuilder {
 	 * @param computerVsComputer check box required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder computerVsComputer(CheckBox computerVsComputer) {
+	public RPSViewBuilder computerVsComputer(CheckBox computerVsComputer) {
 		this.computerVsComputer = computerVsComputer;
 		return this;
 	}
@@ -256,7 +257,7 @@ public class ViewBuilder {
 	 * @param chooseWeapon text node required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder chooseWeaponText(Text chooseWeapon) {
+	public RPSViewBuilder chooseWeaponText(Text chooseWeapon) {
 		this.chooseWeapon = chooseWeapon;
 		return this;
 	}
@@ -265,7 +266,7 @@ public class ViewBuilder {
 	 * @param rockButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder rockButton(Button rockButton) {
+	public RPSViewBuilder rockButton(Button rockButton) {
 		this.rockButton = rockButton;
 		return this;
 	}
@@ -274,7 +275,7 @@ public class ViewBuilder {
 	 * @param paperButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder paperButton(Button paperButton) {
+	public RPSViewBuilder paperButton(Button paperButton) {
 		this.paperButton = paperButton;
 		return this;
 	}
@@ -283,7 +284,7 @@ public class ViewBuilder {
 	 * @param scissorsButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder scissorsButton(Button scissorsButton) {
+	public RPSViewBuilder scissorsButton(Button scissorsButton) {
 		this.scissorsButton = scissorsButton;
 		return this;
 	}
@@ -292,7 +293,7 @@ public class ViewBuilder {
 	 * @param chooseStrategy required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder chooseStrategyText(Text chooseStrategy) {
+	public RPSViewBuilder chooseStrategyText(Text chooseStrategy) {
 		this.chooseStrategy = chooseStrategy;
 		return this;
 	}
@@ -301,7 +302,7 @@ public class ViewBuilder {
 	 * @param randomButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder randomButton(Button randomButton) {
+	public RPSViewBuilder randomButton(Button randomButton) {
 		this.randomButton = randomButton;
 		return this;
 	}
@@ -310,7 +311,7 @@ public class ViewBuilder {
 	 * @param fixedButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder fixedButton(Button fixedButton) {
+	public RPSViewBuilder fixedButton(Button fixedButton) {
 		this.fixedButton = fixedButton;
 		return this;
 	}
@@ -319,7 +320,7 @@ public class ViewBuilder {
 	 * @param rotationButton required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder rotationButton(Button rotationButton) {
+	public RPSViewBuilder rotationButton(Button rotationButton) {
 		this.rotationButton = rotationButton;
 		return this;
 	}
@@ -328,7 +329,7 @@ public class ViewBuilder {
 	 * @param resultText required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder resultText(Text resultText) {
+	public RPSViewBuilder resultText(Text resultText) {
 		this.resultText = resultText;
 		return this;
 	}
@@ -337,7 +338,7 @@ public class ViewBuilder {
 	 * @param scoreText required for RPSView
 	 * @return same instance of ViewBuilder
 	 */
-	public ViewBuilder scoreText(Text scoreText) {
+	public RPSViewBuilder scoreText(Text scoreText) {
 		this.scoreText = scoreText;
 		return this;
 	}
