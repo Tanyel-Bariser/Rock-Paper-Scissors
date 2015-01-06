@@ -1,4 +1,4 @@
-package com.rockpaperscissors.strategies;
+package com.rockpaperscissors.model.strategies;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

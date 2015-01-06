@@ -17,19 +17,19 @@ import javafx.stage.Stage;
  * @author Tanyel Bariser
  */
 public class RPSViewBuilder {
-	CheckBox playerVsComputer = new CheckBox("Player vs Computer");
-	CheckBox computerVsComputer = new CheckBox("Computer vs Computer");
-	Text chooseWeapon = new Text("Choose Your Weapon");
-	Text chooseStrategy = new Text("Choose Your Computer's Strategy");
-	Text resultText = new Text();
-	Text scoreText = new Text();
-	Button rockButton = new Button("Rock");
-	Button paperButton = new Button("Paper");
-	Button scissorsButton = new Button("Scissors");
-	Button randomButton = new Button("Random");
-	Button fixedButton = new Button("Fixed");
-	Button rotationButton = new Button("Rotation");
-	private final Pane pane = new Pane();
+	final CheckBox playerVsComputer = new CheckBox("Player vs Computer");
+	final CheckBox computerVsComputer = new CheckBox("Computer vs Computer");
+	final Text chooseWeapon = new Text("Choose Your Weapon");
+	final Text chooseStrategy = new Text("Choose Your Computer's Strategy");
+	final Text resultText = new Text();
+	final Text scoreText = new Text();
+	final Button rockButton = new Button("Rock");
+	final Button paperButton = new Button("Paper");
+	final Button scissorsButton = new Button("Scissors");
+	final Button randomButton = new Button("Random");
+	final Button fixedButton = new Button("Fixed");
+	final Button rotationButton = new Button("Rotation");
+	final Pane pane = new Pane();
 	private final Stage stage;
 
 	private final int FONT_SIZE = 32;
@@ -47,7 +47,14 @@ public class RPSViewBuilder {
 		this.stage = stage;
 		buildViewComponents();
 	}
-
+	
+	/**
+	 * @return an instance of ViewBuilder (being used for unit testing)
+	 */
+	static RPSViewBuilder getRPSViewBuilder(Stage stage) {
+		return new RPSViewBuilder(stage);
+	}
+	
 	/**
 	 * Invokes all methods required to build all GUI components
 	 */
@@ -76,6 +83,7 @@ public class RPSViewBuilder {
 		playerVsComputer.setLayoutX(5);
 		playerVsComputer.setLayoutY(5);
 		playerVsComputer.setSelected(true);
+		playerVsComputer.setId("PvC");
 	}
 
 	/**
@@ -220,175 +228,5 @@ public class RPSViewBuilder {
 		stage.setTitle("Waste an Hour Having Fun");
 		stage.setResizable(false);
 		stage.show();
-	}
-	
-	
-	
-	/****************************************************************
-	 * The following methods allow optional injection of as many or *
-	 * few of RPSView's dependencies as desired via method chaining.*
-	 ***************************************************************/
-	/**
-	 * @return an instance of ViewBuilder
-	 */
-	public static RPSViewBuilder getViewBuilder(Stage stage) {
-		return new RPSViewBuilder(stage);
-	}
-	
-	/**
-	 * @param playerVsComputer check box required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder playerVsComputer(CheckBox playerVsComputer) {
-		this.playerVsComputer = playerVsComputer;
-		return this;
-	}
-
-	/**
-	 * @param computerVsComputer check box required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder computerVsComputer(CheckBox computerVsComputer) {
-		this.computerVsComputer = computerVsComputer;
-		return this;
-	}
-
-	/**
-	 * @param chooseWeapon text node required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder chooseWeaponText(Text chooseWeapon) {
-		this.chooseWeapon = chooseWeapon;
-		return this;
-	}
-
-	/**
-	 * @param rockButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder rockButton(Button rockButton) {
-		this.rockButton = rockButton;
-		return this;
-	}
-
-	/**
-	 * @param paperButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder paperButton(Button paperButton) {
-		this.paperButton = paperButton;
-		return this;
-	}
-
-	/**
-	 * @param scissorsButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder scissorsButton(Button scissorsButton) {
-		this.scissorsButton = scissorsButton;
-		return this;
-	}
-
-	/**
-	 * @param chooseStrategy required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder chooseStrategyText(Text chooseStrategy) {
-		this.chooseStrategy = chooseStrategy;
-		return this;
-	}
-
-	/**
-	 * @param randomButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder randomButton(Button randomButton) {
-		this.randomButton = randomButton;
-		return this;
-	}
-
-	/**
-	 * @param fixedButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder fixedButton(Button fixedButton) {
-		this.fixedButton = fixedButton;
-		return this;
-	}
-
-	/**
-	 * @param rotationButton required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder rotationButton(Button rotationButton) {
-		this.rotationButton = rotationButton;
-		return this;
-	}
-	
-	/**
-	 * @param resultText required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder resultText(Text resultText) {
-		this.resultText = resultText;
-		return this;
-	}
-	
-	/**
-	 * @param scoreText required for RPSView
-	 * @return same instance of ViewBuilder
-	 */
-	public RPSViewBuilder scoreText(Text scoreText) {
-		this.scoreText = scoreText;
-		return this;
-	}
-	
-	/**
-	 * Checks to makes sure all arguments required for RPSView have be gathered
-	 * Then builds RPSView and returns it
-	 * 
-	 * @return instance of RPSView
-	 */
-	public View build() {
-		checkForNullArgs();
-		addAllToPane();
-		buildStage();
-		return new RPSView(this);
-	}
-
-	/**
-	 * Checks that each dependency has be assigned correctly
-	 * @throws NullPoinerException
-	 */
-	private void checkForNullArgs() {
-		if (playerVsComputer == null) {
-			throw new NullPointerException(
-					"Player vs Computer Check Box is null");
-		} else if (computerVsComputer == null) {
-			throw new NullPointerException(
-					"Computer vs Computer Check Box is null");
-		} else if (chooseWeapon == null) {
-			throw new NullPointerException("Choose Weapon Text is null");
-		} else if (rockButton == null) {
-			throw new NullPointerException("Rock Button is null");
-		} else if (paperButton == null) {
-			throw new NullPointerException("Paper Button is null");
-		} else if (scissorsButton == null) {
-			throw new NullPointerException("Scissors Button is null");
-		} else if (chooseStrategy == null) {
-			throw new NullPointerException("Choose Strategy Text is null");
-		} else if (randomButton == null) {
-			throw new NullPointerException("Random Button is null");
-		} else if (fixedButton == null) {
-			throw new NullPointerException("Fixed Button is null");
-		} else if (rotationButton == null) {
-			throw new NullPointerException("Rotation Button is null");
-		} else if (resultText == null) {
-			throw new NullPointerException("Result Text is null");
-		} else if (scoreText  == null) {
-			throw new NullPointerException("Score Text is null");
-		} else if (stage == null) {
-			throw new NullPointerException("Stage is null");
-		}
 	}
 }
