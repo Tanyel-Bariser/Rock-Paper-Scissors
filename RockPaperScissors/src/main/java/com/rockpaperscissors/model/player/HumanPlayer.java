@@ -15,15 +15,18 @@ public class HumanPlayer implements Player {
 	private final Score score;
 	private Weapon chosenWeapon;
 	
+	/**
+	 * Sets a blank score for the human player
+	 * 
+	 * @param view is the GUI the user can use to assign the weapon
+	 */
 	public HumanPlayer(View view) {
 		this(view, new Score());
 	}
 
 	/**
-	 * Creates the user's player
-	 * 
-	 * @param view is the GUI
-	 * @param score for this player
+	 * @param view is the GUI the user can use to assign the weapon
+	 * @param score with potentially recorded scores from earlier games
 	 */
 	public HumanPlayer(View view, Score score) {
 		this.view = view;
@@ -31,8 +34,6 @@ public class HumanPlayer implements Player {
 	}
 
 	/**
-	 * User chooses the weapon to be used by this player
-	 * 
 	 * @param weapon chosen by user for this player
 	 */
 	public void setWeapon(Weapon weapon) {
@@ -40,8 +41,8 @@ public class HumanPlayer implements Player {
 	}
 
 	/**
-	 * This player chooses a weapon to compete with the opponent player's
-	 * weapon and records the result in the score and updates the RPSView
+	 * This player chooses a weapon to compete with the opponent's weapon
+	 * and records the result in the score and updates the View
 	 * 
 	 * @param opponent this player competes against
 	 */
@@ -54,6 +55,10 @@ public class HumanPlayer implements Player {
 		view.setPlayerScore(readableScore());
 	}
 	
+	/**
+	 * Player interface enforces players to have a readable score to allow
+	 * view to show the score to the user
+	 */
 	@Override
 	public String readableScore() {
 		String readableScore = "Your Score:\n";

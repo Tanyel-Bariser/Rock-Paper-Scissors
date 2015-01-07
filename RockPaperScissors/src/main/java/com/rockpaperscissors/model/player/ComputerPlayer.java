@@ -7,8 +7,8 @@ import com.rockpaperscissors.model.strategies.Strategy;
 import com.rockpaperscissors.view.View;
 
 /**
- * Computer player allows the user to choose a strategy
- * to automate the choosing weapons
+ * Computer player allows the user to choose a strategy for
+ * the computer to follow to choose weapons to compete with
  * 
  * @author Tanyel Bariser
  */
@@ -17,15 +17,18 @@ public class ComputerPlayer implements Player {
 	private final Score score;
 	private Strategy chosenStrategy;
 
+	/**
+	 * Sets a blank score for the computer player
+	 * 
+	 * @param view is the GUI the user can use to assign the strategy
+	 */
 	public ComputerPlayer(View view) {
 		this(view, new Score());
 	}
 	
 	/**
-	 * Creates the user's computer player
-	 * 
-	 * @param view is the GUI
-	 * @param score for the user's computer player
+	 * @param view is the GUI the user can use to assign the strategy
+	 * @param score with potentially recorded scores from earlier games
 	 */
 	public ComputerPlayer(View view, Score score) {
 		this.view = view;
@@ -33,8 +36,6 @@ public class ComputerPlayer implements Player {
 	}
 
 	/**
-	 * User can set the strategy the computer player uses to choose weapons
-	 * 
 	 * @param strategy the user's computer player uses to choose weapons
 	 */
 	public void setStrategy(Strategy strategy) {
@@ -42,8 +43,8 @@ public class ComputerPlayer implements Player {
 	}
 
 	/**
-	 * This player chooses a weapon to compete with the opponent player's
-	 * weapon and records the result in the score and updates the RPSView
+	 * This player chooses a weapon to compete with the opponent's weapon
+	 * and records the result in the score object and updates the View
 	 * 
 	 * @param opponent this player competes against
 	 */
@@ -57,6 +58,10 @@ public class ComputerPlayer implements Player {
 		view.setPlayerScore(readableScore());
 	}
 	
+	/**
+	 * Player interface enforces players to have a readable score to allow
+	 * view to show the score to the user
+	 */
 	@Override
 	public String readableScore() {
 		String readableScore = "Your Computer Player's Score:\n";

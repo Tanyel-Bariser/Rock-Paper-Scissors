@@ -1,7 +1,7 @@
 package com.rockpaperscissors.model;
 
 /**
- * This class contains the score for players
+ * This class contains the score, to be used by Player objects
  * 
  * @author Tanyel Bariser
  */
@@ -31,7 +31,7 @@ public class Score {
 	}
 
 	/**
-	 * Takes the result of the last game and updates the score accordingly
+	 * Takes the result of the last game and updates the player's score accordingly
 	 * 
 	 * @param result of last game
 	 */

@@ -10,14 +10,14 @@ import com.rockpaperscissors.view.View;
 import com.rockpaperscissors.view.RPSViewBuilder;
 
 /**
- * Main class to run the game.
+ * Main class to run the program/play the game.
  * 
  * @author Tanyel Bariser
  */
 public class RockPaperScissors extends Application {
 
 	/**
-	 * Invokes the launch method to start JavaFX's Application
+	 * Launches program
 	 * 
 	 * @param args main method (command line) arguments
 	 */

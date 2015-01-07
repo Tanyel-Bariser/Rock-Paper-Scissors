@@ -10,23 +10,25 @@ import com.rockpaperscissors.model.strategies.Strategy;
  * @author Tanyel Bariser
  */
 public class ComputerOpponent {
+	// Strategy to choose the weapon the computer opponent plays with
 	private final Strategy strategy;
 	
+	/**
+	 * Default constructor assigns a Random strategy to the Computer Opponent object
+	 */
 	public ComputerOpponent() {
 		this(RandomStrategy.RANDOM);
 	}
 	
 	/**
-	 * Creates computer opponent with a default strategy
-	 * 
-	 * @param strategy chooses which weapon the computer opponent plays with
+	 * @param strategy
 	 */
 	public ComputerOpponent(Strategy strategy) {
 		this.strategy = strategy;
 	}
 
 	/**
-	 * @return the weapon chosen based on the computer opponents strategy
+	 * @return the weapon chosen based on the computer opponent's strategy
 	 */
 	public Weapon playWeapon() {
 		return strategy.chooseWeapon();

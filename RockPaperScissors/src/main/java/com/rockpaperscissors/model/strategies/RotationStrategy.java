@@ -3,12 +3,14 @@ package com.rockpaperscissors.model.strategies;
 import com.rockpaperscissors.model.Weapon;
 
 /**
- * Concrete strategy hosts a constant lambda expression with the logic
- * to rotate weapon choice one by one
+ * Hosts a strategy for rotating the choice of weapon 
  * 
  * @author Tanyel Bariser
  */
 public class RotationStrategy {
+	/**
+	 * Prevents instantiation
+	 */
 	private RotationStrategy() {
 	}
 
