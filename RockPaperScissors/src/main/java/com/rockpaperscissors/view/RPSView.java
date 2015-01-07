@@ -19,7 +19,7 @@ import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
- * Contains all GUI components the game requires
+ * Manages all GUI components users interact with
  * 
  * @author Tanyel Bariser
  */
@@ -28,11 +28,13 @@ public class RPSView implements View {
 	final Text chooseWeapon, chooseStrategy, resultText, scoreText;
 	final Button rockButton, paperButton, scissorsButton;
 	final Button randomButton, fixedButton, rotationButton;
-	String humanResult = null;
-	String computerResult = null;
+	private String humanResult = null;
+	private String computerResult = null;
 
 	/**
-	 * Package-private constructor only visible to RPSViewBuilder
+	 * Constructor invoked by RPSViewBuilder
+	 * Is assigned all dependencies from RPSViewBuilder
+	 * Sets up "Player vs Computer" mode as the default mode for the user to play
 	 * 
 	 * @param builder containing RPSView's dependencies
 	 */
@@ -51,7 +53,14 @@ public class RPSView implements View {
 		scoreText = builder.scoreText;
 		setPlayerVsComputerMode();
 	}
-	
+
+	/**
+	 * Creates and assigns event handlers for check box
+	 * and buttons used in "Player vs Computer" mode
+	 * 
+	 * @param humanPlayer object playing the game
+	 * @param opponent object playing against the human player
+	 */
 	@Override
 	public void buildPlayerVsComputerEventHandlers(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		playerVsComputer.setOnAction(
@@ -63,7 +72,14 @@ public class RPSView implements View {
 		scissorsButton.setOnAction(
 				ScissorsButtonEvent.getHandler((HumanPlayer) humanPlayer, opponent));
 	}
-	
+
+	/**
+	 * Creates and assigns event handlers for check box
+	 * and buttons used in "Computer vs Computer" mode
+	 * 
+	 * @param computerPlayer object playing the game
+	 * @param opponent object playing against the computer player
+	 */
 	@Override
 	public void buildComputerVsComputerEventHandlers(ComputerPlayer computerPlayer, ComputerOpponent opponent) {
 		computerVsComputer.setOnAction(
@@ -75,7 +91,10 @@ public class RPSView implements View {
 		rotationButton.setOnAction(
 				RotationButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));
 	}
-	
+
+	/**
+	 * Sets appropriate visibility for GUI components for "Player vs Computer" mode
+	 */
 	@Override
 	public void setPlayerVsComputerMode() {
 		computerVsComputer.setSelected(false);
@@ -90,6 +109,10 @@ public class RPSView implements View {
 		resultText.setText(humanResult);
 	}
 	
+
+	/**
+	 * Sets appropriate visibility for GUI components for "Computer vs Computer" mode
+	 */
 	@Override
 	public void setComputerVsComputerMode() {
 		playerVsComputer.setSelected(false);
@@ -107,7 +130,7 @@ public class RPSView implements View {
 	/**
 	 * Readable string showing most recent result for human player
 	 * 
-	 * @param playerWeapon weapon chosen by player
+	 * @param playerWeapon weapon chosen by human player
 	 * @param opponentWeapon weapon chosen by computer opponent
 	 * @param result outcome of game
 	 */
@@ -123,7 +146,7 @@ public class RPSView implements View {
 	/**
 	 * Readable string showing most recent result for computer player
 	 * 
-	 * @param playerWeapon weapon chosen by player
+	 * @param playerWeapon weapon chosen by computer player
 	 * @param opponentWeapon weapon chosen by computer opponent
 	 * @param result outcome of game
 	 */

@@ -21,16 +21,19 @@ public class RPSViewBuilder {
 	final Text chooseStrategy = new Text("Choose Your Computer's Strategy");
 	final Text resultText = new Text();
 	final Text scoreText = new Text();
-	Button rockButton = new Button("Rock");
-	Button paperButton = new Button("Paper");
-	Button scissorsButton = new Button("Scissors");
-	Button randomButton = new Button("Random");
-	Button fixedButton = new Button("Fixed");
-	Button rotationButton = new Button("Rotation");
+	final Button rockButton = new Button("Rock");
+	final Button paperButton = new Button("Paper");
+	final Button scissorsButton = new Button("Scissors");
+	final Button randomButton = new Button("Random");
+	final Button fixedButton = new Button("Fixed");
+	final Button rotationButton = new Button("Rotation");
 	final Pane pane = new Pane();
 	private final Stage stage;
 
-	// X and Y positions of GUI components and font sizes
+	/**
+	 * X and Y positions of GUI components, font sizes and colours
+	 * Changing these constants to adjust the GUI components automatically updates unit tests
+	 */
 	static final Color COLOUR = Color.BLUE;
 	static final int LEFT_EDGE = 5;
 	static final int BUTTON_Y = 190;
@@ -50,12 +53,23 @@ public class RPSViewBuilder {
 	static final int FONT_SIZE = 32;
 	static final int RESULTS_SIZE = 20;
 
+	/**
+	 * Builds and injects all of RPSView's dependencies
+	 * 
+	 * @param stage to display all GUI components on
+	 * @return an instance of RPSView
+	 */
 	public static View getRPSView(Stage stage) {
 		RPSViewBuilder builder = new RPSViewBuilder(stage);
 		builder.buildStage();
 		return new RPSView(builder);
 	}
 	
+	/**
+	 * Private constructor invoked by static factory method
+	 * 
+	 * @param stage
+	 */
 	RPSViewBuilder(Stage stage) {
 		this.stage = stage;
 		buildViewComponents();
@@ -63,6 +77,7 @@ public class RPSViewBuilder {
 	
 	/**
 	 * Invokes all methods required to build all GUI components
+	 * Adds all GUI components into the Pane, which is the root node
 	 */
 	private void buildViewComponents() {
 		buildPlayerVsComputer();
@@ -181,7 +196,7 @@ public class RPSViewBuilder {
 	}
 
 	/**
-	 * Sets up text node to show user the results of the most recent game
+	 * Sets up text node to show user the result of the most recent game
 	 */
 	private void buildResultsText() {
 		resultText.setFont(Font.font(RESULTS_SIZE));
@@ -191,7 +206,7 @@ public class RPSViewBuilder {
 	}
 
 	/**
-	 * Sets up text node to show user the score for the specific player
+	 * Sets up text node to show user the score for the human or computer player
 	 */
 	private void buildScoreText() {
 		scoreText.setFont(Font.font(RESULTS_SIZE));
@@ -201,7 +216,7 @@ public class RPSViewBuilder {
 	}
 
 	/**
-	 * Sets up Pane, which stores all GUI components
+	 * Adds all GUI components into the Pane, which is the root node
 	 */
 	private void addAllToPane() {
 		pane.getChildren().add(playerVsComputer);
