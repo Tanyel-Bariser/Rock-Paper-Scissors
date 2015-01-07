@@ -7,8 +7,7 @@ import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.Player;
 import com.rockpaperscissors.view.View;
 /**
- * This class handles the logic when the user clicks the "Computer vs Computer"
- * check box.
+ * Hosts an EventHandler for "Computer vs Computer" check box.
  * 
  * @author Tanyel Bariser
  */
@@ -16,16 +15,21 @@ public class ComputerVsComputerEvent {
 	private final View view;
 	private final Player computerPlayer;
 	
+	/**
+	 * @param view containing the "Computer vs Computer" check box
+	 * @param computerPlayer object playing the game
+	 * @return EventHandler for "Computer vs Computer" check box
+	 */
 	public static EventHandler<ActionEvent> getHandler(View view,
 			ComputerPlayer computerPlayer) {
 		return new ComputerVsComputerEvent(view, computerPlayer).HANDLER;
 	}
 
 	/**
-	 * Creates class to handle Computer vs Computer mode
+	 * Private constructor invoked by static factory method
 	 * 
-	 * @param view is the GUI
-	 * @param computerPlayer has play strategies the user can choose from (cannot be HumanPlayer)
+	 * @param view
+	 * @param computerPlayer
 	 */
 	private ComputerVsComputerEvent(View view, ComputerPlayer computerPlayer) {
 		this.view = view;

@@ -7,8 +7,8 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RandomStrategy;
 
-/** 
- * This class handles the logic when the user clicks the Random button
+/**
+ * Hosts an EventHandler for RANDOM button.
  * 
  * @author Tanyel Bariser
  */
@@ -16,15 +16,21 @@ public class RandomButtonEvent {
 	private final ComputerPlayer computerPlayer;
 	private final ComputerOpponent opponent;
 
+	/**
+	 * @param computerPlayer object playing the game
+	 * @param opponent object playing against the computer player
+	 * @return EventHandler for RANDOM button
+	 */
 	public static EventHandler<ActionEvent> getHandler(ComputerPlayer computerPlayer,
 			ComputerOpponent opponent) {
 		return new RandomButtonEvent(computerPlayer, opponent).HANDLER;
 	}
 	
 	/**
-	 * Creates class to handle Random button click
+	 * Private constructor invoked by static factory method
 	 * 
-	 * @param computerPlayer has play strategies the user can choose from
+	 * @param computerPlayer
+	 * @param opponent
 	 */
 	private RandomButtonEvent(ComputerPlayer computerPlayer,
 			ComputerOpponent opponent) {

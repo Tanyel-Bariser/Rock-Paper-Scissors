@@ -7,8 +7,8 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.strategies.RotationStrategy;
 
-/** 
- * This class handles the logic when the user clicks the Rotation button
+/**
+ * Hosts an EventHandler for ROTATION button.
  * 
  * @author Tanyel Bariser
  */
@@ -16,15 +16,21 @@ public class RotationButtonEvent {
 	private final ComputerPlayer computerPlayer;
 	private final ComputerOpponent opponent;
 
+	/**
+	 * @param computerPlayer object playing the game
+	 * @param opponent object playing against the computer player
+	 * @return EventHandler for ROTATION button
+	 */
 	public static EventHandler<ActionEvent> getHandler(ComputerPlayer computerPlayer,
 			ComputerOpponent opponent) {
 		return new RotationButtonEvent(computerPlayer, opponent).HANDLER;
 	}
 	
 	/**
-	 * Creates class to handle Rotation button click
+	 * Private constructor invoked by static factory method
 	 * 
-	 * @param computerPlayer has play strategies the user can choose from
+	 * @param computerPlayer
+	 * @param opponent
 	 */
 	private RotationButtonEvent(ComputerPlayer computerPlayer,
 			ComputerOpponent opponent) {

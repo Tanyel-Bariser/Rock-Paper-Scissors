@@ -8,8 +8,7 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
 /**
- * SPOCK IS CURRENTLY NOT USED IN THIS VERSION 
- * This class handles the logic when the user clicks the Spock button
+ * Hosts an EventHandler for SPOCK button.
  * 
  * @author Tanyel Bariser
  */
@@ -17,14 +16,20 @@ public class SpockButtonEvent {
 	private final HumanPlayer humanPlayer;
 	private final ComputerOpponent opponent;
 	
+	/**
+	 * @param humanPlayer object playing the game
+	 * @param opponent object playing against the human player
+	 * @return EventHandler for SPOCK button
+	 */
 	public static EventHandler<ActionEvent> getHandler(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		return new SpockButtonEvent(humanPlayer, opponent).HANDLER;
 	}
 	
 	/**
-	 * Creates class to handle Spock button click
+	 * Private constructor invoked by static factory method
 	 * 
-	 * @param humanPlayer allows user to manually choose weapon
+	 * @param humanPlayer
+	 * @param opponent
 	 */
 	private SpockButtonEvent(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		this.humanPlayer = humanPlayer;

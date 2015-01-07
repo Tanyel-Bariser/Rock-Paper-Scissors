@@ -7,7 +7,7 @@ import com.rockpaperscissors.model.Weapon;
 import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.HumanPlayer;
 /**
- * This class handles the logic when the user clicks the Paper button
+ * Hosts an EventHandler for PAPER button.
  * 
  * @author Tanyel Bariser
  */
@@ -15,14 +15,20 @@ public class PaperButtonEvent {
 	private final HumanPlayer humanPlayer;
 	private final ComputerOpponent opponent;
 	
+	/**
+	 * @param humanPlayer object playing the game
+	 * @param opponent object playing against the human player
+	 * @return EventHandler for PAPER button
+	 */
 	public static EventHandler<ActionEvent> getHandler(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		return new PaperButtonEvent(humanPlayer, opponent).HANDLER;
 	}
 	
 	/**
-	 * Creates class to handle Paper button click
+	 * Private constructor invoked by static factory method
 	 * 
-	 * @param humanPlayer allows user to manually choose weapon
+	 * @param humanPlayer
+	 * @param opponent
 	 */
 	private PaperButtonEvent(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		this.humanPlayer = humanPlayer;

@@ -2,12 +2,8 @@ package com.rockpaperscissors.model;
 
 import static org.junit.Assert.assertSame;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.rockpaperscissors.model.Result;
-import com.rockpaperscissors.model.Score;
 
 public class ScoreTest {
 	Score score;
@@ -15,11 +11,6 @@ public class ScoreTest {
 	@Before
 	public void setUp() {
 		score = new Score();
-	}
-	
-	@After
-	public void tearDown() {
-		score = null;
 	}
 
 	@Test
