@@ -36,6 +36,7 @@ public class RockPaperScissors extends Application {
 		HumanPlayer humanPlayer = new HumanPlayer(view);
 		ComputerPlayer computerPlayer = new ComputerPlayer(view);
 		ComputerOpponent opponent = new ComputerOpponent();
-		view.buildButtonOnActionEvents(humanPlayer, computerPlayer, opponent);
+		view.buildPlayerVsComputerEventHandlers(humanPlayer,  opponent);
+		view.buildComputerVsComputerEventHandlers(computerPlayer,  opponent);
 	}
 }

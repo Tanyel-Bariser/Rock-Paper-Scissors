@@ -52,26 +52,32 @@ public class RPSView implements View {
 		setPlayerVsComputerMode();
 	}
 	
-	public void buildButtonOnActionEvents(HumanPlayer humanPlayer,
-			ComputerPlayer computerPlayer, ComputerOpponent opponent) {
+	@Override
+	public void buildPlayerVsComputerEventHandlers(HumanPlayer humanPlayer, ComputerOpponent opponent) {
 		playerVsComputer.setOnAction(
-				PlayerVsComputerEvent.getHandler(this, humanPlayer));
-		computerVsComputer.setOnAction(
-				ComputerVsComputerEvent.getHandler(this, computerPlayer));
+				PlayerVsComputerEvent.getHandler(this, (HumanPlayer) humanPlayer));
 		rockButton.setOnAction(
-				RockButtonEvent.getHandler(humanPlayer, opponent));
+				RockButtonEvent.getHandler((HumanPlayer) humanPlayer, opponent));
 		paperButton.setOnAction(
-				PaperButtonEvent.getHandler(humanPlayer, opponent));
+				PaperButtonEvent.getHandler((HumanPlayer) humanPlayer, opponent));
 		scissorsButton.setOnAction(
-				ScissorsButtonEvent.getHandler(humanPlayer, opponent));
-		randomButton.setOnAction(
-				RandomButtonEvent.getHandler(computerPlayer, opponent));
-		fixedButton.setOnAction(
-				FixedButtonEvent.getHandler(computerPlayer, opponent));
-		rotationButton.setOnAction(
-				RotationButtonEvent.getHandler(computerPlayer, opponent));	
+				ScissorsButtonEvent.getHandler((HumanPlayer) humanPlayer, opponent));
 	}
 	
+	@Override
+	public void buildComputerVsComputerEventHandlers(ComputerPlayer computerPlayer, ComputerOpponent opponent) {
+		computerVsComputer.setOnAction(
+				ComputerVsComputerEvent.getHandler(this, (ComputerPlayer) computerPlayer));
+		randomButton.setOnAction(
+				RandomButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));
+		fixedButton.setOnAction(
+				FixedButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));
+		rotationButton.setOnAction(
+				RotationButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));	
+		
+	}
+	
+	@Override
 	public void setPlayerVsComputerMode() {
 		computerVsComputer.setSelected(false);
 		chooseStrategy.setVisible(false);
@@ -85,6 +91,7 @@ public class RPSView implements View {
 		resultText.setText(humanResult);
 	}
 	
+	@Override
 	public void setComputerVsComputerMode() {
 		playerVsComputer.setSelected(false);
 		chooseStrategy.setVisible(true);
@@ -105,6 +112,7 @@ public class RPSView implements View {
 	 * @param opponentWeapon weapon chosen by computer opponent
 	 * @param result outcome of game
 	 */
+	@Override
 	public void setHumanPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
 			Result result) {
 		humanResult = "You chose " + playerWeapon.name() + "\n";
@@ -120,6 +128,7 @@ public class RPSView implements View {
 	 * @param opponentWeapon weapon chosen by computer opponent
 	 * @param result outcome of game
 	 */
+	@Override
 	public void setComputerPlayerResult(Weapon playerWeapon, Weapon opponentWeapon,
 			Result result) {
 		computerResult = "Your Computer chose " + playerWeapon.name() + "\n";
@@ -131,6 +140,7 @@ public class RPSView implements View {
 	/**
 	 * @param playerScore text to show user player's score
 	 */
+	@Override
 	public void setPlayerScore(String playerScore) {
 		scoreText.setText(playerScore);
 	}

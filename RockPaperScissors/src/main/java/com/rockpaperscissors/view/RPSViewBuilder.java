@@ -88,7 +88,6 @@ public class RPSViewBuilder {
 		playerVsComputer.setLayoutX(LEFT_EDGE);
 		playerVsComputer.setLayoutY(PLAYER_Y);
 		playerVsComputer.setSelected(true);
-		playerVsComputer.setId("player");
 	}
 
 	/**
@@ -98,7 +97,6 @@ public class RPSViewBuilder {
 		computerVsComputer.setFont(Font.font(FONT_SIZE));
 		computerVsComputer.setLayoutX(LEFT_EDGE);
 		computerVsComputer.setLayoutY(COMPUTER_Y);
-		computerVsComputer.setId("computer");
 	}
 
 	/**
@@ -109,7 +107,6 @@ public class RPSViewBuilder {
 		chooseWeapon.setFill(COLOUR);
 		chooseWeapon.setLayoutX(WEAPON_X);
 		chooseWeapon.setLayoutY(CHOOSE_TEXT_Y);
-		chooseWeapon.setId("weapon");
 	}
 
 	/**
@@ -120,7 +117,6 @@ public class RPSViewBuilder {
 		rockButton.setTextFill(COLOUR);
 		rockButton.setLayoutX(ROCK_X);
 		rockButton.setLayoutY(BUTTON_Y);
-		rockButton.setId("rock");
 	}
 
 	/**
@@ -131,7 +127,6 @@ public class RPSViewBuilder {
 		paperButton.setTextFill(COLOUR);
 		paperButton.setLayoutX(PAPER_X);
 		paperButton.setLayoutY(BUTTON_Y);
-		paperButton.setId("paper");
 	}
 
 	/**
@@ -142,7 +137,6 @@ public class RPSViewBuilder {
 		scissorsButton.setTextFill(COLOUR);
 		scissorsButton.setLayoutX(SCISSORS_X);
 		scissorsButton.setLayoutY(BUTTON_Y);
-		scissorsButton.setId("scissors");
 	}
 
 	/**
@@ -154,7 +148,6 @@ public class RPSViewBuilder {
 		chooseStrategy.setFill(COLOUR);
 		chooseStrategy.setLayoutX(STRATEGY_X);
 		chooseStrategy.setLayoutY(CHOOSE_TEXT_Y);
-		chooseStrategy.setId("strategy");
 	}
 
 	/**
@@ -165,7 +158,6 @@ public class RPSViewBuilder {
 		randomButton.setTextFill(COLOUR);
 		randomButton.setLayoutX(RANDOM_X);
 		randomButton.setLayoutY(BUTTON_Y);
-		randomButton.setId("random");
 	}
 
 	/**
@@ -176,7 +168,6 @@ public class RPSViewBuilder {
 		fixedButton.setTextFill(COLOUR);
 		fixedButton.setLayoutX(FIXED_X);
 		fixedButton.setLayoutY(BUTTON_Y);
-		fixedButton.setId("fixed");
 	}
 
 	/**
@@ -187,7 +178,6 @@ public class RPSViewBuilder {
 		rotationButton.setTextFill(COLOUR);
 		rotationButton.setLayoutX(ROTATION_X);
 		rotationButton.setLayoutY(BUTTON_Y);
-		rotationButton.setId("rotation");
 	}
 
 	/**
@@ -198,7 +188,6 @@ public class RPSViewBuilder {
 		resultText.setFill(COLOUR);
 		resultText.setLayoutX(LEFT_EDGE);
 		resultText.setLayoutY(RESULT_Y);
-		resultText.setId("result");
 	}
 
 	/**
@@ -209,7 +198,6 @@ public class RPSViewBuilder {
 		scoreText.setFill(COLOUR);
 		scoreText.setLayoutX(SCORE_X);
 		scoreText.setLayoutY(RESULT_Y);
-		scoreText.setId("score");
 	}
 
 	/**

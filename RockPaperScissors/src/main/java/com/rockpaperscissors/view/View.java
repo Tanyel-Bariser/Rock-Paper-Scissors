@@ -8,8 +8,11 @@ import com.rockpaperscissors.model.player.HumanPlayer;
 
 public interface View {
 
-	void buildButtonOnActionEvents(HumanPlayer humanPlayer,
-			ComputerPlayer computerPlayer, ComputerOpponent opponent);
+	void buildPlayerVsComputerEventHandlers(HumanPlayer humanPlayer,
+			ComputerOpponent opponent);
+
+	void buildComputerVsComputerEventHandlers(ComputerPlayer computerPlayer,
+			ComputerOpponent opponent);
 
 	void setPlayerVsComputerMode();
 
