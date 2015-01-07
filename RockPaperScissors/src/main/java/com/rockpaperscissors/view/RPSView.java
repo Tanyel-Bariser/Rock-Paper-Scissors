@@ -73,8 +73,7 @@ public class RPSView implements View {
 		fixedButton.setOnAction(
 				FixedButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));
 		rotationButton.setOnAction(
-				RotationButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));	
-		
+				RotationButtonEvent.getHandler((ComputerPlayer) computerPlayer, opponent));
 	}
 	
 	@Override
