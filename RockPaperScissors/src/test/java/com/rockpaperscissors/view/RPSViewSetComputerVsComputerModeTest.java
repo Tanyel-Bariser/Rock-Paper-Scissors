@@ -7,9 +7,8 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
-import com.rockpaperscissors.model.player.ComputerOpponent;
-import com.rockpaperscissors.model.player.ComputerPlayer;
-import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.model.Result;
+import com.rockpaperscissors.model.Weapon;
 
 public class RPSViewSetComputerVsComputerModeTest extends GuiTest {
 	RPSView view;
@@ -19,15 +18,11 @@ public class RPSViewSetComputerVsComputerModeTest extends GuiTest {
 		RPSViewBuilder builder = new RPSViewBuilder(new Stage());
 		view = new RPSView(builder);
 
-		HumanPlayer humanPlayer = new HumanPlayer(view);
-		ComputerPlayer computerPlayer = new ComputerPlayer(view);
-		ComputerOpponent opponent = new ComputerOpponent();
-		view.buildPlayerVsComputerEventHandlers(humanPlayer, opponent);
-		view.buildComputerVsComputerEventHandlers(computerPlayer, opponent);
+		view.setComputerPlayerResult(Weapon.PAPER, Weapon.ROCK, Result.WON);
 
 		// MAIN SET UP FOR TEST CLASS
 		view.setComputerVsComputerMode();
-		
+
 		// builder.pane has references to all of view's dependencies
 		return builder.pane;
 	}
@@ -36,17 +31,17 @@ public class RPSViewSetComputerVsComputerModeTest extends GuiTest {
 	public void computerVsComputerModeUnselectsPlayerVsComputerCheckBox() {
 		assertEquals(false, view.playerVsComputer.isSelected());
 	}
-	
+
 	@Test
 	public void computerVsComputerModeSetsChooseWeaponInvisible() {
 		assertEquals(false, view.chooseWeapon.isVisible());
 	}
-	
+
 	@Test
 	public void computerVsComputerModeSetsChooseStrategyVisible() {
 		assertEquals(true, view.chooseStrategy.isVisible());
 	}
-	
+
 	@Test
 	public void computerVsComputerModeSetsRandomButtonVisible() {
 		assertEquals(true, view.randomButton.isVisible());
@@ -75,5 +70,11 @@ public class RPSViewSetComputerVsComputerModeTest extends GuiTest {
 	@Test
 	public void computerVsComputerModeSetsScissorsButtonInvisible() {
 		assertEquals(false, view.scissorsButton.isVisible());
+	}
+
+	@Test
+	public void testSetComputerPlayerResult() {
+		String expectedOutput = "Your Computer chose PAPER\nComputer Opponent chose ROCK\nYour Computer WON";
+		assertEquals(expectedOutput, view.resultText.getText());
 	}
 }

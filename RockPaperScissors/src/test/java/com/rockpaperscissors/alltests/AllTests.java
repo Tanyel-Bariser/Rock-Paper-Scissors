@@ -23,6 +23,9 @@ import com.rockpaperscissors.model.strategies.FixedStrategyTest;
 import com.rockpaperscissors.model.strategies.RandomStrategyTest;
 import com.rockpaperscissors.model.strategies.RotationStrategyTest;
 import com.rockpaperscissors.view.RPSViewBuilderTest;
+import com.rockpaperscissors.view.RPSViewSetComputerVsComputerModeTest;
+import com.rockpaperscissors.view.RPSViewSetPlayerVsComputerModeTest;
+import com.rockpaperscissors.view.RPSViewBuildEventHandlersTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ComputerOpponentTest.class, ComputerPlayerTest.class,
@@ -32,7 +35,9 @@ import com.rockpaperscissors.view.RPSViewBuilderTest;
 		PlayerVsComputerEventTest.class, RandomButtonEventTest.class,
 		RandomStrategyTest.class, RockButtonEventTest.class,
 		RotationButtonEventTest.class, RotationStrategyTest.class,
-		RPSViewBuilderTest.class, ScissorsButtonEventTest.class,
-		ScoreTest.class, SpockButtonEventTest.class, WeaponTest.class })
+		RPSViewBuildEventHandlersTest.class, RPSViewSetPlayerVsComputerModeTest.class,
+		RPSViewSetComputerVsComputerModeTest.class, RPSViewBuilderTest.class,
+		ScissorsButtonEventTest.class, ScoreTest.class,
+		SpockButtonEventTest.class, WeaponTest.class })
 public class AllTests {
 }

@@ -7,9 +7,8 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.loadui.testfx.GuiTest;
 
-import com.rockpaperscissors.model.player.ComputerOpponent;
-import com.rockpaperscissors.model.player.ComputerPlayer;
-import com.rockpaperscissors.model.player.HumanPlayer;
+import com.rockpaperscissors.model.Result;
+import com.rockpaperscissors.model.Weapon;
 
 public class RPSViewSetPlayerVsComputerModeTest extends GuiTest {
 	RPSView view;
@@ -19,12 +18,8 @@ public class RPSViewSetPlayerVsComputerModeTest extends GuiTest {
 		RPSViewBuilder builder = new RPSViewBuilder(new Stage());
 		view = new RPSView(builder);
 
-		HumanPlayer humanPlayer = new HumanPlayer(view);
-		ComputerPlayer computerPlayer = new ComputerPlayer(view);
-		ComputerOpponent opponent = new ComputerOpponent();
-		view.buildPlayerVsComputerEventHandlers(humanPlayer, opponent);
-		view.buildComputerVsComputerEventHandlers(computerPlayer, opponent);
-
+		view.setHumanPlayerResult(Weapon.ROCK, Weapon.SCISSORS, Result.WON);
+		
 		// MAIN SET UP FOR TEST CLASS
 		view.setPlayerVsComputerMode();
 
@@ -75,5 +70,11 @@ public class RPSViewSetPlayerVsComputerModeTest extends GuiTest {
 	@Test
 	public void playerVsComputerModeSetsScissorsButtonVisible() {
 		assertEquals(true, view.scissorsButton.isVisible());
+	}
+	
+	@Test
+	public void testSetHumanPlayerResult() {
+		String expectedOutput = "You chose ROCK\nComputer Opponent chose SCISSORS\nYou WON";
+		assertEquals(expectedOutput, view.resultText.getText());
 	}
 }

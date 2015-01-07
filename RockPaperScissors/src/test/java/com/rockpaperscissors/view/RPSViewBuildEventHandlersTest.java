@@ -13,7 +13,7 @@ import com.rockpaperscissors.model.player.ComputerOpponent;
 import com.rockpaperscissors.model.player.ComputerPlayer;
 import com.rockpaperscissors.model.player.HumanPlayer;
 
-public class RPSViewTest extends GuiTest {
+public class RPSViewBuildEventHandlersTest extends GuiTest {
 	RPSView view;
 
 	@Override
