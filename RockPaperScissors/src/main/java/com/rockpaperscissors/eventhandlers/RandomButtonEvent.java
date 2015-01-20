@@ -13,8 +13,8 @@ import com.rockpaperscissors.model.strategies.RandomStrategy;
  * @author Tanyel Bariser
  */
 public class RandomButtonEvent {
-	private final ComputerPlayer computerPlayer;
-	private final ComputerOpponent opponent;
+	private ComputerPlayer computerPlayer;
+	private ComputerOpponent opponent;
 
 	/**
 	 * @param computerPlayer object playing the game

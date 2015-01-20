@@ -13,8 +13,8 @@ import com.rockpaperscissors.model.strategies.RotationStrategy;
  * @author Tanyel Bariser
  */
 public class RotationButtonEvent {
-	private final ComputerPlayer computerPlayer;
-	private final ComputerOpponent opponent;
+	private ComputerPlayer computerPlayer;
+	private ComputerOpponent opponent;
 
 	/**
 	 * @param computerPlayer object playing the game

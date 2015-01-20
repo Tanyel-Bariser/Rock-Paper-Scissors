@@ -12,8 +12,8 @@ import com.rockpaperscissors.model.player.HumanPlayer;
  * @author Tanyel Bariser
  */
 public class ScissorsButtonEvent {
-	private final HumanPlayer humanPlayer;
-	private final ComputerOpponent opponent;
+	private HumanPlayer humanPlayer;
+	private ComputerOpponent opponent;
 	
 	/**
 	 * @param humanPlayer object playing the game

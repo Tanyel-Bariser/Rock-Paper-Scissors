@@ -12,8 +12,8 @@ import com.rockpaperscissors.view.View;
  * @author Tanyel Bariser
  */
 public class PlayerVsComputerEvent {
-	private final View view;
-	private final Player humanPlayer;
+	private View view;
+	private Player humanPlayer;
 	
 	/**
 	 * @param view containing the "Player vs Computer" check box
