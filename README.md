@@ -1,4 +1,4 @@
-Build and Run instructions for the Eclipse IDE are followed by Build and Run instructions for Command Line.
+Build and Run instructions for the Eclipse IDE are followed by Build and Run instructions for Command Line:
 
 BUILD INSTRUCTIONS FOR ECLIPSE IDE:
 
@@ -8,7 +8,7 @@ This project also uses Java 8 including the bundled JavaFX 8 API, so please have
 
 Also (in Eclipse) make sure the Java compliance level is set for Java 8. To do this go to Window->Preferences->Java->Compiler then set the "Compiler compliance level:" to 1.8 then go to Window->Preferences->Java->Installed JREs and click the check box labelled jre1.8.0_25 then click OK and do the full build when prompted.
 
-Dependencies gathered by Maven are via the pom.xml file include:
+Dependencies gathered by Maven are via the pom.xml file and include:
 junit 4.10
 testFX 3.1.2
 mockito-all 1.9.5
