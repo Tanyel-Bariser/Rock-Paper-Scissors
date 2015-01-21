@@ -1,7 +1,4 @@
-Extract the folder containing the project if it is zipped.
-
-
-
+Build and Run instructions for the Eclipse IDE are followed by Build and Run instructions for Command Line.
 
 BUILD INSTRUCTIONS FOR ECLIPSE IDE:
 
